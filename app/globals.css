@@ -26,6 +26,13 @@
   --accent-fg: oklch(0.99 0 0);
   --accent-soft: oklch(0.95 0.03 264);
 
+  /* Syntax — playground token highlighter (theme-aware) */
+  --syntax-keyword: oklch(0.55 0.2 264);
+  --syntax-string: oklch(0.52 0.13 150);
+  --syntax-type: oklch(0.55 0.15 230);
+  --syntax-number: oklch(0.58 0.16 55);
+  --syntax-comment: oklch(0.62 0.01 260);
+
   /* Utility */
   --ring: oklch(0.55 0.2 264);
   --shadow-color: 260 30% 20%;
@@ -52,6 +59,12 @@
 
   --ring: oklch(0.66 0.18 264);
   --shadow-color: 265 60% 3%;
+
+  --syntax-keyword: oklch(0.72 0.15 264);
+  --syntax-string: oklch(0.78 0.15 150);
+  --syntax-type: oklch(0.74 0.13 230);
+  --syntax-number: oklch(0.78 0.14 55);
+  --syntax-comment: oklch(0.6 0.012 265);
 }
 
 @theme inline {
@@ -68,6 +81,12 @@
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
   --color-ring: var(--ring);
+
+  --color-syntax-keyword: var(--syntax-keyword);
+  --color-syntax-string: var(--syntax-string);
+  --color-syntax-type: var(--syntax-type);
+  --color-syntax-number: var(--syntax-number);
+  --color-syntax-comment: var(--syntax-comment);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;

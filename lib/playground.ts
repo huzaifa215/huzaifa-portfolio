@@ -89,6 +89,43 @@ export const experiments: ExperimentMeta[] = [
       "Controls that lean toward the cursor with spring physics and settle back on release.",
     why: "Microinteractions signal that a surface is alive and responsive. Tuned springs — not linear tweens — are what make it feel physical rather than gimmicky.",
   },
+  {
+    id: "typewriter-intelligence",
+    title: "Typewriter Intelligence",
+    category: "Motion Systems",
+    tags: ["variable timing", "cursor", "reduced-motion"],
+    purpose:
+      "A typewriter that types with human cadence — variable speed, punctuation pauses, faster deletes — across rotating phrases.",
+    why: "Naive character loops read as robotic. Modeling real typing rhythm is the same instinct behind perceived-performance work: timing is what makes motion feel alive instead of mechanical.",
+    featured: true,
+  },
+  {
+    id: "spring-playground",
+    title: "Physics Spring Playground",
+    category: "Microinteractions",
+    tags: ["drag", "spring physics", "live tuning"],
+    purpose:
+      "Draggable elements that spring back to origin with live-tunable stiffness and damping, and gently repel when they overlap.",
+    why: "Spring constants are abstract until you feel them. Exposing stiffness and damping as live controls is how you build intuition for the physics behind every polished microinteraction.",
+  },
+  {
+    id: "token-highlighter",
+    title: "Live Code Token Highlighter",
+    category: "UI Interaction",
+    tags: ["regex tokenizer", "overlay mirror", "real-time"],
+    purpose:
+      "A code editor that classifies and colors tokens in real time using a regex tokenizer painted into a mirror overlay — no syntax library.",
+    why: "The textarea-overlay mirror is the technique behind every in-browser code editor. Tokenizing by hand rehearses the parsing and DOM-sync discipline that real editors demand.",
+  },
+  {
+    id: "scroll-timeline",
+    title: "Scroll Timeline Visualizer",
+    category: "Motion Systems",
+    tags: ["scroll-driven", "IntersectionObserver", "keyboard"],
+    purpose:
+      "A horizontal timeline scrubbed by a contained scroll area — progress fills, milestones reveal in sequence, and a playhead tracks position.",
+    why: "Scroll-linked motion is easy to do badly. Containing it to one element, falling back from CSS scroll-timelines to IntersectionObserver, and keeping it keyboard-driven is the production-grade version.",
+  },
 ];
 
 export const featuredExperiments = experiments.filter((e) => e.featured);

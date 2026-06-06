@@ -68,7 +68,7 @@ export default function PlaygroundPage() {
         <Reveal>
           <SectionHeading
             eyebrow="Featured"
-            title="Three worth slowing down for"
+            title="The ones worth slowing down for"
             sub="The strongest of the set — each one live, interactive, and explained."
           />
         </Reveal>

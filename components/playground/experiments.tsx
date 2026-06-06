@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   motion,
   AnimatePresence,
+  animate,
   useMotionValue,
   useSpring,
   useReducedMotion,
@@ -513,6 +514,606 @@ export function MagneticControls() {
 }
 
 /* ──────────────────────────────────────────────────────────
+   7. Typewriter Intelligence — human-cadence typing
+   ────────────────────────────────────────────────────────── */
+const TYPE_PHRASES = [
+  "performance is the experience",
+  "architecture that ages well",
+  "SEO as product infrastructure",
+  "accessibility is non-negotiable",
+  "motion with intent, never decoration",
+];
+
+const COMMON_LETTERS = new Set("etaoinshrdlu ".split(""));
+
+export function TypewriterIntelligence() {
+  const reduce = useReducedMotion();
+  const [text, setText] = React.useState("");
+  const [index, setIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!reduce) return;
+    const id = setInterval(
+      () => setIndex((i) => (i + 1) % TYPE_PHRASES.length),
+      2200
+    );
+    return () => clearInterval(id);
+  }, [reduce]);
+
+  React.useEffect(() => {
+    if (reduce) return;
+    let cancelled = false;
+    let timeout: ReturnType<typeof setTimeout>;
+    let phrase = 0;
+    let pos = 0;
+    let deleting = false;
+
+    const tick = () => {
+      if (cancelled) return;
+      const full = TYPE_PHRASES[phrase];
+
+      if (!deleting) {
+        pos++;
+        setText(full.slice(0, pos));
+        if (pos >= full.length) {
+          deleting = true;
+          timeout = setTimeout(tick, 1500); // settle on the full phrase
+          return;
+        }
+        const ch = full[pos - 1];
+        let delay = COMMON_LETTERS.has(ch.toLowerCase()) ? 38 : 84;
+        delay += Math.random() * 42;
+        if (/[.,;:]/.test(ch)) delay += 260; // breathe at punctuation
+        timeout = setTimeout(tick, delay);
+      } else {
+        pos--;
+        setText(full.slice(0, pos));
+        if (pos <= 0) {
+          deleting = false;
+          phrase = (phrase + 1) % TYPE_PHRASES.length;
+          timeout = setTimeout(tick, 360);
+          return;
+        }
+        timeout = setTimeout(tick, 24 + Math.random() * 18); // delete faster
+      }
+    };
+
+    timeout = setTimeout(tick, 500);
+    return () => {
+      cancelled = true;
+      clearTimeout(timeout);
+    };
+  }, [reduce]);
+
+  return (
+    <div className="flex min-h-[4rem] items-center justify-center rounded-xl border border-border bg-background/60 px-4 py-6">
+      {reduce ? (
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-center font-mono text-base text-foreground"
+          >
+            {TYPE_PHRASES[index]}
+          </motion.span>
+        </AnimatePresence>
+      ) : (
+        <span className="text-center font-mono text-base text-foreground">
+          <span aria-live="polite">{text}</span>
+          <span
+            aria-hidden
+            className="ml-0.5 inline-block w-[2px] animate-pulse bg-accent align-middle"
+            style={{ height: "1.1em" }}
+          />
+        </span>
+      )}
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────
+   8. Physics Spring Playground — drag, spring-back, repel
+   ────────────────────────────────────────────────────────── */
+type DotApi = {
+  el: React.RefObject<HTMLButtonElement | null>;
+  setRepel: (x: number, y: number) => void;
+  getDrag: () => { x: number; y: number };
+};
+
+function SpringDot({
+  index,
+  label,
+  stiffness,
+  damping,
+  reduce,
+  coarse,
+  register,
+  onStart,
+  onMove,
+  onEnd,
+}: {
+  index: number;
+  label: string;
+  stiffness: number;
+  damping: number;
+  reduce: boolean | null;
+  coarse: boolean;
+  register: (i: number, api: DotApi) => void;
+  onStart: () => void;
+  onMove: (i: number) => void;
+  onEnd: () => void;
+}) {
+  const dragX = useMotionValue(0);
+  const dragY = useMotionValue(0);
+  const repelXSrc = useMotionValue(0);
+  const repelYSrc = useMotionValue(0);
+  const repelX = useSpring(repelXSrc, { stiffness: 220, damping: 24 });
+  const repelY = useSpring(repelYSrc, { stiffness: 220, damping: 24 });
+  const ref = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    register(index, {
+      el: ref,
+      setRepel: (x, y) => {
+        repelXSrc.set(x);
+        repelYSrc.set(y);
+      },
+      getDrag: () => ({ x: dragX.get(), y: dragY.get() }),
+    });
+  }, [index, register, dragX, dragY, repelXSrc, repelYSrc]);
+
+  const springHome = () => {
+    if (reduce) {
+      dragX.set(0);
+      dragY.set(0);
+      return;
+    }
+    animate(dragX, 0, { type: "spring", stiffness, damping });
+    animate(dragY, 0, { type: "spring", stiffness, damping });
+  };
+
+  const flick = () => {
+    if (!coarse || reduce) return;
+    dragX.set((Math.random() - 0.5) * 130);
+    dragY.set((Math.random() - 0.5) * 90);
+    animate(dragX, 0, { type: "spring", stiffness, damping });
+    animate(dragY, 0, { type: "spring", stiffness, damping });
+  };
+
+  return (
+    <motion.div style={{ x: repelX, y: repelY }}>
+      <motion.button
+        ref={ref}
+        drag={!coarse}
+        dragMomentum={false}
+        dragElastic={0.55}
+        onDragStart={onStart}
+        onDrag={() => onMove(index)}
+        onDragEnd={() => {
+          springHome();
+          onEnd();
+        }}
+        onClick={flick}
+        whileTap={{ scale: 0.96 }}
+        style={{ x: dragX, y: dragY }}
+        className={cn(
+          "flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-accent-soft/50 text-base font-semibold text-foreground",
+          coarse
+            ? "cursor-pointer"
+            : "cursor-grab touch-none active:cursor-grabbing"
+        )}
+      >
+        {label}
+      </motion.button>
+    </motion.div>
+  );
+}
+
+export function SpringPlayground() {
+  const reduce = useReducedMotion();
+  const coarse = useCoarsePointer();
+  const [stiffness, setStiffness] = React.useState(260);
+  const [damping, setDamping] = React.useState(18);
+  const apis = React.useRef<Map<number, DotApi>>(new Map());
+  const homes = React.useRef<Map<number, { x: number; y: number }>>(new Map());
+
+  const register = React.useCallback((i: number, api: DotApi) => {
+    apis.current.set(i, api);
+  }, []);
+
+  const measure = React.useCallback(() => {
+    apis.current.forEach((api, i) => {
+      const r = api.el.current?.getBoundingClientRect();
+      if (r)
+        homes.current.set(i, {
+          x: r.left + r.width / 2,
+          y: r.top + r.height / 2,
+        });
+    });
+  }, []);
+
+  const onMove = React.useCallback(
+    (i: number) => {
+      if (reduce) return;
+      const hi = homes.current.get(i);
+      const di = apis.current.get(i)?.getDrag();
+      if (!hi || !di) return;
+      const ci = { x: hi.x + di.x, y: hi.y + di.y };
+      const R = 104;
+      apis.current.forEach((api, j) => {
+        if (j === i) return;
+        const hj = homes.current.get(j);
+        if (!hj) return;
+        const dx = hj.x - ci.x;
+        const dy = hj.y - ci.y;
+        const d = Math.hypot(dx, dy);
+        if (d > 0 && d < R) {
+          const push = (R - d) * 0.45;
+          api.setRepel((dx / d) * push, (dy / d) * push);
+        } else {
+          api.setRepel(0, 0);
+        }
+      });
+    },
+    [reduce]
+  );
+
+  const onEnd = React.useCallback(() => {
+    apis.current.forEach((api) => api.setRepel(0, 0));
+  }, []);
+
+  const labels = ["A", "T", "↯", "◆", "●"];
+
+  return (
+    <div>
+      <div className="mb-5 flex min-h-[8rem] flex-wrap items-center justify-center gap-5 rounded-xl border border-border bg-background/60 p-6">
+        {labels.map((l, i) => (
+          <SpringDot
+            key={i}
+            index={i}
+            label={l}
+            stiffness={stiffness}
+            damping={damping}
+            reduce={reduce}
+            coarse={coarse}
+            register={register}
+            onStart={measure}
+            onMove={onMove}
+            onEnd={onEnd}
+          />
+        ))}
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Slider
+          label="Stiffness"
+          value={stiffness}
+          min={40}
+          max={600}
+          suffix=""
+          onChange={setStiffness}
+        />
+        <Slider
+          label="Damping"
+          value={damping}
+          min={4}
+          max={50}
+          suffix=""
+          onChange={setDamping}
+        />
+      </div>
+      <p className="mt-3 text-center text-xs text-subtle">
+        {coarse
+          ? "Tap an element to flick it — it springs home with the configured physics."
+          : "Drag an element and release. Neighbors nudge aside when crowded."}
+      </p>
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────
+   9. Live Code Token Highlighter — regex tokenizer + mirror
+   ────────────────────────────────────────────────────────── */
+const TOKEN_SEED = `// a tokenizer rehearses real editor plumbing
+type Status = "idle" | "loading" | "ready";
+
+interface Session {
+  id: string;
+  status: Status;
+  retries: number;
+}
+
+async function load(url: string): Promise<Session> {
+  const res = await fetch(url);
+  if (!res.ok) return { id: "0", status: "idle", retries: 3 };
+  return res.json();
+}`;
+
+const CODE_KEYWORDS = new Set([
+  "const",
+  "let",
+  "var",
+  "type",
+  "interface",
+  "return",
+  "async",
+  "await",
+  "function",
+  "export",
+  "import",
+  "from",
+  "if",
+  "else",
+  "new",
+  "class",
+  "extends",
+  "of",
+  "in",
+]);
+
+type TokenType =
+  | "keyword"
+  | "string"
+  | "comment"
+  | "type"
+  | "number"
+  | "plain";
+type Token = { type: TokenType; value: string };
+
+function tokenize(code: string): Token[] {
+  const re =
+    /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)|\b(\d+(?:\.\d+)?)\b|([A-Za-z_$][A-Za-z0-9_$]*)/g;
+  const out: Token[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(code))) {
+    if (m.index > last)
+      out.push({ type: "plain", value: code.slice(last, m.index) });
+    if (m[1]) out.push({ type: "comment", value: m[1] });
+    else if (m[2]) out.push({ type: "string", value: m[2] });
+    else if (m[3]) out.push({ type: "number", value: m[3] });
+    else if (m[4]) {
+      const w = m[4];
+      if (CODE_KEYWORDS.has(w)) out.push({ type: "keyword", value: w });
+      else if (/^[A-Z]/.test(w)) out.push({ type: "type", value: w });
+      else out.push({ type: "plain", value: w });
+    }
+    last = re.lastIndex;
+  }
+  if (last < code.length)
+    out.push({ type: "plain", value: code.slice(last) });
+  return out;
+}
+
+const tokenClass: Record<TokenType, string> = {
+  keyword: "text-syntax-keyword",
+  string: "text-syntax-string",
+  comment: "italic text-syntax-comment",
+  type: "text-syntax-type",
+  number: "text-syntax-number",
+  plain: "text-foreground",
+};
+
+const tokenLegend: { k: TokenType; dot: string; label: string }[] = [
+  { k: "keyword", dot: "bg-syntax-keyword", label: "Keywords" },
+  { k: "string", dot: "bg-syntax-string", label: "Strings" },
+  { k: "type", dot: "bg-syntax-type", label: "Types" },
+  { k: "number", dot: "bg-syntax-number", label: "Numbers" },
+  { k: "comment", dot: "bg-syntax-comment", label: "Comments" },
+];
+
+export function TokenHighlighter() {
+  const [code, setCode] = React.useState(TOKEN_SEED);
+  const overlayRef = React.useRef<HTMLDivElement>(null);
+  const taRef = React.useRef<HTMLTextAreaElement>(null);
+  const tokens = React.useMemo(() => tokenize(code), [code]);
+
+  const counts = React.useMemo(() => {
+    const c: Partial<Record<TokenType, number>> = {};
+    for (const t of tokens)
+      if (t.type !== "plain") c[t.type] = (c[t.type] ?? 0) + 1;
+    return c;
+  }, [tokens]);
+  const total =
+    Object.values(counts).reduce((a, b) => a + (b ?? 0), 0) || 1;
+
+  const syncScroll = () => {
+    if (overlayRef.current && taRef.current) {
+      overlayRef.current.scrollTop = taRef.current.scrollTop;
+      overlayRef.current.scrollLeft = taRef.current.scrollLeft;
+    }
+  };
+
+  const sharedText = "font-mono text-[13px] leading-[1.6]";
+
+  return (
+    <div>
+      <div className="relative h-64 overflow-hidden rounded-xl border border-border bg-background/60">
+        <div
+          ref={overlayRef}
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-0 overflow-auto whitespace-pre-wrap break-words p-4",
+            sharedText
+          )}
+        >
+          {tokens.map((t, i) => (
+            <span key={i} className={tokenClass[t.type]}>
+              {t.value}
+            </span>
+          ))}
+          {"\n"}
+        </div>
+        <textarea
+          ref={taRef}
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          onScroll={syncScroll}
+          spellCheck={false}
+          aria-label="Editable code sample"
+          className={cn(
+            "absolute inset-0 resize-none overflow-auto whitespace-pre-wrap break-words bg-transparent p-4 text-transparent caret-foreground outline-none",
+            sharedText
+          )}
+        />
+      </div>
+
+      <div className="mt-4">
+        <div className="flex h-2.5 overflow-hidden rounded-full bg-surface-muted">
+          {tokenLegend.map((b) =>
+            counts[b.k] ? (
+              <div
+                key={b.k}
+                className={b.dot}
+                style={{ width: `${((counts[b.k] ?? 0) / total) * 100}%` }}
+              />
+            ) : null
+          )}
+        </div>
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+          {tokenLegend.map((b) => (
+            <span
+              key={b.k}
+              className="inline-flex items-center gap-1.5 text-xs text-muted"
+            >
+              <span className={cn("h-2 w-2 rounded-full", b.dot)} />
+              {b.label}
+              <span className="font-mono tabular-nums text-subtle">
+                {counts[b.k] ?? 0}
+              </span>
+            </span>
+          ))}
+          <span className="ml-auto font-mono text-xs tabular-nums text-subtle">
+            {total} tokens
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────
+   10. Scroll Timeline Visualizer — scroll-driven, keyboard-safe
+   ────────────────────────────────────────────────────────── */
+const TIMELINE = [
+  { key: "Requirements", body: "Define the problem precisely." },
+  { key: "Architecture", body: "Choose boundaries that age well." },
+  { key: "Implementation", body: "Build in small, safe steps." },
+  { key: "Review", body: "Catch what tests can't." },
+  { key: "Ship", body: "Release behind a measured rollout." },
+  { key: "Monitor", body: "Watch real users, close the loop." },
+];
+
+export function ScrollTimeline() {
+  const reduce = useReducedMotion();
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = React.useState(0);
+  const [visible, setVisible] = React.useState<Set<number>>(
+    () => new Set(reduce ? TIMELINE.map((_, i) => i) : [])
+  );
+
+  const onScroll = React.useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setProgress(max <= 0 ? 0 : el.scrollLeft / max);
+  }, []);
+
+  React.useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    onScroll();
+    if (reduce) {
+      setVisible(new Set(TIMELINE.map((_, i) => i)));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        setVisible((prev) => {
+          const next = new Set(prev);
+          for (const e of entries) {
+            if (e.isIntersecting)
+              next.add(Number((e.target as HTMLElement).dataset.idx));
+          }
+          return next;
+        });
+      },
+      { root: el, threshold: 0.6 }
+    );
+    el.querySelectorAll("[data-idx]").forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, [reduce, onScroll]);
+
+  const onKey = (e: React.KeyboardEvent) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      el.scrollBy({ left: 168, behavior: reduce ? "auto" : "smooth" });
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      el.scrollBy({ left: -168, behavior: reduce ? "auto" : "smooth" });
+    }
+  };
+
+  return (
+    <div>
+      <div className="relative mb-4 h-1.5 rounded-full bg-surface-muted">
+        <div
+          className="h-full rounded-full bg-accent"
+          style={{ width: `${progress * 100}%` }}
+        />
+        <div
+          className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-accent bg-background"
+          style={{ left: `${progress * 100}%` }}
+        />
+      </div>
+
+      <div
+        ref={scrollRef}
+        onScroll={onScroll}
+        onKeyDown={onKey}
+        tabIndex={0}
+        role="region"
+        aria-label="Engineering lifecycle timeline — scroll or use arrow keys"
+        className="flex gap-4 overflow-x-auto rounded-xl border border-border bg-background/60 p-4 [scrollbar-width:thin] focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        {TIMELINE.map((m, i) => (
+          <motion.div
+            key={m.key}
+            data-idx={i}
+            initial={false}
+            animate={
+              visible.has(i)
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0.25, y: reduce ? 0 : 16 }
+            }
+            transition={reduce ? { duration: 0 } : { duration: 0.5, ease }}
+            className="flex w-44 shrink-0 flex-col rounded-xl border border-border bg-surface p-4"
+          >
+            <span className="font-mono text-xs text-accent">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className="mt-2 text-sm font-semibold text-foreground">
+              {m.key}
+            </span>
+            <span className="mt-1 text-xs leading-relaxed text-muted">
+              {m.body}
+            </span>
+          </motion.div>
+        ))}
+        <div className="w-1 shrink-0" />
+      </div>
+      <p className="mt-3 text-xs text-subtle">
+        Scroll the row, or focus it and use the ← → arrow keys.
+      </p>
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────
    Registry — id → live component
    ────────────────────────────────────────────────────────── */
 export const experimentComponents: Record<string, React.ComponentType> = {
@@ -522,4 +1123,8 @@ export const experimentComponents: Record<string, React.ComponentType> = {
   "stagger-lab": StaggerLab,
   "bento-morph": BentoMorph,
   "magnetic-controls": MagneticControls,
+  "typewriter-intelligence": TypewriterIntelligence,
+  "spring-playground": SpringPlayground,
+  "token-highlighter": TokenHighlighter,
+  "scroll-timeline": ScrollTimeline,
 };
