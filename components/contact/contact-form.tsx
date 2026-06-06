@@ -9,7 +9,7 @@ import { contactSchema, intentOptions, type ContactInput } from "@/lib/contact-s
 import { profile } from "@/lib/resume";
 import { cn } from "@/lib/utils";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 export function ContactForm() {
   const reduce = useReducedMotion();

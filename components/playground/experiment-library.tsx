@@ -6,7 +6,7 @@ import { categories as allCategories } from "@/lib/playground";
 import type { ExperimentCategory, ExperimentMeta } from "@/lib/playground";
 import { ExperimentCard } from "./experiment-card";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 export function ExperimentLibrary({ experiments }: { experiments: ExperimentMeta[] }) {
   const reduce = useReducedMotion();

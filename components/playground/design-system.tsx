@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 /** The primitives the rest of the site is actually built from, shown live. */
 export function DesignSystemLab() {

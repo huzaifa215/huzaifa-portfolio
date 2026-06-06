@@ -17,7 +17,7 @@ import {
 import type { CaseStudy as CaseStudyData, Project } from "@/lib/resume";
 import { ArchitectureDiagram } from "./architecture-diagram";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 const SECTIONS = [
   { id: "summary", label: "Executive summary" },

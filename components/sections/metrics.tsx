@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Activity, Globe2, Layers, TrendingUp } from "lucide-react";
 import { Counter } from "@/components/motion";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 const supporting = [
   { icon: Activity, value: 99, suffix: "%+", label: "Uptime on booking flows" },

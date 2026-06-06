@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { faqs } from "@/lib/resume";
+import { EASE } from "@/lib/motion";
 
 export function Faq() {
   const [open, setOpen] = React.useState<number | null>(0);
@@ -50,7 +51,7 @@ export function Faq() {
                       initial={reduce ? false : { height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={reduce ? undefined : { height: 0, opacity: 0 }}
-                      transition={{ duration: 0.32, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      transition={{ duration: 0.32, ease: EASE }}
                       className="overflow-hidden"
                     >
                       <p className="max-w-2xl pb-6 text-sm leading-relaxed text-muted md:text-[0.95rem]">

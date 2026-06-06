@@ -5,7 +5,7 @@ import { motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { experience } from "@/lib/resume";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 export function Timeline() {
   const ref = React.useRef<HTMLDivElement>(null);

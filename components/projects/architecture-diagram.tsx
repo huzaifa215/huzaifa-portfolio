@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import type { ArchitectureLayer } from "@/lib/resume";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 /** Vertical layered architecture flow: Frontend ↓ API ↓ Database ↓ Integrations. */
 export function ArchitectureDiagram({ layers }: { layers: ArchitectureLayer[] }) {

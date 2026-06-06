@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 /** Detect coarse (touch) pointers so hover-driven effects degrade gracefully. */
 function useCoarsePointer() {

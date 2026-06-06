@@ -9,7 +9,7 @@ import { Counter } from "@/components/motion";
 import { profile, techEcosystem } from "@/lib/resume";
 import { cn } from "@/lib/utils";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 export function Hero() {
   const reduce = useReducedMotion();

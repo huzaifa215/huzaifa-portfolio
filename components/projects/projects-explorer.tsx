@@ -7,7 +7,7 @@ import { ArrowUpRight, CircleCheck, Search, X } from "lucide-react";
 import type { Project, ProjectCategory } from "@/lib/resume";
 import { ProjectCard } from "./project-card";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+import { EASE as ease } from "@/lib/motion";
 
 export function ProjectsExplorer({ projects }: { projects: Project[] }) {
   const reduce = useReducedMotion();
