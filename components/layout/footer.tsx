@@ -3,64 +3,100 @@ import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 import { navItems, profile } from "@/lib/resume";
 
+const connect = [
+  { label: "Email", href: profile.links.email, Icon: Mail, external: false },
+  { label: "GitHub", href: profile.links.github, Icon: GithubIcon, external: true },
+  { label: "LinkedIn", href: profile.links.linkedin, Icon: LinkedinIcon, external: true },
+];
+
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border">
-      <div className="container-page py-14">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-sm">
-            <Link href="/" className="flex items-center gap-2 text-sm font-semibold text-foreground">
+      <div className="container-page py-16 md:py-20">
+        <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+          {/* Brand statement */}
+          <div className="md:col-span-6 lg:col-span-7">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.18em] text-subtle transition-colors hover:text-foreground"
+            >
               <img
                 src="/logo-mark.svg"
                 alt=""
-                width={32}
-                height={32}
-                className="h-8 w-8"
+                width={28}
+                height={28}
+                className="h-7 w-7"
               />
               {profile.name}
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-muted">
-              {profile.titles.join(" · ")}. {profile.remote}.
+            <p className="mt-6 max-w-md text-balance text-xl font-medium leading-snug tracking-tight text-foreground md:text-2xl">
+              Building fast, accessible web products that scale — from system
+              architecture to the final pixel.
             </p>
-            <p className="mt-2 text-sm text-subtle">{profile.relocation}</p>
+            <p className="mt-4 text-sm text-subtle">
+              Available for consulting, freelance, and full-time work.
+            </p>
           </div>
 
-          <div className="flex gap-16">
-            <nav className="flex flex-col gap-3">
-              <span className="text-xs font-medium uppercase tracking-wide text-subtle">
-                Navigate
-              </span>
+          {/* Navigate */}
+          <nav
+            aria-label="Footer"
+            className="md:col-span-3 lg:col-span-2"
+          >
+            <h2 className="text-xs font-medium uppercase tracking-[0.18em] text-subtle">
+              Navigate
+            </h2>
+            <ul className="mt-5 space-y-3">
               {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-muted transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="group inline-flex items-center text-sm text-muted transition-colors hover:text-foreground"
+                  >
+                    <span className="h-px w-0 bg-accent transition-all duration-300 group-hover:mr-2 group-hover:w-3" />
+                    {item.label}
+                  </Link>
+                </li>
               ))}
-            </nav>
+            </ul>
+          </nav>
 
-            <div className="flex flex-col gap-3">
-              <span className="text-xs font-medium uppercase tracking-wide text-subtle">
-                Connect
-              </span>
-              <a href={profile.links.email} className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">
-                <Mail className="h-4 w-4" /> Email
-              </a>
-              <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">
-                <GithubIcon className="h-4 w-4" /> GitHub
-              </a>
-              <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">
-                <LinkedinIcon className="h-4 w-4" /> LinkedIn
-              </a>
-            </div>
+          {/* Connect */}
+          <div className="md:col-span-3">
+            <h2 className="text-xs font-medium uppercase tracking-[0.18em] text-subtle">
+              Connect
+            </h2>
+            <ul className="mt-5 space-y-3">
+              {connect.map(({ label, href, Icon, external }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    {...(external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="group inline-flex items-center gap-3 text-sm text-muted transition-colors hover:text-foreground"
+                  >
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-subtle transition-colors group-hover:border-border-strong group-hover:text-foreground">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-xs text-subtle sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} {profile.name}. All rights reserved.</span>
-          <span>Built with Next.js, TypeScript &amp; Framer Motion.</span>
+        {/* Bottom bar */}
+        <div className="mt-16 flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-subtle">
+            © {year} {profile.name}. All rights reserved.
+          </p>
+          <p className="font-mono text-[0.7rem] tracking-tight text-subtle">
+            Built with Next.js, TypeScript &amp; Framer Motion
+          </p>
         </div>
       </div>
     </footer>
