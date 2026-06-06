@@ -54,7 +54,7 @@ export function CommandMenu() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open command menu"
-        className="hidden items-center gap-2 rounded-full border border-border bg-surface-muted px-3 py-2 text-sm text-muted transition-colors hover:border-border-strong hover:text-foreground sm:inline-flex"
+        className="hidden h-9 items-center gap-2 rounded-lg border border-border/60 bg-surface-muted/60 px-2.5 text-xs text-subtle transition-colors duration-150 hover:border-border hover:text-foreground sm:inline-flex"
       >
         <span>Search</span>
         <kbd className="rounded border border-border bg-surface px-1.5 py-0.5 text-[10px] font-medium text-subtle">

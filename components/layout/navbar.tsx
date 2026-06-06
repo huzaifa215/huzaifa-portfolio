@@ -16,7 +16,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -30,13 +30,15 @@ export function Navbar() {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-colors duration-300",
-        scrolled ? "glass border-b border-border" : "border-b border-transparent"
+        scrolled
+          ? "border-b border-border/50 bg-background/80 backdrop-blur-md"
+          : "border-b border-transparent"
       )}
     >
       <nav className="container-page flex h-16 items-center justify-between gap-4">
         <Link
           href="/"
-          className="flex items-center gap-2 text-sm font-semibold tracking-tight text-foreground"
+          className="flex items-center gap-1.5 text-sm font-semibold tracking-tight text-foreground"
         >
           <img
             src="/logo-mark.svg"
@@ -58,14 +60,18 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-3.5 py-2 text-sm transition-colors",
+                  "relative px-3 py-2 text-sm tracking-tight transition-colors duration-150",
                   active
                     ? "text-foreground"
                     : "text-muted hover:text-foreground"
                 )}
               >
                 {item.label}
+                {active && (
+                  <span className="absolute inset-x-3 -bottom-px h-px bg-foreground/70" />
+                )}
               </Link>
             );
           })}
@@ -74,14 +80,18 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <CommandMenu />
           <ThemeToggle />
-          <Button href="/contact" size="sm" className="hidden lg:inline-flex">
-            Let&apos;s talk
+          <Button
+            href="/contact"
+            size="sm"
+            className="ml-1 hidden rounded-lg lg:inline-flex"
+          >
+            Contact
           </Button>
           <button
             type="button"
             aria-label="Toggle menu"
             onClick={() => setMobileOpen((o) => !o)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-colors duration-150 hover:bg-surface-muted md:hidden"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -111,8 +121,8 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <Button href="/contact" className="mt-2 w-full">
-              Let&apos;s talk
+            <Button href="/contact" className="mt-2 w-full rounded-lg">
+              Contact
             </Button>
           </div>
         </div>
