@@ -37,10 +37,7 @@ export function Hero() {
         <div className="max-w-xl">
           <motion.div {...fade(0)}>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1.5 text-xs font-medium text-muted backdrop-blur">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
+              <span className="h-2 w-2 rounded-full bg-accent" />
               Available for freelance, consulting &amp; full-time roles
             </span>
           </motion.div>
@@ -149,14 +146,6 @@ function HeroPanel({ reduce }: { reduce: boolean }) {
           {...card(0.28)}
           className="group relative col-span-1 row-span-2 flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-surface/70 p-5 backdrop-blur-sm transition-colors hover:border-border-strong"
         >
-          {!reduce && (
-            <motion.div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-accent/10 to-transparent"
-              animate={{ x: ["-100%", "200%"] }}
-              transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity, repeatDelay: 2.5 }}
-            />
-          )}
           <div className="relative flex items-center gap-2 text-xs font-medium text-muted">
             <Gauge className="h-4 w-4 text-accent" /> Lighthouse SEO
           </div>
