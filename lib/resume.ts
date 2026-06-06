@@ -242,6 +242,229 @@ export const projects: Project[] = [
   },
 ];
 
+/**
+ * Long-form case-study content for project detail pages.
+ * STRICTLY derived from the resume — no fabricated infrastructure, metrics,
+ * clients, or claims. Architecture layers only name technologies the resume
+ * explicitly attributes to each project.
+ */
+export type ArchitectureLayer = {
+  label: string;
+  role: string;
+  tech: string[];
+};
+
+export type PerfStat = {
+  label: string;
+  value: string;
+  detail: string;
+};
+
+export type Challenge = {
+  title: string;
+  body: string;
+};
+
+export type CaseStudy = {
+  slug: string;
+  summary: string;
+  problem: string[];
+  solution: string[];
+  architecture: ArchitectureLayer[];
+  challenges: Challenge[];
+  performance: PerfStat[];
+  learnings: string[];
+};
+
+export const caseStudies: Record<string, CaseStudy> = {
+  nice2stay: {
+    slug: "nice2stay",
+    summary:
+      "As Senior Software Engineer at Nice2Stay, I led a complete frontend revamp of a hospitality SaaS booking platform — rebuilding it on Vue.js and Nuxt.js to achieve a perfect Lighthouse SEO score, sub-3-second LCP, and internationalized reach across 5+ language markets.",
+    problem: [
+      "The existing frontend held back performance, organic discoverability, and the booking experience across multiple language markets.",
+      "Monolithic components slowed feature delivery and made it hard to ship consistent, high-quality UI at the pace the business needed.",
+      "International guests needed first-class, localized experiences — including right-to-left layouts — that the platform could not yet provide.",
+    ],
+    solution: [
+      "Spearheaded a full frontend revamp using Vue.js and Nuxt.js, introducing server-side rendering for fast first paints and SEO-ready markup.",
+      "Built a modular, reusable component system that decomposed monolithic UI and cut new-feature development time by 40%+.",
+      "Engineered an intelligent booking interface with custom date pickers, dynamic availability filters, and real-time property data to lift search-to-booking conversion.",
+      "Implemented internationalized routing and multilingual (i18n/L10n) support across 5+ language markets, including full RTL layout support.",
+      "Tuned performance with image optimization, lazy loading, and strategic caching to reach a 100/100 Lighthouse SEO score and sub-3s LCP.",
+    ],
+    architecture: [
+      {
+        label: "Presentation",
+        role: "Server-rendered UI & booking experience",
+        tech: ["Vue.js", "Nuxt.js", "SSR"],
+      },
+      {
+        label: "Internationalization",
+        role: "i18n routing, localization & RTL layouts",
+        tech: ["i18n", "L10n", "RTL"],
+      },
+      {
+        label: "Data & APIs",
+        role: "Real-time property & availability data",
+        tech: ["Node.js", "REST APIs"],
+      },
+      {
+        label: "Delivery & performance",
+        role: "Image optimization, lazy loading & caching",
+        tech: ["Caching", "Lazy loading", "Image optimization"],
+      },
+    ],
+    challenges: [
+      {
+        title: "Decomposing a monolithic frontend",
+        body: "Breaking tightly coupled components into a scalable, reusable architecture without disrupting the live booking flow — ultimately cutting feature delivery time by 40%+.",
+      },
+      {
+        title: "SEO at SSR scale",
+        body: "Reaching a perfect 100/100 Lighthouse SEO score required SSR, semantic markup, and careful asset strategy across a content-rich, multi-market site.",
+      },
+      {
+        title: "Multilingual & RTL correctness",
+        body: "Supporting 5+ language markets meant internationalized routing and full right-to-left layout support without forking the component system.",
+      },
+    ],
+    performance: [
+      { label: "Lighthouse SEO", value: "100/100", detail: "Perfect score on a production hospitality platform." },
+      { label: "Largest Contentful Paint", value: "<3s", detail: "Via SSR, image optimization, lazy loading & caching." },
+      { label: "Feature delivery", value: "40%+ faster", detail: "Through modular, reusable component design." },
+      { label: "Language markets", value: "5+", detail: "Internationalized routing with RTL support." },
+    ],
+    learnings: [
+      "SSR and a disciplined asset strategy are what turn a fast framework into a perfect Lighthouse score in production.",
+      "Investing early in a modular component system compounds — it paid back as 40%+ faster feature delivery.",
+      "Internationalization and RTL are architecture decisions, not afterthoughts; baking them into routing kept the system clean.",
+    ],
+  },
+  staywithlumina: {
+    slug: "staywithlumina",
+    summary:
+      "I architected and delivered StayWithLumina end-to-end as the full-stack (MERN) engineer — from database design to production deployment — integrating Guesty's property management API for real-time listing and reservation sync, and hardening booking-critical flows to 99%+ uptime.",
+    problem: [
+      "A short-term vacation rental business needed a production-grade platform built from the ground up — database design through deployment.",
+      "Listings, availability, reservations, and guest data had to stay reliably in sync with an external property management system, eliminating manual data entry.",
+      "Booking-critical endpoints needed to stay reliable under real traffic to avoid lost reservations and abandonment.",
+    ],
+    solution: [
+      "Architected and delivered the full-stack build with Next.js, React, Node.js, and MongoDB — owning everything from data modeling to production deployment.",
+      "Integrated Guesty's property management API to synchronize listings, real-time availability, reservations, and guest data automatically.",
+      "Implemented SSR, dynamic routing, and Framer Motion animations to boost Core Web Vitals and the feel of the product.",
+      "Built custom multi-step booking workflows and availability-aware filters to reduce booking abandonment.",
+      "Ensured API reliability through error boundaries and retry logic — achieving 99%+ uptime on critical booking flows.",
+    ],
+    architecture: [
+      {
+        label: "Presentation",
+        role: "Server-rendered UI, routing & motion",
+        tech: ["Next.js", "React", "SSR", "Framer Motion"],
+      },
+      {
+        label: "Application & API",
+        role: "Booking workflows & business logic",
+        tech: ["Node.js", "REST APIs"],
+      },
+      {
+        label: "Database",
+        role: "Listings, reservations & guest data",
+        tech: ["MongoDB"],
+      },
+      {
+        label: "Third-party integration",
+        role: "Real-time property management sync",
+        tech: ["Guesty PMS API"],
+      },
+    ],
+    challenges: [
+      {
+        title: "Reliable third-party sync",
+        body: "Keeping listings, availability, and reservations consistent with Guesty's API in real time — without manual data entry — demanded careful integration and reconciliation.",
+      },
+      {
+        title: "Resilience on booking flows",
+        body: "Booking endpoints can't fail silently. Error boundaries and retry logic were essential to reach 99%+ uptime on the paths that earn revenue.",
+      },
+      {
+        title: "Owning the full stack solo",
+        body: "Designing the data model, API, and UI as one coherent system — from MongoDB schema to deployed product — while keeping Core Web Vitals strong.",
+      },
+    ],
+    performance: [
+      { label: "Booking-flow uptime", value: "99%+", detail: "Via error boundaries and retry logic on critical endpoints." },
+      { label: "Core Web Vitals", value: "Near-perfect", detail: "Through SSR, dynamic routing & optimized motion." },
+      { label: "PMS sync", value: "Automated", detail: "Listings & availability synced via the Guesty API." },
+      { label: "Booking abandonment", value: "Reduced", detail: "With availability-aware filters and multi-step flows." },
+    ],
+    learnings: [
+      "A resilient integration layer — retries and error boundaries — is what separates a demo from a 99%+ uptime booking system.",
+      "Owning the stack end-to-end lets the data model, API, and UI evolve together instead of fighting each other.",
+      "Motion and SSR can coexist with strong Core Web Vitals when animation is applied deliberately, not decoratively.",
+    ],
+  },
+  "hotel-weekend": {
+    slug: "hotel-weekend",
+    summary:
+      "I led the full redevelopment of Hotel-Weekend.com from the ground up on Nuxt.js and Vue 3 — transforming a legacy codebase into a high-performance, SEO-first discovery platform with a dynamic destination and theme-based browsing system, and near-perfect Lighthouse scores.",
+    problem: [
+      "Hotel-Weekend.com ran on a legacy codebase that capped performance, SEO, and the ability to surface curated travel content.",
+      "Users needed a richer way to discover stays — by destination and theme — rather than a flat, slow catalog.",
+      "The experience had to be fast and fully responsive across iOS, Android, and desktop to compete for organic traffic.",
+    ],
+    solution: [
+      "Rebuilt the platform from the ground up with Nuxt.js and Vue 3, replacing the legacy codebase with a high-performance, SEO-optimized foundation.",
+      "Architected a dynamic destination and theme-based browsing system with curated property collections to increase session duration.",
+      "Implemented custom filters, lazy-loaded assets, and fully responsive layouts across iOS, Android, and desktop.",
+      "Delivered near-perfect Lighthouse performance and SEO, contributing to improved SERP rankings and organic traffic.",
+    ],
+    architecture: [
+      {
+        label: "Presentation",
+        role: "Server-rendered, responsive UI",
+        tech: ["Nuxt.js", "Vue 3", "SSR", "Tailwind CSS"],
+      },
+      {
+        label: "Discovery system",
+        role: "Destination & theme-based browsing",
+        tech: ["Curated collections", "Custom filters"],
+      },
+      {
+        label: "Delivery & performance",
+        role: "Lazy-loaded assets & responsive layouts",
+        tech: ["Lazy loading", "Responsive design"],
+      },
+    ],
+    challenges: [
+      {
+        title: "Rebuilding without losing SEO equity",
+        body: "Replacing a legacy codebase from the ground up while improving — not jeopardizing — SERP rankings and organic traffic required an SEO-first rebuild.",
+      },
+      {
+        title: "Designing for discovery",
+        body: "A destination and theme-based browsing system with curated collections had to make exploration effortless and increase session duration.",
+      },
+      {
+        title: "Cross-device performance",
+        body: "Near-perfect Lighthouse scores had to hold across iOS, Android, and desktop with lazy-loaded assets and fully responsive layouts.",
+      },
+    ],
+    performance: [
+      { label: "Lighthouse", value: "Near-perfect", detail: "Performance & SEO on the rebuilt platform." },
+      { label: "Organic traffic", value: "Improved", detail: "Through better SERP rankings post-rebuild." },
+      { label: "Session duration", value: "Higher", detail: "Via content-rich, theme-based browsing." },
+      { label: "Devices", value: "iOS · Android · Desktop", detail: "Fully responsive across platforms." },
+    ],
+    learnings: [
+      "A ground-up rebuild is the moment to make SEO structural — it's far cheaper than retrofitting it later.",
+      "Discovery UX (destinations, themes, curation) drives engagement metrics as much as raw performance does.",
+      "Lazy loading and responsive layouts are non-negotiable for holding Lighthouse scores across real devices.",
+    ],
+  },
+};
+
 /** Audience segmentation for who I work with. */
 export const audiences = [
   "Founders",
