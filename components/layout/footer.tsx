@@ -90,12 +90,9 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 border-t border-border pt-8">
           <p className="text-xs text-subtle">
             © {year} {profile.name}. All rights reserved.
-          </p>
-          <p className="font-mono text-[0.7rem] tracking-tight text-subtle">
-            Built with Next.js, TypeScript &amp; Framer Motion
           </p>
         </div>
       </div>
