@@ -23,6 +23,11 @@ export const profile = {
   email: "muhammadarqam920@gmail.com",
   phone: "+92 300 6161806",
   experienceYears: "5+",
+  availability:
+    "Currently available for consulting, freelance projects, and full-time opportunities.",
+  currentRole: "Senior Software Engineer @ Nice2Stay",
+  // TODO: replace with a polished, designed PDF résumé export when available.
+  resumeUrl: "/Arqam_Tahir_Resume.docx",
   links: {
     linkedin: "https://linkedin.com/in/arqam-tahir",
     github: "https://github.com/arqamtahir",
@@ -237,16 +242,137 @@ export const projects: Project[] = [
   },
 ];
 
-/** Services framed for the five target audiences (freelance, consulting, full-time, startup, brand). Derived from real skill areas. */
-export const services = [
-  { title: "Full Stack Development", description: "End-to-end product builds across the MERN and MEAN stacks, from database design to production deployment." },
-  { title: "SaaS Development", description: "Scalable, multi-tenant-ready web applications with SSR/SSG, real-time data, and third-party API integrations." },
-  { title: "Technical Consulting", description: "Architecture reviews, frontend modernization, and engineering guidance for teams and founders." },
-  { title: "Performance Optimization", description: "Core Web Vitals tuning — sub-3s LCP, image/font strategy, caching, and bundle reduction." },
-  { title: "SEO Engineering", description: "Technical SEO that earns 100/100 Lighthouse scores: SSR, structured data, i18n routing, and crawlability." },
-  { title: "Cloud Integration", description: "AWS infrastructure (EC2, S3, Lambda, RDS, ECS, CloudFront), Docker, and CI/CD pipelines." },
-  { title: "AI Features", description: "OpenAI, LangChain, and RAG-powered features integrated into production products." },
-  { title: "Product Architecture", description: "System design, component-driven design systems, internationalization, and technical leadership." },
+/** Audience segmentation for who I work with. */
+export const audiences = [
+  "Founders",
+  "Startups",
+  "Agencies",
+  "Product Teams",
+  "Employers",
+] as const;
+
+/**
+ * Services framed as outcomes, not capabilities.
+ * Derived strictly from real skills and delivered results.
+ */
+export type Service = {
+  outcome: string;
+  value: string;
+  included: string[];
+  audiences: string[];
+  cta: string;
+  featured?: boolean;
+};
+
+export const services: Service[] = [
+  {
+    outcome: "Build and launch production-ready SaaS products",
+    value:
+      "End-to-end MERN/MEAN builds — from database design to deployment — shipped as scalable, maintainable products, not prototypes.",
+    included: [
+      "Full-stack architecture & data modeling",
+      "SSR/SSG, real-time data & API integrations",
+      "Component-driven design system",
+      "Production deployment on AWS / Vercel",
+    ],
+    audiences: ["Founders", "Startups"],
+    cta: "Start a build",
+    featured: true,
+  },
+  {
+    outcome: "Make slow products fast and discoverable",
+    value:
+      "Performance and SEO engineering that has earned 100/100 Lighthouse scores and sub-3s LCP on production platforms.",
+    included: [
+      "Core Web Vitals & LCP optimization",
+      "Technical SEO & structured data",
+      "Caching, image & font strategy",
+      "Lighthouse audits with measurable gains",
+    ],
+    audiences: ["Product Teams", "Agencies"],
+    cta: "Audit my site",
+  },
+  {
+    outcome: "Modernize and rescue legacy frontends",
+    value:
+      "Decompose monolithic codebases into modular, reusable architecture — cutting feature delivery time by 40%+.",
+    included: [
+      "Frontend re-architecture (React / Vue)",
+      "Design-system & component library work",
+      "Incremental migration strategy",
+      "Developer-velocity improvements",
+    ],
+    audiences: ["Product Teams", "Agencies"],
+    cta: "Plan a rebuild",
+  },
+  {
+    outcome: "Reach global markets with i18n & RTL",
+    value:
+      "Internationalized, localized platforms shipped across 5+ language markets, including full right-to-left support.",
+    included: [
+      "i18n routing & localization (L10n)",
+      "RTL layout support",
+      "Region-aware UX & content",
+      "Multilingual SEO",
+    ],
+    audiences: ["Founders", "Startups"],
+    cta: "Go international",
+  },
+  {
+    outcome: "Add a senior engineer to your team",
+    value:
+      "Full-time or embedded engineering with technical leadership, mentoring, and a track record of shipping at scale.",
+    included: [
+      "Full-stack feature delivery",
+      "Architecture & code review",
+      "Mentoring & best practices",
+      "Cross-functional collaboration",
+    ],
+    audiences: ["Employers", "Product Teams"],
+    cta: "Let's talk",
+  },
+  {
+    outcome: "Integrate AI features that ship",
+    value:
+      "OpenAI, LangChain, and RAG-powered features integrated into real products with vector search and prompt engineering.",
+    included: [
+      "LLM & OpenAI API integration",
+      "RAG & vector databases",
+      "Prompt engineering",
+      "AI-powered product features",
+    ],
+    audiences: ["Founders", "Startups"],
+    cta: "Explore AI",
+  },
+];
+
+/**
+ * Testimonials — PLACEHOLDER / TODO.
+ * No quotes are fabricated. Replace `quote`, `author`, and `role` with real,
+ * approved testimonials. Set `placeholder: false` to display a card.
+ */
+export type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+  placeholder: boolean;
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "TODO: Add a real, approved client or colleague testimonial here. Quotes will not be fabricated.",
+    author: "TODO — Name",
+    role: "TODO — Role, Company",
+    placeholder: true,
+  },
+  {
+    quote:
+      "TODO: Add a second real testimonial. Reach out to a past collaborator from Nice2Stay, StayWithLumina, or Hotel Weekend.",
+    author: "TODO — Name",
+    role: "TODO — Role, Company",
+    placeholder: true,
+  },
 ];
 
 export const expertise = [

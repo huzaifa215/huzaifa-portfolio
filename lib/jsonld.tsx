@@ -1,5 +1,17 @@
-import { profile, skills } from "./resume";
+import { faqs, profile, skills } from "./resume";
 import { siteUrl } from "./metadata";
+
+export function faqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
 
 export function personJsonLd() {
   return {
