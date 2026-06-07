@@ -46,6 +46,8 @@ Now you get both guarantees. Every value is validated against `Color`, and the k
 
 > The mental model is simple: an annotation tells TypeScript what a value is, while `satisfies` checks that a value qualifies without forgetting what it actually is.
 
+The reason the annotation throws away information is worth understanding, because it explains why this was a real dilemma and not just a missing feature. When you write `const palette: Record<string, Color>`, you are telling the compiler that the variable's type is exactly that record type. From that point on, the compiler reasons about `palette` using only the declared type, and the extra knowledge it had from looking at the literal, the specific keys, the specific values, is discarded as irrelevant. That is normally what you want from an annotation; it is how a variable can hold different values over its lifetime. But for a frozen configuration object that never changes, throwing away the literal information is pure loss. `satisfies` exists precisely for the case where you want the validation an annotation gives without the widening it forces, and once you have it, you stop reaching for the annotation on config objects entirely.
+
 ## Where as const enters
 
 `satisfies` validates, but it does not make things deeply readonly or narrow nested arrays and primitives to literals. For that you reach for `as const`. The two compose naturally.
@@ -60,6 +62,8 @@ type Path = (typeof routes)[number]["path"]; // "/" | "/blog"
 ```
 
 The `as const` freezes the array and narrows every member to its literal type. The `satisfies` clause then confirms each entry matches the expected shape. The payoff is the derived `Path` union, which is computed from the data rather than maintained by hand. Add a route to the array and the union updates itself.
+
+The ordering of `as const satisfies` is deliberate and worth committing to memory, because reversing it defeats the purpose. You apply `as const` first so the literal is frozen and narrowed, and then `satisfies` checks that frozen literal against the shape. If you wrote `satisfies` first and `as const` second the narrowing would happen too late to be checked, and in practice the language wants the constant assertion applied to the expression before the shape check reads it. The mental shorthand is that `as const` is about how precisely the value is remembered, and `satisfies` is about confirming the value is allowed, so you narrow first and validate the narrowed thing. When the two appear together you are saying, in one line, "freeze this exactly as written, and also prove it conforms to the contract I expect," which is exactly the guarantee a derived union needs to be both precise and safe.
 
 ## A pattern for typed event maps
 
@@ -96,6 +100,15 @@ This is also why these operators reward you most in exactly the code that lives 
 ## A note on readability
 
 There is a temptation to chain `as const satisfies` on everything. Resist it where the literal precision buys you nothing. A config object whose keys you derive types from is a great candidate. A throwaway object passed straight into a function call is not, and the extra ceremony just adds noise. The point of these operators is precision where precision pays, and the judgment of where it pays is the actual skill.
+
+## Practical takeaways
+
+- Reach for `satisfies` when you want to validate a config object's shape without widening away its precise keys and literal value types, which is the worst of both worlds an annotation forces.
+- Remember the mental split: an annotation declares what a value is and discards what it actually was; `satisfies` confirms a value qualifies while keeping its narrow inferred type.
+- Apply `as const` before `satisfies` when you need deep readonly and literal narrowing, then validate the frozen literal against the expected shape.
+- Derive unions and key sets from `satisfies` checked data rather than maintaining them by hand, so a change to the data propagates and the compiler flags every consumer that no longer fits.
+- Do not use `satisfies` for runtime validation or as a substitute for explicit return types on public functions. It disappears at runtime, so external input still needs a real validator.
+- Spend the extra ceremony where precision pays, on long lived configuration modules that many features import, and skip it on throwaway objects where literal precision buys nothing.
 
 ## The takeaway
 

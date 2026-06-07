@@ -53,6 +53,8 @@ You declare this in the pipeline configuration. The `dependsOn` field with the `
 
 The `^build` entry tells Turborepo that before building a package, it must build that package's own dependencies. The `outputs` field tells it what files a successful build produces, which is what makes caching work.
 
+The distinction between `^build` and a plain dependency is worth getting precise, because mixing them up produces graphs that are either too strict or subtly wrong. The caret means "this same task in my dependencies." A dependency without the caret, listed by task name, means "this other task in the same package." So a `test` task that depends on `build` (no caret) waits for its own package to build first, while `^build` waits for the upstream packages to build. Real pipelines combine both: a deploy task might depend on `build` in its own package and on `^build` across its dependencies. Drawing these relationships accurately is what lets Turborepo parallelize aggressively while never running a task before its real inputs exist. A graph that is too loose races and fails intermittently; a graph that is too strict serializes work that could have run in parallel and slows everyone down.
+
 ## Caching is where the speed comes from
 
 The reason teams adopt Turborepo is the cache. Turborepo hashes the inputs to each task: the source files, the dependencies, the configuration, the environment variables you declare as relevant. If the hash matches a previous run, it replays the cached output instead of doing the work. A build of an unchanged package becomes near instant because it never actually runs.
@@ -77,11 +79,15 @@ Listing `env` keys means a change to those variables correctly busts the cache, 
 
 Local caching speeds up your own repeated runs. Remote caching shares those cached artifacts across the team and across continuous integration. When a teammate or a CI job builds a package you already built with the same inputs, it downloads your artifact instead of rebuilding. On a team this is transformative, because the work of building shared packages is done once and reused by everyone whose inputs match.
 
+The place remote caching pays off most dramatically is continuous integration, where the same work would otherwise be repeated on every pull request from a cold machine. With a shared remote cache, a CI run that touches only the `web` app downloads the prebuilt `ui` and `utils` artifacts instead of rebuilding them, so the pipeline does the minimum work the change actually requires. The flip side is that remote caching makes your input declarations matter even more, because a cache key that is wrong now serves a stale artifact not just to you but to the entire team and every CI job. The failure is silent and confusing: a build that should have picked up a change replays an old result, and the bug appears far from its cause. This is why the honesty of your `inputs`, `outputs`, and `env` declarations is the foundation everything else rests on, and why it is worth auditing them whenever a cache result surprises you.
+
 ## Package boundaries are an architecture decision
 
 The most common monorepo mistake is letting packages become a dumping ground with no clear interface. A `utils` package that everything imports from and that imports from everything becomes a hub that couples the whole repo together and ruins caching, because a change anywhere in it invalidates everyone.
 
 Treat each package like a small library with a deliberate public surface. Export what consumers need, keep internals internal, and split packages along the lines that actually change together. A `ui` package, a `data` package, and a `config` package change for different reasons and on different cadences, which means a change to one does not needlessly rebuild the others.
+
+There is a concrete caching reason to split along the lines that change together rather than by superficial category. Turborepo invalidates at the package level: touch any file a package counts as an input and that package and everything downstream of it rebuilds. A grab bag `utils` package that holds date formatting, an API client, and a pile of unrelated helpers becomes a single invalidation unit, so editing the date formatter rebuilds every app that imports anything from `utils`, even apps that never touch dates. Splitting that into focused packages with narrow responsibilities shrinks each invalidation unit, so a change rebuilds only the consumers that actually depend on the part that changed. Package boundaries are therefore not just an architecture preference, they are the granularity at which your cache works, and a coarse boundary is a coarse cache.
 
 ## When a monorepo is the wrong call
 
@@ -90,3 +96,12 @@ It is worth saying plainly: if you have one app and no meaningfully shared code,
 ## The practical takeaway
 
 A Turborepo earns its keep when the dependency arrows point one way, the task graph reflects real relationships, and inputs and outputs are declared honestly enough that the cache is trustworthy. Get those right and a large repo builds fast and stays comprehensible. Get them wrong and you have all the coupling of a monorepo with none of the speed. The tooling is good, but it amplifies your structure rather than fixing it.
+
+## Practical takeaways
+
+- Keep dependency arrows pointing one way: apps depend on packages, packages depend on packages beneath them, and nothing depends upward. This single rule prevents most monorepo pain.
+- Model the task graph to reflect real relationships. Use `^build` for "the same task in my dependencies" and a bare task name for "another task in this package," and combine them where a task needs both.
+- Declare `inputs`, `outputs`, and `env` honestly. An undeclared environment variable or missing output path is what turns a trustworthy cache into one you stop believing.
+- Turn on remote caching to share artifacts across the team and CI, where it pays off most, and remember it raises the stakes on accurate cache keys because a wrong one poisons everyone.
+- Treat each package as a small library with a deliberate public surface. Split along the lines that change together so a single edit does not rebuild the world.
+- Do not adopt a monorepo by default. It earns its keep with multiple deployables sharing real code and atomic cross package changes; one app with no shared code is simpler as a single repo.
