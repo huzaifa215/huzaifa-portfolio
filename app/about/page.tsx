@@ -63,15 +63,68 @@ export default function AboutPage() {
           </div>
 
           <Reveal delay={0.12} className="order-first lg:order-none">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-2xl border border-border bg-surface shadow-lg">
-              <Image
-                src="/images/arqam-tahir.png"
-                alt="Arqam Tahir, senior full stack engineer specializing in Next.js and React, in a tailored brown suit"
-                fill
-                priority
-                sizes="(max-width: 1024px) 320px, 360px"
-                className="object-cover object-top"
+            <div className="relative mx-auto w-full max-w-[340px]">
+              {/* Accent glow */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-accent/20 blur-3xl"
               />
+              {/* Decorative ring */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-3 -z-10 rounded-[2rem] border border-accent/20"
+              />
+
+              <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-2xl shadow-accent/10 ring-1 ring-inset ring-white/5">
+                <Image
+                  src="/images/arqam-tahir.png"
+                  alt="Arqam Tahir, senior full stack engineer specializing in Next.js and React, in a tailored brown suit"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 340px, 360px"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
+                {/* Accent tint */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent/25 via-transparent to-transparent mix-blend-overlay"
+                />
+                {/* Bottom fade into the page background */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-background via-background/60 to-transparent"
+                />
+                {/* Status pill, anchored in the faded zone */}
+                <div className="absolute inset-x-4 bottom-4 flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3.5 py-2 backdrop-blur">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  </span>
+                  <span className="text-xs font-medium text-foreground">
+                    Available for new projects
+                  </span>
+                </div>
+              </div>
+
+              {/* Floating skill chips */}
+              <span
+                className="absolute -left-5 top-10 hidden rounded-xl border border-border bg-surface/90 px-3 py-1.5 font-mono text-xs text-foreground shadow-lg backdrop-blur sm:block"
+                style={{ transform: "rotate(-4deg)" }}
+              >
+                Next.js
+              </span>
+              <span
+                className="absolute -right-4 top-1/3 hidden rounded-xl border border-border bg-surface/90 px-3 py-1.5 font-mono text-xs text-foreground shadow-lg backdrop-blur sm:block"
+                style={{ transform: "rotate(5deg)" }}
+              >
+                React
+              </span>
+              <span
+                className="absolute -right-6 bottom-24 hidden rounded-xl border border-accent/40 bg-accent/10 px-3 py-1.5 font-mono text-xs text-accent shadow-lg backdrop-blur sm:block"
+                style={{ transform: "rotate(-3deg)" }}
+              >
+                Web Performance
+              </span>
             </div>
           </Reveal>
         </div>
