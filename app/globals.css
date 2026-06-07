@@ -15,7 +15,7 @@
   /* Text */
   --foreground: oklch(0.18 0.01 260);
   --muted: oklch(0.52 0.012 260);
-  --subtle: oklch(0.62 0.01 260);
+  --subtle: oklch(0.54 0.01 260);
 
   /* Lines */
   --border: oklch(0.92 0.004 260);

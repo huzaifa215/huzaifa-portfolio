@@ -1,14 +1,27 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navItems, profile } from "@/lib/resume";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
-import { CommandMenu } from "./command-menu";
 import { Button } from "@/components/ui/button";
+
+const CommandMenu = dynamic(
+  () => import("./command-menu").then((m) => m.CommandMenu),
+  {
+    ssr: false,
+    loading: () => (
+      <span
+        aria-hidden
+        className="hidden h-9 w-[5.5rem] rounded-lg border border-border/60 bg-surface-muted/60 sm:inline-flex"
+      />
+    ),
+  },
+);
 
 export function Navbar() {
   const pathname = usePathname();
@@ -38,6 +51,7 @@ export function Navbar() {
       <nav className="container-page flex h-16 items-center justify-between gap-4">
         <Link
           href="/"
+          aria-label={profile.name}
           className="flex items-center gap-1.5 text-sm font-semibold tracking-tight text-foreground"
         >
           <img
