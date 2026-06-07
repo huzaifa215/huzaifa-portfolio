@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/layout/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageTransition } from "@/components/layout/page-transition";
+import { Analytics } from "@/components/analytics";
 import { baseMetadata } from "@/lib/metadata";
 import { JsonLd, personJsonLd, websiteJsonLd } from "@/lib/jsonld";
 
@@ -52,6 +53,7 @@ export default function RootLayout({
         </ThemeProvider>
         <JsonLd data={personJsonLd()} />
         <JsonLd data={websiteJsonLd()} />
+        <Analytics />
       </body>
     </html>
   );
