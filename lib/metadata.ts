@@ -59,10 +59,18 @@ export function pageMetadata({
   title,
   description,
   path = "/",
+  ogType = "website",
+  article,
 }: {
   title: string;
   description?: string;
   path?: string;
+  ogType?: "website" | "article";
+  article?: {
+    publishedTime?: string;
+    authors?: string[];
+    tags?: string[];
+  };
 }): Metadata {
   const desc = description ?? defaultDescription;
   return {
@@ -70,10 +78,24 @@ export function pageMetadata({
     description: desc,
     alternates: { canonical: path },
     openGraph: {
+      type: ogType,
+      locale: "en_US",
+      siteName: profile.name,
       title: `${title} — ${profile.name}`,
       description: desc,
       url: `${siteUrl}${path}`,
+      ...(ogType === "article" && article
+        ? {
+            publishedTime: article.publishedTime,
+            authors: article.authors,
+            tags: article.tags,
+          }
+        : {}),
     },
-    twitter: { title: `${title} — ${profile.name}`, description: desc },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} — ${profile.name}`,
+      description: desc,
+    },
   };
 }
