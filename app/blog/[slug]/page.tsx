@@ -41,6 +41,12 @@ export async function generateMetadata({
 
 function articleJsonLd(slug: string) {
   const post = getPostBySlug(slug)!;
+  const url = `${siteUrl}/blog/${post.slug}`;
+  const wordCount = post.html
+    .replace(/<[^>]+>/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -48,12 +54,19 @@ function articleJsonLd(slug: string) {
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    url: `${siteUrl}/blog/${post.slug}`,
+    url,
+    image: {
+      "@type": "ImageObject",
+      url: `${url}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     keywords: post.tags.join(", "),
     articleSection: post.category,
+    wordCount,
     author: { "@type": "Person", name: profile.name, url: siteUrl },
     publisher: { "@type": "Person", name: profile.name, url: siteUrl },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/blog/${post.slug}` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 }
 
