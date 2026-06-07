@@ -75,19 +75,28 @@ export default function AboutPage() {
                 className="pointer-events-none absolute -inset-3 -z-10 rounded-[2rem] border border-accent/20"
               />
 
-              <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-2xl shadow-accent/10 ring-1 ring-inset ring-white/5">
+              <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] border border-border bg-gradient-to-b from-surface to-background shadow-2xl shadow-accent/10 ring-1 ring-inset ring-white/5">
+                {/* Theme-matched backdrop behind the cutout */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 grid-dots opacity-[0.18] [mask-image:radial-gradient(ellipse_at_center,#000_30%,transparent_75%)]"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute left-1/2 top-1/3 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/4 rounded-full bg-accent/25 blur-3xl"
+                />
                 <Image
-                  src="/images/arqam-tahir.png"
+                  src="/images/arqam-tahir-transparent.png"
                   alt="Arqam Tahir, senior full stack engineer specializing in Next.js and React, in a tailored brown suit"
                   fill
                   priority
                   sizes="(max-width: 1024px) 340px, 360px"
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  className="object-cover object-top drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 {/* Accent tint */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent/25 via-transparent to-transparent mix-blend-overlay"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent/20 via-transparent to-transparent mix-blend-overlay"
                 />
                 {/* Bottom fade into the page background */}
                 <div
