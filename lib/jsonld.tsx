@@ -1,4 +1,4 @@
-import { faqs, profile, skills } from "./resume";
+import { faqs, profile } from "./resume";
 import { siteUrl } from "./metadata";
 
 export function faqJsonLd() {
@@ -24,11 +24,30 @@ export function personJsonLd() {
     description: profile.summary,
     sameAs: [profile.links.github, profile.links.linkedin],
     knowsAbout: [
-      ...skills.Frontend.slice(0, 6),
-      ...skills.Backend.slice(0, 4),
-      "SEO Engineering",
-      "Performance Optimization",
+      "React",
+      "Next.js",
+      "Vue.js",
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "PostgreSQL",
+      "REST APIs",
+      "GraphQL",
+      "Tailwind CSS",
+      "Web Performance Optimization",
+      "Technical SEO",
+      "Full Stack Development",
     ],
+    knowsLanguage: ["English", "Urdu"],
+    nationality: "Pakistani",
+    availableForHire: true,
+    workLocation: {
+      "@type": "VirtualLocation",
+      name: "Remote",
+    },
+    areaServed: ["Worldwide", "United States", "Europe", "Middle East"],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Lahore",
