@@ -39,6 +39,20 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="preconnect"
+          href="https://www.googletagmanager.com"
+          crossOrigin=""
+        />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link
+          rel="preconnect"
+          href="https://www.google-analytics.com"
+          crossOrigin=""
+        />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <ThemeProvider>
           <a
