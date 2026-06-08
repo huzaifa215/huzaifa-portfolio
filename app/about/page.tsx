@@ -42,7 +42,7 @@ export default function AboutPage() {
           style={{ transform: "translateX(-6%) scale(1.18)", transformOrigin: "bottom center" }}
           className="pointer-events-none absolute inset-y-0 right-0 z-0 w-[78%] sm:w-[64%] lg:w-[56%]"
         >
-          <div className="relative h-full w-full [mask-image:linear-gradient(to_right,transparent,#000_38%)] [-webkit-mask-image:linear-gradient(to_right,transparent,#000_38%)]">
+          <div className="relative h-full w-full [mask-image:linear-gradient(to_right,transparent_4%,rgba(0,0,0,0.45)_30%,#000_55%)] [-webkit-mask-image:linear-gradient(to_right,transparent_4%,rgba(0,0,0,0.45)_30%,#000_55%)]">
             <Image
               src="/images/arqam-tahir-cutout.png"
               alt="Arqam Tahir, senior full stack engineer specializing in Next.js and React"
@@ -73,11 +73,28 @@ export default function AboutPage() {
               I care about the boring parts that users feel: speed, reliability,
               reach, and interfaces that get out of the way.
             </p>
+
+            {/* Primary actions */}
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg transition-all hover:brightness-110"
+              >
+                View work <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+              >
+                Get in touch
+              </Link>
+            </div>
+
             <Reveal delay={0.18}>
               <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3">
                 <Fact label="Currently" value="Senior SWE @ Nice2Stay" />
                 <Fact label="Based in" value={profile.location} />
-                <Fact label="Focus" value="Performance · SEO · Product" />
+                <Fact label="Recent result" value="100/100 Lighthouse SEO" />
               </dl>
             </Reveal>
           </div>
