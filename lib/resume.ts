@@ -20,7 +20,7 @@ export const profile = {
   location: "Lahore, Pakistan",
   relocation: "Open to relocation - UAE / KSA / Qatar",
   remote: "Remote-ready across EST, CET, GST, and PKT time zones",
-  email: "muhammadarqam920@gmail.com",
+  email: "contact@arqamtahir.com",
   phone: "+92 300 6161806",
   experienceYears: "5+",
   availability:
@@ -31,7 +31,7 @@ export const profile = {
   links: {
     linkedin: "https://linkedin.com/in/arqam-tahir",
     github: "https://github.com/arqamtahir",
-    email: "mailto:muhammadarqam920@gmail.com",
+    email: "mailto:contact@arqamtahir.com",
   },
 } as const;
 

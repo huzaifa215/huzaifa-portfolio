@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download, Gauge, Globe, Server, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CopyEmail } from "@/components/ui/copy-email";
+import { EmailCopy } from "@/components/ui/copy-email";
 import { Counter } from "@/components/motion";
 import { profile, techEcosystem } from "@/lib/resume";
 import { cn } from "@/lib/utils";
@@ -90,7 +90,7 @@ export function Hero() {
             >
               <Download className="h-4 w-4" /> Download résumé
             </a>
-            <CopyEmail />
+            <EmailCopy />
           </motion.div>
 
           <motion.div
