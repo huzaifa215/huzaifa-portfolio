@@ -13,12 +13,14 @@ import { EASE as ease } from "@/lib/motion";
 
 export function ContactForm() {
   const reduce = useReducedMotion();
-  const [status, setStatus] = React.useState<"idle" | "error">("idle");
+  const [status, setStatus] = React.useState<"idle" | "success" | "error">(
+    "idle"
+  );
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
     defaultValues: { intent: intentOptions[0] },
@@ -33,13 +35,14 @@ export function ContactForm() {
         body: JSON.stringify(values),
       });
       if (!res.ok) throw new Error("Request failed");
+      setStatus("success");
       reset();
     } catch {
       setStatus("error");
     }
   };
 
-  if (isSubmitSuccessful) {
+  if (status === "success") {
     return (
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 12 }}
