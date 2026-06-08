@@ -36,68 +36,46 @@ export default function AboutPage() {
         aria-hidden
         className="pointer-events-none absolute -top-48 left-1/2 h-[34rem] w-[52rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
       />
-      <section className="group/hero relative">
-        {/* Large grayscale portrait - bleeds to the right edge, fades under the text */}
-        <div
-          style={{ transform: "translateX(-6%) scale(1.18)", transformOrigin: "bottom center" }}
-          className="pointer-events-none absolute inset-y-0 right-0 z-0 w-[78%] sm:w-[64%] lg:w-[56%]"
-        >
-          <div className="relative h-full w-full [mask-image:linear-gradient(to_right,transparent_4%,rgba(0,0,0,0.45)_30%,#000_55%)] [-webkit-mask-image:linear-gradient(to_right,transparent_4%,rgba(0,0,0,0.45)_30%,#000_55%)]">
-            <Image
-              src="/images/arqam-tahir-cutout.png"
-              alt="Arqam Tahir, senior full stack engineer specializing in Next.js and React"
-              fill
-              priority
-              sizes="(max-width: 1024px) 64vw, 56vw"
-              className="object-contain object-right-bottom opacity-70 grayscale contrast-[1.05] transition-all duration-700 ease-out group-hover/hero:opacity-90 group-hover/hero:grayscale-0 sm:opacity-90 lg:opacity-100"
-            />
-            {/* Soft bottom fade so the figure grounds into the page */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent" />
+      <section className="container-page relative">
+        <div className="max-w-2xl">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-subtle">
+            {profile.titles[0]} · {profile.experienceYears} years
+          </p>
+          <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+            I build web products where{" "}
+            <span className="text-accent">performance is the experience</span>{" "}
+            - not an afterthought.
+          </h1>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
+            I&apos;m Arqam - a senior engineer specializing in high-performance,
+            SEO-first web applications across travel-tech, hospitality, and SaaS.
+            I care about the boring parts that users feel: speed, reliability,
+            reach, and interfaces that get out of the way.
+          </p>
+
+          {/* Primary actions */}
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg transition-all hover:brightness-110"
+            >
+              View work <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+            >
+              Get in touch
+            </Link>
           </div>
-        </div>
 
-        {/* Text column sits above the portrait */}
-        <div className="container-page relative z-10">
-          <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-subtle">
-              {profile.titles[0]} · {profile.experienceYears} years
-            </p>
-            <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              I build web products where{" "}
-              <span className="text-accent">performance is the experience</span>{" "}
-              - not an afterthought.
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
-              I&apos;m Arqam - a senior engineer specializing in high-performance,
-              SEO-first web applications across travel-tech, hospitality, and SaaS.
-              I care about the boring parts that users feel: speed, reliability,
-              reach, and interfaces that get out of the way.
-            </p>
-
-            {/* Primary actions */}
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Link
-                href="/projects"
-                className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg transition-all hover:brightness-110"
-              >
-                View work <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
-              >
-                Get in touch
-              </Link>
-            </div>
-
-            <Reveal delay={0.18}>
-              <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3">
-                <Fact label="Currently" value="Senior SWE @ Nice2Stay" />
-                <Fact label="Based in" value={profile.location} />
-                <Fact label="Recent result" value="100/100 Lighthouse SEO" />
-              </dl>
-            </Reveal>
-          </div>
+          <Reveal delay={0.18}>
+            <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3">
+              <Fact label="Currently" value="Senior SWE @ Nice2Stay" />
+              <Fact label="Based in" value={profile.location} />
+              <Fact label="Recent result" value="100/100 Lighthouse SEO" />
+            </dl>
+          </Reveal>
         </div>
       </section>
 
@@ -132,14 +110,47 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ── Pull quote ─────────────────────────────────────── */}
+      {/* ── Portrait + pull quote ──────────────────────────── */}
       <section className="container-page relative my-20 md:my-28">
         <Reveal>
-          <blockquote className="mx-auto max-w-4xl text-balance text-center text-3xl font-medium leading-snug tracking-tight text-foreground md:text-4xl">
-            “The best engineering is invisible. Users don&apos;t notice the
-            architecture - they notice that the product just{" "}
-            <span className="text-accent">feels right</span>.”
-          </blockquote>
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-surface">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl"
+            />
+            <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
+              <figure className="px-7 pt-12 md:py-16 md:pl-14 md:pr-0">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-subtle">
+                  The person behind the work
+                </p>
+                <blockquote className="mt-6 max-w-xl text-balance text-2xl font-medium leading-snug tracking-tight text-foreground md:text-3xl">
+                  “The best engineering is invisible. Users don&apos;t notice the
+                  architecture - they notice that the product just{" "}
+                  <span className="text-accent">feels right</span>.”
+                </blockquote>
+                <figcaption className="mt-6 text-sm font-medium text-muted">
+                  {profile.name} · {profile.titles[0]}
+                </figcaption>
+              </figure>
+
+              {/* Cutout portrait - grayscale, fades into the panel on the left edge */}
+              <div className="relative h-80 w-full self-end md:h-[30rem]">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-10 bottom-8 top-12 rounded-full bg-accent/10 blur-3xl"
+                />
+                <div className="relative h-full w-full md:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.6)_18%,#000_42%)] md:[-webkit-mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.6)_18%,#000_42%)]">
+                  <Image
+                    src="/images/arqam-tahir-cutout.png"
+                    alt="Arqam Tahir - Senior Software Engineer, available for remote work"
+                    fill
+                    sizes="(max-width: 768px) 90vw, 45vw"
+                    className="object-cover object-top grayscale"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </Reveal>
       </section>
 
