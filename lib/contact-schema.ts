@@ -20,8 +20,9 @@ export const contactSchema = z.object({
     .trim()
     .min(10, "A little more detail helps - at least 10 characters.")
     .max(4000),
-  // Honeypot: must stay empty (bots fill it).
-  company_url: z.string().max(0).optional().or(z.literal("")),
+  // Honeypot: bots fill it. Not validated client-side (so a stray browser
+  // autofill never blocks a real user) - it's checked + dropped server-side.
+  company_url: z.string().optional(),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

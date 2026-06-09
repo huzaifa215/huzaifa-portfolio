@@ -75,11 +75,21 @@ export function ContactForm() {
       className="rounded-3xl border border-border bg-surface p-6 md:p-8"
       noValidate
     >
-      {/* Honeypot - visually hidden, off-screen, not announced. */}
-      <div aria-hidden className="absolute left-[-9999px]" tabIndex={-1}>
+      {/* Honeypot - off-screen and `inert` so it can't be focused, autofilled,
+          or announced to assistive tech. Spam is dropped server-side. */}
+      <div
+        aria-hidden
+        inert
+        className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden"
+      >
         <label>
           Company URL
-          <input type="text" tabIndex={-1} autoComplete="off" {...register("company_url")} />
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...register("company_url")}
+          />
         </label>
       </div>
 
