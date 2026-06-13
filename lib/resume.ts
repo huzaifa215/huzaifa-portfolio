@@ -1,95 +1,141 @@
 /**
- * SINGLE SOURCE OF TRUTH for all site content derived from Arqam Tahir's resume.
- * Every fact, metric, date, and role below comes directly from the resume.
+ * SINGLE SOURCE OF TRUTH for all site content derived from Huzaifa Khalid's CV.
+ * Every fact, metric, date, and role below comes directly from the CV.
  * Do NOT invent experience. Items needing real-world data carry a `TODO` note.
  */
 
 export const profile = {
-  name: "Arqam Tahir",
-  firstName: "Arqam",
+  name: "Huzaifa Khalid",
+  firstName: "Huzaifa",
   titles: [
+    "Full Stack Developer & Cybersecurity Specialist",
     "Senior Software Engineer",
-    "Full Stack Developer",
-    "MERN / MEAN Stack",
+    "Cybersecurity Analyst",
   ],
-  tagline: "Building high-performance web applications that scale.",
+  tagline:
+    "Full Stack Developer turned Cybersecurity Specialist — Built production apps in Pakistan, now securing systems in Canada.",
   subtagline:
-    "Specializing in React, Next.js, TypeScript, Vue, Node.js, cloud infrastructure, SEO optimization, and modern product engineering.",
+    "Specializing in React, Angular, Next.js, TypeScript, NestJS/Node.js, and secure SDLC — alongside SIEM monitoring, incident response, vulnerability management, and MITRE ATT&CK mapping.",
   summary:
-    "Results-driven Senior Software Engineer with 5+ years of experience architecting and delivering scalable, high-performance web applications across travel-tech, hospitality, e-commerce, and SaaS platforms. Expert in full-stack JavaScript using the MERN and MEAN stacks, with a consistent record of measurable impact: sub-3s LCP, 100/100 Lighthouse SEO, and 40%+ faster component delivery.",
-  location: "Lahore, Pakistan",
-  relocation: "Open to relocation - UAE / KSA / Qatar",
-  remote: "Remote-ready across EST, CET, GST, and PKT time zones",
-  email: "contact@arqamtahir.com",
-  phone: "+92 300 6161806",
-  experienceYears: "5+",
+    "Senior Full-Stack Software Engineer and Cybersecurity Analyst with 5 years delivering secure, scalable B2B and B2C SaaS products across React/TypeScript and NestJS/Node.js stacks. Hands-on experience building microservices, RESTful APIs, and AI-driven pipelines, combined with practical cybersecurity skills spanning SIEM monitoring, incident response (NIST SP 800-61), MITRE ATT&CK mapping, vulnerability management, and compliance with NIST, PCI DSS, and PIPEDA.",
+  location: "Toronto, ON, Canada",
+  relocation: "Based in Canada — open to opportunities across Canada",
+  remote: "Remote-ready and hybrid across North American time zones",
+  email: "hmhuzaifakhalid@gmail.com",
+  phone: "+1 (437) 450-9656",
+  experienceYears: "5",
   availability:
-    "Currently available for consulting, freelance projects, and full-time opportunities.",
-  currentRole: "Senior Software Engineer @ Nice2Stay",
+    "Open to full-time roles and opportunities in full-stack engineering and cybersecurity, in Canada and remote.",
+  currentRole: "Cybersecurity Analyst @ Vosyn",
   // TODO: replace with a polished, designed PDF résumé export when available.
-  resumeUrl: "/Arqam_Tahir_Resume.docx",
+  resumeUrl: "/Huzaifa_Khalid_CV.pdf",
   links: {
-    linkedin: "https://linkedin.com/in/arqam-tahir",
-    github: "https://github.com/arqamtahir",
-    email: "mailto:contact@arqamtahir.com",
+    // TODO: replace with Huzaifa's real LinkedIn URL (CV listed only "LinkedIn").
+    linkedin: "https://linkedin.com/in/huzaifa-khalid",
+    // TODO: GitHub URL not provided in CV — confirm and replace placeholder.
+    github: "https://github.com/huzaifa-khalid",
+    email: "mailto:hmhuzaifakhalid@gmail.com",
   },
 } as const;
 
-/** Animated counters - every value is from the resume. */
+/** Animated counters - every value is from the CV. */
 export type Metric = { label: string; value: number; prefix?: string; suffix?: string };
 export const metrics: Metric[] = [
-  { label: "Years of experience", value: 5, suffix: "+" },
-  { label: "Lighthouse SEO score", value: 100, suffix: "/100" },
-  { label: "Largest Contentful Paint", value: 3, prefix: "<", suffix: "s" },
-  { label: "Faster component delivery", value: 40, suffix: "%+" },
-  { label: "Language markets supported", value: 5, suffix: "+" },
-  { label: "Uptime on booking flows", value: 99, suffix: "%+" },
-  { label: "Production platforms shipped", value: 3, suffix: "" },
+  { label: "Years of experience", value: 5, suffix: "" },
+  { label: "Platform responsiveness boost", value: 35, suffix: "%" },
+  { label: "Data integrity on live sessions", value: 99, suffix: ".9%" },
+  { label: "Concurrent users scaled to", value: 50, suffix: "k+" },
+  { label: "IDS detection accuracy", value: 99, suffix: ".99%" },
+  { label: "Indicators of compromise identified", value: 18, suffix: "" },
+  { label: "Master's GPA", value: 4, prefix: "", suffix: ".0" },
 ] as const;
 
+/**
+ * Detailed skills grouping. Full-stack categories first, then cybersecurity.
+ * Components iterate over these key/value entries.
+ */
 export const skills = {
   Languages: ["JavaScript (ES6+)", "TypeScript", "Python", "HTML5", "CSS3", "SCSS"],
   Frontend: [
-    "React.js", "Next.js", "Angular", "Vue.js", "Nuxt.js", "Redux", "Zustand",
-    "React Query", "TanStack Query", "Pinia", "Framer Motion", "Material UI",
-    "Tailwind CSS", "Ant Design", "Mantine UI", "Bootstrap",
+    "React", "Angular", "Next.js", "React Native", "Redux", "Tailwind CSS",
+    "Material UI", "Bootstrap",
   ],
-  Backend: [
-    "Node.js", "Express.js", "NestJS", "Django", "FastAPI", "REST APIs",
-    "GraphQL", "tRPC", "Microservices", "WebSockets", "JWT", "OAuth 2.0",
-    "Zod", "Prisma ORM",
+  "Backend & APIs": [
+    "NestJS", "Node.js", "RESTful API Design", "Microservices Architecture",
+    "Sequelize ORM", "WebSockets",
   ],
-  Databases: ["MongoDB", "PostgreSQL", "MySQL", "Sequelize ORM", "Mongoose", "Redis"],
+  Databases: [
+    "PostgreSQL", "MySQL", "MongoDB", "Schema Design", "Query Optimization",
+    "Relational Data Modeling",
+  ],
   "Cloud & DevOps": [
-    "AWS (EC2, S3, Lambda, RDS, IAM, ECR, ECS, Amplify, CloudFront)", "Docker",
-    "CI/CD", "GitHub Actions", "Nginx", "Vercel", "Netlify", "Terraform",
+    "AWS (EC2, S3, RDS)", "Docker", "CI/CD Pipelines", "GitHub Actions",
+    "DevOps Automation",
   ],
-  "AI / LLMs": [
-    "OpenAI API", "LangChain", "RAG", "Vector Databases", "LLM Integration",
-    "Prompt Engineering", "AI-Powered Features",
+  "AI & LLM": [
+    "Model Context Protocol (MCP)", "Retrieval-Augmented Generation (RAG)",
+    "Vector Databases", "AI-driven Pipelines", "LLM Integration",
+    "GitHub Copilot", "Amazon CodeWhisperer",
   ],
-  Architecture: [
-    "System Design", "Microservices", "MVC", "RESTful API Design", "SSR", "SSG",
-    "Component-Driven Design", "i18n", "L10n", "Technical Leadership", "Mentoring",
+  "Security Monitoring": [
+    "Splunk (SIEM)", "Log Analysis", "Threat Intelligence", "Alert Triage",
+    "Wireshark", "Malware Analysis", "EDR",
+  ],
+  "Security Operations": [
+    "Incident Response", "Forensic Timeline Analysis", "MITRE ATT&CK TTP Mapping",
+    "IDS/IPS", "Firewall Management", "Endpoint Protection", "Cyber Kill Chain",
+  ],
+  "Vulnerability Management": [
+    "Nessus", "Metasploit", "MITRE Caldera", "Penetration Testing",
+    "Security Risk Assessment", "Nmap", "Kali Linux",
+  ],
+  "Access & Identity": [
+    "RBAC", "Least Privilege", "IAM", "Active Directory", "Zero Trust Architecture",
+  ],
+  "Compliance & Frameworks": [
+    "NIST CSF/RMF/SP 800-61", "PCI DSS", "PIPEDA", "HIPAA", "PHIPA",
+    "ISO 27001", "CIS Controls", "OWASP Top 10",
   ],
   "Testing & QA": [
-    "Jest", "Cypress", "Playwright", "React Testing Library", "Unit Testing",
-    "Integration Testing", "E2E Testing", "Lighthouse Audits",
+    "Jest", "Mocha", "Unit Testing", "Integration Testing",
+    "Test-Driven Development",
   ],
   "Tools & Collab": [
-    "Git", "GitHub", "Bitbucket", "Docker", "Jira", "ClickUp", "Trello",
-    "Notion", "Slack", "Figma",
+    "Git", "Jira", "Slack", "Azure DevOps", "Notion", "ClickUp", "Agile/Scrum",
+  ],
+} as const;
+
+/**
+ * Two top-level skill categories as requested:
+ * Full Stack (Pakistan roots) and Cybersecurity (current focus in Canada).
+ */
+export const skillGroups = {
+  "Full Stack Skills": [
+    "JavaScript (ES6+)", "TypeScript", "Python", "React", "Angular", "Next.js",
+    "React Native", "Redux", "NestJS", "Node.js", "RESTful APIs", "Microservices",
+    "Sequelize ORM", "PostgreSQL", "MySQL", "MongoDB", "Tailwind CSS",
+    "Material UI", "AWS (EC2, S3, RDS)", "Docker", "CI/CD", "GitHub Actions",
+    "RAG", "Vector Databases", "LLM Integration", "Jest", "Mocha", "TDD",
+  ],
+  "Cybersecurity Skills": [
+    "Splunk (SIEM)", "Wireshark", "Nessus", "Metasploit", "MITRE Caldera",
+    "MITRE ATT&CK", "Incident Response (NIST SP 800-61)", "Malware Analysis",
+    "EDR", "IDS/IPS", "Firewall Management", "Endpoint Protection",
+    "Penetration Testing", "Vulnerability Assessment", "Cyber Kill Chain",
+    "Threat Intelligence", "RBAC", "IAM", "Zero Trust Architecture",
+    "Active Directory", "NIST CSF/RMF", "PCI DSS", "PIPEDA", "ISO 27001",
+    "CIS Controls", "OWASP Top 10", "Nmap", "Kali Linux", "Linux", "Network Security",
   ],
 } as const;
 
 /** Marquee groupings drawn from the real stack. */
 export const techEcosystem = {
-  Frontend: ["React", "Next.js", "Vue", "Nuxt", "Angular", "TypeScript", "Tailwind CSS", "Framer Motion"],
-  Backend: ["Node.js", "Express", "NestJS", "Django", "FastAPI", "GraphQL", "tRPC", "Prisma"],
-  Cloud: ["AWS EC2", "S3", "Lambda", "RDS", "CloudFront", "ECS", "Vercel", "Netlify"],
-  AI: ["OpenAI API", "LangChain", "RAG", "Vector DBs"],
-  DevOps: ["Docker", "GitHub Actions", "CI/CD", "Nginx", "Terraform"],
-  Testing: ["Jest", "Cypress", "Playwright", "RTL"],
+  Frontend: ["React", "Angular", "Next.js", "React Native", "TypeScript", "Redux", "Tailwind CSS"],
+  Backend: ["NestJS", "Node.js", "REST APIs", "Microservices", "Sequelize", "Python"],
+  Databases: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
+  Cloud: ["AWS EC2", "S3", "RDS", "Docker", "GitHub Actions", "CI/CD"],
+  Security: ["Splunk", "Wireshark", "Nessus", "Metasploit", "MITRE ATT&CK", "EDR"],
+  Compliance: ["NIST", "PCI DSS", "PIPEDA", "ISO 27001", "Zero Trust"],
 } as const;
 
 export type Experience = {
@@ -104,66 +150,72 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    company: "Nice2Stay",
-    role: "Senior Software Engineer",
-    period: "Apr 2023 – Present",
-    industry: "Hospitality / Travel-Tech SaaS",
-    location: "Remote",
+    company: "Vosyn",
+    role: "Cybersecurity Analyst",
+    period: "May 2026 – Present",
+    industry: "SaaS / Enterprise Security",
+    location: "Canada — Etobicoke, ON · Hybrid",
     impact: [
-      "Spearheaded the full frontend revamp using Vue.js and Nuxt.js, improving developer velocity by 40% through modular, reusable component design.",
-      "Achieved a perfect 100/100 Lighthouse SEO score and reduced LCP to under 3 seconds via SSR, image optimization, lazy loading, and strategic caching.",
-      "Engineered an intelligent booking interface with custom date pickers, dynamic availability filters, and real-time property data - lifting search-to-booking conversion.",
-      "Implemented internationalized routing and multilingual (i18n/L10n) support across 5+ language markets, including RTL layout support.",
-      "Decomposed monolithic components into a scalable architecture, cutting new-feature development time by 40%+.",
+      "Monitor security systems, networks, and SaaS applications in real time to detect and mitigate threats across enterprise environments.",
+      "Conduct vulnerability assessments and penetration tests with Nessus and Metasploit, prioritizing and resolving weaknesses before exploitation.",
+      "Investigate and respond to incidents end to end — root cause analysis, containment, and permanent remediation aligned with NIST SP 800-61.",
+      "Implement and manage firewalls, IDS/IPS, and endpoint protection platforms, strengthening the organization's security posture.",
+      "Author security policies and documentation aligned with NIST, ISO 27001, and PIPEDA, and deliver cybersecurity awareness training to staff.",
     ],
-    tech: ["Vue.js", "Nuxt.js", "Node.js", "REST APIs", "i18n", "SSR"],
+    tech: ["Splunk", "Nessus", "Metasploit", "IDS/IPS", "NIST SP 800-61", "ISO 27001"],
   },
   {
-    company: "Hotel Weekend",
-    role: "Software Engineer",
-    period: "Aug 2023 – Present",
-    industry: "Travel & Hospitality",
-    location: "Remote",
+    company: "TenX (Agrilift)",
+    role: "Software Engineer & Application Support Engineer",
+    period: "Jul 2024 – Feb 2026",
+    industry: "Enterprise SaaS / AgriTech",
+    location: "Connecticut, USA · Remote",
     impact: [
-      "Led the full redevelopment of Hotel-Weekend.com from the ground up using Nuxt.js and Vue 3, transforming a legacy codebase into a high-performance, SEO-optimized platform.",
-      "Architected a dynamic destination and theme-based browsing system with curated property collections, increasing session duration.",
-      "Implemented custom filters, lazy-loaded assets, and fully responsive layouts across iOS, Android, and desktop.",
-      "Delivered near-perfect Lighthouse performance and SEO scores, contributing to improved SERP rankings and organic traffic.",
+      "Engineered Angular features and real-time analytics modules with Node.js, boosting platform responsiveness by 35% across 5 large-scale client applications.",
+      "Designed reusable, secure frontend modules for enterprise clients including HBL and BAT, reducing delivery timelines by 25%.",
+      "Directed the L1–L2 application support pipeline, executing SQL queries and validating true-positive bugs to cut false escalations by 35%.",
+      "Led a 3-member frontend team delivering production maps and visualization components with secure API integration — earning the Excellence Award 2025.",
+      "Implemented software security requirements and led peer code reviews to maintain code quality and engineering best practices.",
     ],
-    tech: ["Nuxt.js", "Vue 3", "SSR", "Tailwind CSS"],
+    tech: ["Angular", "Node.js", "SQL", "REST APIs", "Data Visualization"],
   },
   {
-    company: "StayWithLumina",
-    role: "Software Engineer (Full Stack - MERN)",
-    period: "Jul 2022 – Jul 2023",
-    industry: "Vacation Rental Platform",
-    location: "Remote",
+    company: "Devsinc",
+    role: "Frontend Developer",
+    period: "Aug 2023 – Jul 2024",
+    industry: "Social / Consumer Apps",
+    location: "California, USA · Remote",
     impact: [
-      "Architected and delivered the end-to-end full-stack build using Next.js, React, Node.js, and MongoDB - from database design to production deployment.",
-      "Integrated Guesty's property management API to synchronize listings, real-time availability, reservations, and guest data, eliminating manual data entry.",
-      "Implemented SSR, dynamic routing, and Framer Motion animations, boosting Core Web Vitals.",
-      "Built custom booking workflows and availability-aware filters, reducing booking abandonment.",
-      "Ensured API reliability through error boundaries and retry logic - achieving 99%+ uptime for critical booking flows.",
+      "Delivered a cross-platform React and React Native social app with responsive TypeScript UIs, cutting redundant code by 40% and lifting mobile retention by 30% across 50+ device configurations.",
+      "Integrated an AI-driven recommendation engine that increased personalized engagement by 45%, with secure data handling across real-time interactions.",
+      "Built a real-time matchmaking pipeline with NestJS and Node.js, reducing latency by 35% while maintaining 99.9% data integrity during live concurrent sessions.",
+      "Wrote Jest unit tests ensuring consistent quality across frontend components and RESTful API endpoints.",
     ],
-    tech: ["Next.js", "React", "Node.js", "MongoDB", "Guesty API", "Framer Motion"],
+    tech: ["React", "React Native", "TypeScript", "NestJS", "Node.js", "Jest"],
   },
   {
-    company: "Wisdom Coders",
-    role: "Associate Software Engineer",
-    period: "Mar 2021 – Apr 2022",
-    industry: "Software Consultancy",
-    location: "Lahore, Pakistan",
+    company: "OnyxTec",
+    role: "Software Engineer (Associate to Software Engineer)",
+    period: "Mar 2022 – Jul 2023",
+    industry: "Software Consultancy / SaaS",
+    location: "Pakistan",
     impact: [
-      "Contributed to 5+ multi-client web application projects, delivering responsive frontends using React and JavaScript within agile sprints.",
-      "Translated complex client requirements into clean, maintainable frontend solutions, consistently meeting delivery timelines.",
-      "Performed performance tuning and cross-platform responsiveness improvements on client-facing applications.",
-      "Adopted Git, testing workflows, and CI/CD practices, reducing integration issues.",
+      "Developed SocialSquad, a MERN SaaS event platform with real-time notifications and group chat, boosting coordination efficiency by 40% and scaling to 50k+ concurrent users.",
+      "Optimized backend services with MySQL and Sequelize ORM, achieving 99.9% data integrity and improving query performance by 40% in high-volume production.",
+      "Implemented an e-commerce application with integrated payment APIs, reducing transaction errors by 25% — recognized with the Best Employee Award 2022.",
+      "Built reusable React component libraries and implemented RESTful API integrations for the FeedBear and My Local Gun Shop platforms.",
     ],
-    tech: ["React", "JavaScript", "Git", "CI/CD"],
+    tech: ["React", "Node.js", "MongoDB", "MySQL", "Sequelize", "Express"],
   },
 ];
 
-export type ProjectCategory = "Full Stack" | "Frontend" | "SaaS" | "Performance" | "SEO" | "AI";
+export type ProjectCategory =
+  | "Full Stack"
+  | "Frontend"
+  | "SaaS"
+  | "Performance"
+  | "Security"
+  | "AI";
 
 export type Project = {
   slug: string;
@@ -181,72 +233,91 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "nice2stay",
-    name: "Nice2Stay",
-    tagline: "Vacation rental booking platform rebuilt for speed and global reach.",
-    category: ["Frontend", "SaaS", "Performance", "SEO"],
-    year: "2023",
-    role: "Senior Software Engineer",
-    stack: ["Vue.js", "Nuxt.js", "Node.js", "REST APIs", "i18n", "SSR"],
+    slug: "soc-incident-response",
+    name: "SOC Design & Incident Response",
+    tagline: "A 24/7 Security Operations Center modeled on a TD Bank ransomware simulation.",
+    category: ["Security"],
+    year: "2025",
+    role: "Security Analyst / SOC Architect",
+    stack: ["Splunk (SIEM)", "EDR", "MITRE ATT&CK", "NIST SP 800-61", "PCI DSS", "PIPEDA"],
     challenge:
-      "A hospitality SaaS platform needed a complete frontend overhaul to improve performance, organic discoverability, and the booking experience across multiple language markets.",
+      "A bank-scale environment needed a SOC architecture and incident-response capability able to detect, triage, and contain a live ransomware campaign while satisfying PCI DSS and PIPEDA.",
     solution:
-      "Rebuilt the end-to-end frontend architecture with Vue.js and Nuxt.js - introducing SSR, a modular component system, i18n routing with RTL support, and an intelligent booking UI with custom date pickers and real-time availability.",
+      "Designed a tiered SOC (Tier 1–3) integrating threat intelligence and incident response, then simulated the LockBit ransomware lifecycle through the NIST SP 800-61 phases — correlating SIEM, EDR, and authentication logs to reconstruct the full attack timeline and map adversary TTPs to MITRE ATT&CK.",
     results: [
-      "100/100 Lighthouse SEO score",
-      "LCP reduced to under 3 seconds",
-      "40% faster feature development",
-      "i18n across 5+ language markets with RTL support",
+      "Identified 18 indicators of compromise across the simulated campaign",
+      "Reconstructed the full attack timeline from correlated SIEM, EDR & auth logs",
+      "Mapped adversary TTPs to the MITRE ATT&CK framework",
+      "Developed response playbooks aligned with PCI DSS and PIPEDA",
     ],
     featured: true,
   },
   {
-    slug: "staywithlumina",
-    name: "StayWithLumina",
-    tagline: "Full-stack short-term rental platform built from scratch.",
+    slug: "socialsquad",
+    name: "SocialSquad",
+    tagline: "Real-time MERN event platform scaled to 50k+ concurrent users.",
     category: ["Full Stack", "SaaS", "Performance"],
     year: "2022",
-    role: "Full Stack Engineer (MERN)",
-    stack: ["Next.js", "React", "Node.js", "MongoDB", "Guesty API", "Framer Motion"],
+    role: "Software Engineer (MERN)",
+    stack: ["React", "Node.js", "Express", "MongoDB", "MySQL", "Sequelize"],
     challenge:
-      "A short-term vacation rental business needed a production-grade platform - from database design to deployment - with reliable real-time syncing against an external property management system.",
+      "An events SaaS needed real-time coordination — notifications and group chat — that stayed reliable and fast at high concurrency.",
     solution:
-      "Delivered a full-stack MERN platform featuring SSR, dynamic routing, Framer Motion animations, custom multi-step booking workflows, and a Guesty PMS API integration with robust error boundaries and retry logic.",
+      "Built a MERN platform with real-time notifications and group chat, and optimized backend services with MySQL and Sequelize ORM for data integrity and query performance under heavy load.",
     results: [
-      "99%+ uptime on booking-critical endpoints",
-      "Near-perfect Core Web Vitals scores",
-      "Automated listing/availability sync via Guesty API",
-      "Reduced booking abandonment with availability-aware filters",
+      "Scaled to 50k+ concurrent users",
+      "Boosted user coordination efficiency by 40%",
+      "99.9% data integrity in production",
+      "40% faster query performance via backend optimization",
     ],
     featured: true,
   },
   {
-    slug: "hotel-weekend",
-    name: "Hotel Weekend",
-    tagline: "Legacy travel platform reborn as an SEO-first discovery engine.",
-    category: ["Frontend", "Performance", "SEO"],
-    year: "2023",
-    role: "Software Engineer",
-    stack: ["Nuxt.js", "Vue 3", "SSR", "Tailwind CSS"],
+    slug: "farmlink",
+    name: "Farmlink",
+    tagline: "Real-time agricultural insights platform for enterprise clients.",
+    category: ["Frontend", "SaaS", "Performance"],
+    year: "2024",
+    role: "Senior Frontend Developer",
+    stack: ["Angular", ".NET API", "Mapbox GL", "Google Analytics", "TypeScript"],
     challenge:
-      "Hotel-Weekend.com ran on a legacy codebase that limited performance, SEO, and the ability to surface curated travel content to users.",
+      "Enterprise agricultural clients needed accurate, real-time geospatial insights delivered through a maintainable, fast frontend.",
     solution:
-      "Redeveloped the platform from the ground up with Nuxt.js and Vue 3 - adding a dynamic destination and theme-based discovery system, curated filters, lazy-loaded assets, and fully responsive layouts.",
+      "Architected reusable Angular components integrated with a .NET API, Mapbox GL maps, and Google Analytics to surface real-time agricultural insights.",
     results: [
-      "Near-perfect Lighthouse performance & SEO",
-      "Improved SERP rankings and organic traffic",
-      "Higher session duration via content-rich browsing",
-      "Cross-device compatibility (iOS, Android, desktop)",
+      "Boosted real-time insight accuracy by 33% for enterprise clients",
+      "Accelerated delivery cycles by 30%",
+      "Reusable component architecture for maintainability",
+      "Interactive Mapbox GL visualizations",
     ],
     featured: true,
+  },
+  {
+    slug: "ml-ids",
+    name: "ML-Based Intrusion Detection System",
+    tagline: "Machine-learning IDS detecting DDoS, Botnet, and Heartbleed attacks at 99.99% accuracy.",
+    category: ["Security", "AI"],
+    year: "2025",
+    role: "Security Researcher",
+    stack: ["Python", "KNN", "Naive Bayes", "Decision Tree", "CIC-IDS2017"],
+    challenge:
+      "Detecting modern network attacks accurately while minimizing false positives across a large, imbalanced traffic dataset.",
+    solution:
+      "Analyzed the CIC-IDS2017 dataset (200K+ records) and trained KNN, Naive Bayes, and Decision Tree classifiers, optimizing feature selection to reduce false positives.",
+    results: [
+      "99.99% detection accuracy",
+      "Detected DDoS, Botnet, and Heartbleed attacks",
+      "200K+ records analyzed",
+      "Optimized feature selection to minimize false positives",
+    ],
+    featured: false,
   },
 ];
 
 /**
  * Long-form case-study content for project detail pages.
- * STRICTLY derived from the resume - no fabricated infrastructure, metrics,
- * clients, or claims. Architecture layers only name technologies the resume
- * explicitly attributes to each project.
+ * STRICTLY derived from the CV - no fabricated infrastructure, metrics,
+ * clients, or claims.
  */
 export type ArchitectureLayer = {
   label: string;
@@ -277,201 +348,166 @@ export type CaseStudy = {
 };
 
 export const caseStudies: Record<string, CaseStudy> = {
-  nice2stay: {
-    slug: "nice2stay",
+  "soc-incident-response": {
+    slug: "soc-incident-response",
     summary:
-      "As Senior Software Engineer at Nice2Stay, I led a complete frontend revamp of a hospitality SaaS booking platform - rebuilding it on Vue.js and Nuxt.js to achieve a perfect Lighthouse SEO score, sub-3-second LCP, and internationalized reach across 5+ language markets.",
+      "I designed a 24/7 SOC architecture (Tier 1–3 analysts) and ran an end-to-end incident-response simulation modeled on a TD Bank LockBit ransomware scenario — correlating SIEM, EDR, and authentication logs to reconstruct the attack timeline, identify 18 indicators of compromise, and map adversary TTPs to MITRE ATT&CK under NIST SP 800-61.",
     problem: [
-      "The existing frontend held back performance, organic discoverability, and the booking experience across multiple language markets.",
-      "Monolithic components slowed feature delivery and made it hard to ship consistent, high-quality UI at the pace the business needed.",
-      "International guests needed first-class, localized experiences - including right-to-left layouts - that the platform could not yet provide.",
+      "A bank-scale environment needed a SOC capable of detecting and containing a live ransomware campaign without disrupting regulated operations.",
+      "Response had to satisfy PCI DSS and PIPEDA while preserving forensic evidence.",
+      "Analysts needed a repeatable, framework-aligned playbook rather than ad-hoc firefighting.",
     ],
     solution: [
-      "Spearheaded a full frontend revamp using Vue.js and Nuxt.js, introducing server-side rendering for fast first paints and SEO-ready markup.",
-      "Built a modular, reusable component system that decomposed monolithic UI and cut new-feature development time by 40%+.",
-      "Engineered an intelligent booking interface with custom date pickers, dynamic availability filters, and real-time property data to lift search-to-booking conversion.",
-      "Implemented internationalized routing and multilingual (i18n/L10n) support across 5+ language markets, including full RTL layout support.",
-      "Tuned performance with image optimization, lazy loading, and strategic caching to reach a 100/100 Lighthouse SEO score and sub-3s LCP.",
+      "Designed a tiered SOC (Tier 1–3) integrating threat intelligence and incident-response functions.",
+      "Simulated the LockBit ransomware lifecycle through the NIST SP 800-61 phases — preparation, detection, containment, eradication, and recovery.",
+      "Correlated SIEM, EDR, and authentication logs to reconstruct the full attack timeline.",
+      "Mapped adversary tactics, techniques, and procedures to the MITRE ATT&CK framework.",
+      "Developed response playbooks aligned with PCI DSS and PIPEDA.",
     ],
     architecture: [
-      {
-        label: "Presentation",
-        role: "Server-rendered UI & booking experience",
-        tech: ["Vue.js", "Nuxt.js", "SSR"],
-      },
-      {
-        label: "Internationalization",
-        role: "i18n routing, localization & RTL layouts",
-        tech: ["i18n", "L10n", "RTL"],
-      },
-      {
-        label: "Data & APIs",
-        role: "Real-time property & availability data",
-        tech: ["Node.js", "REST APIs"],
-      },
-      {
-        label: "Delivery & performance",
-        role: "Image optimization, lazy loading & caching",
-        tech: ["Caching", "Lazy loading", "Image optimization"],
-      },
+      { label: "Detection", role: "Log collection & alerting", tech: ["Splunk (SIEM)", "EDR"] },
+      { label: "Analysis", role: "Timeline reconstruction & TTP mapping", tech: ["MITRE ATT&CK", "Threat Intelligence"] },
+      { label: "Response", role: "Containment & remediation playbooks", tech: ["NIST SP 800-61"] },
+      { label: "Compliance", role: "Regulatory alignment", tech: ["PCI DSS", "PIPEDA"] },
     ],
     challenges: [
-      {
-        title: "Decomposing a monolithic frontend",
-        body: "Breaking tightly coupled components into a scalable, reusable architecture without disrupting the live booking flow - ultimately cutting feature delivery time by 40%+.",
-      },
-      {
-        title: "SEO at SSR scale",
-        body: "Reaching a perfect 100/100 Lighthouse SEO score required SSR, semantic markup, and careful asset strategy across a content-rich, multi-market site.",
-      },
-      {
-        title: "Multilingual & RTL correctness",
-        body: "Supporting 5+ language markets meant internationalized routing and full right-to-left layout support without forking the component system.",
-      },
+      { title: "Reconstructing the attack timeline", body: "Correlating SIEM, EDR, and authentication logs into a single coherent timeline required careful log normalization and pivoting across data sources." },
+      { title: "Framework-aligned response", body: "Mapping every action to NIST SP 800-61 phases and MITRE ATT&CK TTPs turned an ad-hoc investigation into a repeatable playbook." },
+      { title: "Compliance under pressure", body: "Containment and evidence handling had to satisfy PCI DSS and PIPEDA without slowing the response." },
     ],
     performance: [
-      { label: "Lighthouse SEO", value: "100/100", detail: "Perfect score on a production hospitality platform." },
-      { label: "Largest Contentful Paint", value: "<3s", detail: "Via SSR, image optimization, lazy loading & caching." },
-      { label: "Feature delivery", value: "40%+ faster", detail: "Through modular, reusable component design." },
-      { label: "Language markets", value: "5+", detail: "Internationalized routing with RTL support." },
+      { label: "Indicators of compromise", value: "18", detail: "Identified across the simulated LockBit campaign." },
+      { label: "Attack timeline", value: "Fully reconstructed", detail: "From correlated SIEM, EDR & authentication logs." },
+      { label: "TTP coverage", value: "MITRE ATT&CK", detail: "Adversary techniques mapped to the framework." },
+      { label: "Compliance", value: "PCI DSS · PIPEDA", detail: "Playbooks aligned to regulatory requirements." },
     ],
     learnings: [
-      "SSR and a disciplined asset strategy are what turn a fast framework into a perfect Lighthouse score in production.",
-      "Investing early in a modular component system compounds - it paid back as 40%+ faster feature delivery.",
-      "Internationalization and RTL are architecture decisions, not afterthoughts; baking them into routing kept the system clean.",
+      "Framework-aligned response (NIST SP 800-61 + MITRE ATT&CK) turns chaos into a repeatable, auditable process.",
+      "Log correlation across SIEM, EDR, and identity sources is where the real attack story emerges.",
+      "Compliance is a design input for incident response, not a clean-up step afterward.",
     ],
   },
-  staywithlumina: {
-    slug: "staywithlumina",
+  socialsquad: {
+    slug: "socialsquad",
     summary:
-      "I architected and delivered StayWithLumina end-to-end as the full-stack (MERN) engineer - from database design to production deployment - integrating Guesty's property management API for real-time listing and reservation sync, and hardening booking-critical flows to 99%+ uptime.",
+      "At OnyxTec I built SocialSquad, a MERN SaaS event platform with real-time notifications and group chat — scaling to 50k+ concurrent users while optimizing MySQL/Sequelize backend services to 99.9% data integrity and 40% faster queries.",
     problem: [
-      "A short-term vacation rental business needed a production-grade platform built from the ground up - database design through deployment.",
-      "Listings, availability, reservations, and guest data had to stay reliably in sync with an external property management system, eliminating manual data entry.",
-      "Booking-critical endpoints needed to stay reliable under real traffic to avoid lost reservations and abandonment.",
+      "An events SaaS needed reliable real-time coordination at high concurrency.",
+      "High-volume production traffic threatened data integrity and query performance.",
+      "Features like notifications and group chat had to stay responsive under load.",
     ],
     solution: [
-      "Architected and delivered the full-stack build with Next.js, React, Node.js, and MongoDB - owning everything from data modeling to production deployment.",
-      "Integrated Guesty's property management API to synchronize listings, real-time availability, reservations, and guest data automatically.",
-      "Implemented SSR, dynamic routing, and Framer Motion animations to boost Core Web Vitals and the feel of the product.",
-      "Built custom multi-step booking workflows and availability-aware filters to reduce booking abandonment.",
-      "Ensured API reliability through error boundaries and retry logic - achieving 99%+ uptime on critical booking flows.",
+      "Built a MERN platform with real-time notifications and group chat for event coordination.",
+      "Optimized backend services with MySQL and Sequelize ORM for integrity and performance.",
+      "Implemented reusable React component libraries and RESTful API integrations.",
+      "Tuned high-volume production queries for throughput and reliability.",
     ],
     architecture: [
-      {
-        label: "Presentation",
-        role: "Server-rendered UI, routing & motion",
-        tech: ["Next.js", "React", "SSR", "Framer Motion"],
-      },
-      {
-        label: "Application & API",
-        role: "Booking workflows & business logic",
-        tech: ["Node.js", "REST APIs"],
-      },
-      {
-        label: "Database",
-        role: "Listings, reservations & guest data",
-        tech: ["MongoDB"],
-      },
-      {
-        label: "Third-party integration",
-        role: "Real-time property management sync",
-        tech: ["Guesty PMS API"],
-      },
+      { label: "Presentation", role: "Reusable UI & real-time chat", tech: ["React", "Redux"] },
+      { label: "Application & API", role: "Real-time notifications & business logic", tech: ["Node.js", "Express", "REST APIs"] },
+      { label: "Database", role: "Event & user data at scale", tech: ["MongoDB", "MySQL", "Sequelize"] },
     ],
     challenges: [
-      {
-        title: "Reliable third-party sync",
-        body: "Keeping listings, availability, and reservations consistent with Guesty's API in real time - without manual data entry - demanded careful integration and reconciliation.",
-      },
-      {
-        title: "Resilience on booking flows",
-        body: "Booking endpoints can't fail silently. Error boundaries and retry logic were essential to reach 99%+ uptime on the paths that earn revenue.",
-      },
-      {
-        title: "Owning the full stack solo",
-        body: "Designing the data model, API, and UI as one coherent system - from MongoDB schema to deployed product - while keeping Core Web Vitals strong.",
-      },
+      { title: "Scaling to 50k+ concurrent users", body: "Real-time notifications and chat had to stay responsive as concurrency climbed into the tens of thousands." },
+      { title: "Data integrity at volume", body: "Optimizing MySQL with Sequelize ORM kept 99.9% data integrity while improving query performance by 40%." },
+      { title: "Reusability across teams", body: "A shared React component library kept delivery consistent across multiple client platforms." },
     ],
     performance: [
-      { label: "Booking-flow uptime", value: "99%+", detail: "Via error boundaries and retry logic on critical endpoints." },
-      { label: "Core Web Vitals", value: "Near-perfect", detail: "Through SSR, dynamic routing & optimized motion." },
-      { label: "PMS sync", value: "Automated", detail: "Listings & availability synced via the Guesty API." },
-      { label: "Booking abandonment", value: "Reduced", detail: "With availability-aware filters and multi-step flows." },
+      { label: "Concurrent users", value: "50k+", detail: "Sustained on the live event platform." },
+      { label: "Coordination efficiency", value: "+40%", detail: "Through real-time notifications and group chat." },
+      { label: "Data integrity", value: "99.9%", detail: "Maintained in high-volume production." },
+      { label: "Query performance", value: "+40%", detail: "Via MySQL & Sequelize optimization." },
     ],
     learnings: [
-      "A resilient integration layer - retries and error boundaries - is what separates a demo from a 99%+ uptime booking system.",
-      "Owning the stack end-to-end lets the data model, API, and UI evolve together instead of fighting each other.",
-      "Motion and SSR can coexist with strong Core Web Vitals when animation is applied deliberately, not decoratively.",
+      "Real-time features live or die on backend optimization, not just frontend polish.",
+      "A disciplined ORM and schema strategy is what holds data integrity at scale.",
+      "Reusable component libraries compound across multi-client delivery.",
     ],
   },
-  "hotel-weekend": {
-    slug: "hotel-weekend",
+  farmlink: {
+    slug: "farmlink",
     summary:
-      "I led the full redevelopment of Hotel-Weekend.com from the ground up on Nuxt.js and Vue 3 - transforming a legacy codebase into a high-performance, SEO-first discovery platform with a dynamic destination and theme-based browsing system, and near-perfect Lighthouse scores.",
+      "As Senior Frontend Developer on Farmlink, I architected reusable Angular components integrated with a .NET API, Mapbox GL, and Google Analytics — boosting real-time agricultural insight accuracy by 33% for enterprise clients and accelerating delivery cycles by 30%.",
     problem: [
-      "Hotel-Weekend.com ran on a legacy codebase that capped performance, SEO, and the ability to surface curated travel content.",
-      "Users needed a richer way to discover stays - by destination and theme - rather than a flat, slow catalog.",
-      "The experience had to be fast and fully responsive across iOS, Android, and desktop to compete for organic traffic.",
+      "Enterprise agricultural clients needed accurate, real-time geospatial insights.",
+      "The frontend had to stay fast and maintainable as features grew.",
+      "Mapping and analytics had to integrate cleanly with a .NET backend.",
     ],
     solution: [
-      "Rebuilt the platform from the ground up with Nuxt.js and Vue 3, replacing the legacy codebase with a high-performance, SEO-optimized foundation.",
-      "Architected a dynamic destination and theme-based browsing system with curated property collections to increase session duration.",
-      "Implemented custom filters, lazy-loaded assets, and fully responsive layouts across iOS, Android, and desktop.",
-      "Delivered near-perfect Lighthouse performance and SEO, contributing to improved SERP rankings and organic traffic.",
+      "Architected reusable Angular components for a scalable, maintainable frontend.",
+      "Integrated a .NET API for real-time agricultural data.",
+      "Built interactive Mapbox GL visualizations for geospatial insights.",
+      "Wired Google Analytics for usage and engagement measurement.",
     ],
     architecture: [
-      {
-        label: "Presentation",
-        role: "Server-rendered, responsive UI",
-        tech: ["Nuxt.js", "Vue 3", "SSR", "Tailwind CSS"],
-      },
-      {
-        label: "Discovery system",
-        role: "Destination & theme-based browsing",
-        tech: ["Curated collections", "Custom filters"],
-      },
-      {
-        label: "Delivery & performance",
-        role: "Lazy-loaded assets & responsive layouts",
-        tech: ["Lazy loading", "Responsive design"],
-      },
+      { label: "Presentation", role: "Reusable, responsive UI", tech: ["Angular", "TypeScript"] },
+      { label: "Mapping", role: "Geospatial visualization", tech: ["Mapbox GL"] },
+      { label: "Data & APIs", role: "Real-time agricultural data", tech: [".NET API", "REST APIs"] },
+      { label: "Analytics", role: "Usage & engagement insight", tech: ["Google Analytics"] },
     ],
     challenges: [
-      {
-        title: "Rebuilding without losing SEO equity",
-        body: "Replacing a legacy codebase from the ground up while improving - not jeopardizing - SERP rankings and organic traffic required an SEO-first rebuild.",
-      },
-      {
-        title: "Designing for discovery",
-        body: "A destination and theme-based browsing system with curated collections had to make exploration effortless and increase session duration.",
-      },
-      {
-        title: "Cross-device performance",
-        body: "Near-perfect Lighthouse scores had to hold across iOS, Android, and desktop with lazy-loaded assets and fully responsive layouts.",
-      },
+      { title: "Accurate real-time insights", body: "Surfacing trustworthy, real-time agricultural data improved insight accuracy by 33% for enterprise clients." },
+      { title: "Maintainable component architecture", body: "Reusable Angular components accelerated delivery cycles by 30% while keeping the codebase clean." },
+      { title: "Geospatial performance", body: "Integrating Mapbox GL with live data required careful rendering and state management." },
     ],
     performance: [
-      { label: "Lighthouse", value: "Near-perfect", detail: "Performance & SEO on the rebuilt platform." },
-      { label: "Organic traffic", value: "Improved", detail: "Through better SERP rankings post-rebuild." },
-      { label: "Session duration", value: "Higher", detail: "Via content-rich, theme-based browsing." },
-      { label: "Devices", value: "iOS · Android · Desktop", detail: "Fully responsive across platforms." },
+      { label: "Insight accuracy", value: "+33%", detail: "Real-time agricultural insights for enterprise clients." },
+      { label: "Delivery cycles", value: "+30% faster", detail: "Through reusable Angular components." },
+      { label: "Mapping", value: "Mapbox GL", detail: "Interactive geospatial visualizations." },
+      { label: "Analytics", value: "Google Analytics", detail: "Usage & engagement instrumentation." },
     ],
     learnings: [
-      "A ground-up rebuild is the moment to make SEO structural - it's far cheaper than retrofitting it later.",
-      "Discovery UX (destinations, themes, curation) drives engagement metrics as much as raw performance does.",
-      "Lazy loading and responsive layouts are non-negotiable for holding Lighthouse scores across real devices.",
+      "Reusable component architecture is the lever for both speed and maintainability.",
+      "Geospatial UX is an engineering problem as much as a design one.",
+      "Instrumenting analytics early turns insight accuracy into a measurable target.",
+    ],
+  },
+  "ml-ids": {
+    slug: "ml-ids",
+    summary:
+      "I built an ML-based Intrusion Detection System on the CIC-IDS2017 dataset (200K+ records), training KNN, Naive Bayes, and Decision Tree classifiers to detect DDoS, Botnet, and Heartbleed attacks at 99.99% accuracy while minimizing false positives through feature selection.",
+    problem: [
+      "Modern network attacks must be detected accurately across large, imbalanced traffic data.",
+      "False positives erode analyst trust and bury real threats.",
+      "Multiple attack classes (DDoS, Botnet, Heartbleed) require robust modeling.",
+    ],
+    solution: [
+      "Analyzed the CIC-IDS2017 dataset of 200K+ network traffic records.",
+      "Trained KNN, Naive Bayes, and Decision Tree classifiers for detection.",
+      "Optimized feature selection to minimize false positives.",
+      "Evaluated models against DDoS, Botnet, and Heartbleed attack classes.",
+    ],
+    architecture: [
+      { label: "Data", role: "Network traffic dataset", tech: ["CIC-IDS2017"] },
+      { label: "Modeling", role: "Attack classification", tech: ["KNN", "Naive Bayes", "Decision Tree"] },
+      { label: "Optimization", role: "Feature selection & tuning", tech: ["Python"] },
+    ],
+    challenges: [
+      { title: "Minimizing false positives", body: "Feature selection was tuned to keep precision high without sacrificing detection coverage." },
+      { title: "Multi-class detection", body: "DDoS, Botnet, and Heartbleed each presented distinct signatures requiring robust models." },
+      { title: "Scale of data", body: "Training across 200K+ records demanded efficient preprocessing and evaluation." },
+    ],
+    performance: [
+      { label: "Detection accuracy", value: "99.99%", detail: "Across the evaluated attack classes." },
+      { label: "Records analyzed", value: "200K+", detail: "From the CIC-IDS2017 dataset." },
+      { label: "Attack classes", value: "DDoS · Botnet · Heartbleed", detail: "Detected by the trained models." },
+      { label: "False positives", value: "Minimized", detail: "Through optimized feature selection." },
+    ],
+    learnings: [
+      "Feature selection often matters more than model choice for false-positive control.",
+      "Real intrusion datasets are imbalanced — evaluation has to account for it.",
+      "ML detection complements, not replaces, signature- and rule-based defenses.",
     ],
   },
 };
 
 /** Audience segmentation for who I work with. */
 export const audiences = [
-  "Founders",
-  "Startups",
-  "Agencies",
-  "Product Teams",
   "Employers",
+  "Startups",
+  "Product Teams",
+  "Security Teams",
+  "Founders",
 ] as const;
 
 /**
@@ -489,67 +525,68 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    outcome: "Build and launch production-ready SaaS products",
+    outcome: "Build and ship production-ready SaaS products",
     value:
-      "End-to-end MERN/MEAN builds - from database design to deployment - shipped as scalable, maintainable products, not prototypes.",
+      "End-to-end full-stack builds across React/Angular and NestJS/Node.js — shipped as scalable, secure products, not prototypes.",
     included: [
       "Full-stack architecture & data modeling",
-      "SSR/SSG, real-time data & API integrations",
-      "Component-driven design system",
-      "Production deployment on AWS / Vercel",
+      "RESTful APIs & microservices",
+      "Reusable component systems",
+      "Deployment on AWS with CI/CD",
     ],
     audiences: ["Founders", "Startups"],
     cta: "Start a build",
     featured: true,
   },
   {
-    outcome: "Make slow products fast and discoverable",
+    outcome: "Harden applications with secure SDLC",
     value:
-      "Performance and SEO engineering that has earned 100/100 Lighthouse scores and sub-3s LCP on production platforms.",
+      "Security baked into development — secure requirements, peer code reviews, and integrity controls across real-time systems.",
     included: [
-      "Core Web Vitals & LCP optimization",
-      "Technical SEO & structured data",
-      "Caching, image & font strategy",
-      "Lighthouse audits with measurable gains",
+      "Secure coding & code review",
+      "Vulnerability assessment",
+      "Secure data handling & integrity controls",
+      "OWASP-aligned practices",
     ],
-    audiences: ["Product Teams", "Agencies"],
-    cta: "Audit my site",
+    audiences: ["Product Teams", "Security Teams"],
+    cta: "Secure my app",
+    featured: true,
   },
   {
-    outcome: "Modernize and rescue legacy frontends",
+    outcome: "Detect and respond to security incidents",
     value:
-      "Decompose monolithic codebases into modular, reusable architecture - cutting feature delivery time by 40%+.",
+      "SIEM monitoring, incident response, and forensic timeline analysis aligned with NIST SP 800-61 and MITRE ATT&CK.",
     included: [
-      "Frontend re-architecture (React / Vue)",
-      "Design-system & component library work",
-      "Incremental migration strategy",
-      "Developer-velocity improvements",
+      "Splunk SIEM monitoring & alert triage",
+      "Incident response (NIST SP 800-61)",
+      "MITRE ATT&CK TTP mapping",
+      "Response playbooks & documentation",
     ],
-    audiences: ["Product Teams", "Agencies"],
-    cta: "Plan a rebuild",
+    audiences: ["Security Teams", "Employers"],
+    cta: "Talk security",
   },
   {
-    outcome: "Reach global markets with i18n & RTL",
+    outcome: "Run vulnerability assessments & pen tests",
     value:
-      "Internationalized, localized platforms shipped across 5+ language markets, including full right-to-left support.",
+      "Identify, prioritize, and resolve security weaknesses before exploitation using Nessus, Metasploit, and MITRE Caldera.",
     included: [
-      "i18n routing & localization (L10n)",
-      "RTL layout support",
-      "Region-aware UX & content",
-      "Multilingual SEO",
+      "Vulnerability scanning (Nessus)",
+      "Penetration testing (Metasploit)",
+      "Security risk assessment",
+      "Remediation guidance",
     ],
-    audiences: ["Founders", "Startups"],
-    cta: "Go international",
+    audiences: ["Security Teams", "Product Teams"],
+    cta: "Assess my risk",
   },
   {
-    outcome: "Add a senior engineer to your team",
+    outcome: "Add a full-stack + security engineer to your team",
     value:
-      "Full-time or embedded engineering with technical leadership, mentoring, and a track record of shipping at scale.",
+      "Full-time or embedded engineering that ships features and defends the systems they run on, with a track record of awards and impact.",
     included: [
       "Full-stack feature delivery",
-      "Architecture & code review",
-      "Mentoring & best practices",
+      "Architecture & secure code review",
       "Cross-functional collaboration",
+      "Mentoring & best practices",
     ],
     audiences: ["Employers", "Product Teams"],
     cta: "Let's talk",
@@ -557,12 +594,12 @@ export const services: Service[] = [
   {
     outcome: "Integrate AI features that ship",
     value:
-      "OpenAI, LangChain, and RAG-powered features integrated into real products with vector search and prompt engineering.",
+      "RAG, vector databases, and LLM integration woven into real products with secure data handling.",
     included: [
-      "LLM & OpenAI API integration",
+      "LLM & MCP integration",
       "RAG & vector databases",
-      "Prompt engineering",
-      "AI-powered product features",
+      "AI-driven pipelines",
+      "Secure AI data handling",
     ],
     audiences: ["Founders", "Startups"],
     cta: "Explore AI",
@@ -571,8 +608,8 @@ export const services: Service[] = [
 
 /**
  * Testimonials - PLACEHOLDER / TODO.
- * No quotes are fabricated. Replace `quote`, `author`, and `role` with real,
- * approved testimonials. Set `placeholder: false` to display a card.
+ * No quotes are fabricated. Replace with real, approved testimonials.
+ * Set `placeholder: false` to display a card.
  */
 export type Testimonial = {
   quote: string;
@@ -591,7 +628,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "TODO: Add a second real testimonial. Reach out to a past collaborator from Nice2Stay, StayWithLumina, or Hotel Weekend.",
+      "TODO: Add a second real testimonial. Reach out to a past collaborator from TenX, Devsinc, or OnyxTec.",
     author: "TODO - Name",
     role: "TODO - Role, Company",
     placeholder: true,
@@ -599,39 +636,56 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const expertise = [
-  { title: "Frontend Engineering", description: "React, Next.js, Vue, Nuxt - component-driven systems that ship pixel-perfect, accessible UI." },
-  { title: "Backend Engineering", description: "Node.js, Express, NestJS, REST/GraphQL APIs, and resilient integration strategies." },
-  { title: "Cloud & DevOps", description: "AWS, Docker, GitHub Actions, and CI/CD pipelines for reliable, repeatable deploys." },
-  { title: "AI Integrations", description: "OpenAI, LangChain, RAG, and vector databases woven into real product features." },
-  { title: "Performance Optimization", description: "Sub-3s LCP and strong Core Web Vitals through SSR, caching, and asset strategy." },
-  { title: "SEO Engineering", description: "100/100 Lighthouse SEO via structured data, SSR, and i18n-aware routing." },
-  { title: "Architecture", description: "System design, microservices, and component-driven design at scale." },
-  { title: "Internationalization", description: "i18n/L10n across 5+ language markets, including full RTL support." },
+  { title: "Full Stack Engineering", description: "React, Angular, Next.js, NestJS, and Node.js — secure, component-driven products end to end." },
+  { title: "Backend & APIs", description: "RESTful APIs, microservices, and Sequelize ORM with PostgreSQL, MySQL, and MongoDB." },
+  { title: "Cloud & DevOps", description: "AWS (EC2, S3, RDS), Docker, GitHub Actions, and CI/CD pipelines for reliable deploys." },
+  { title: "Security Operations", description: "Splunk SIEM monitoring, incident response, and MITRE ATT&CK TTP mapping." },
+  { title: "Vulnerability Management", description: "Nessus, Metasploit, and MITRE Caldera for penetration testing and risk assessment." },
+  { title: "Incident Response", description: "Containment and remediation aligned with NIST SP 800-61 and forensic timeline analysis." },
+  { title: "Compliance & Frameworks", description: "NIST, PCI DSS, PIPEDA, ISO 27001, and CIS Controls applied to real environments." },
+  { title: "AI Integrations", description: "RAG, vector databases, and LLM integration woven into real product features." },
 ];
 
 export const process = [
-  { step: "Discover", description: "Understand the product, users, and constraints before a line of code." },
-  { step: "Architect", description: "Design systems and data models that scale with the business." },
-  { step: "Design", description: "Translate Figma into a pixel-perfect, accessible design system." },
+  { step: "Discover", description: "Understand the product, users, and threat model before a line of code." },
+  { step: "Architect", description: "Design systems and data models that scale — and stay secure." },
   { step: "Build", description: "Ship modular, reusable components with velocity and quality." },
-  { step: "Optimize", description: "Tune performance, SEO, and Core Web Vitals to production standards." },
-  { step: "Deploy", description: "Automated CI/CD pipelines for safe, repeatable releases." },
-  { step: "Scale", description: "Internationalize, monitor, and harden for global traffic." },
+  { step: "Secure", description: "Apply secure SDLC — code review, integrity controls, and OWASP practices." },
+  { step: "Test", description: "Unit, integration, and TDD coverage with Jest and Mocha." },
+  { step: "Deploy", description: "Automated CI/CD pipelines on AWS for safe, repeatable releases." },
+  { step: "Defend", description: "Monitor, triage, and respond — SIEM, incident response, and hardening." },
 ];
 
-export const education = {
-  degree: "Bachelor of Science in Computer Science",
-  institution: "Government College University Lahore",
-  location: "Lahore, Pakistan",
-  period: "Jun 2018 – Sep 2022",
+export type Education = {
+  degree: string;
+  institution: string;
+  location: string;
+  period: string;
+  detail?: string;
 };
 
+export const education: Education[] = [
+  {
+    degree: "Master of Cybersecurity",
+    institution: "Toronto Metropolitan University",
+    location: "Canada — Toronto, ON",
+    period: "GPA: 4.0",
+    detail: "Specialized in SOC design, incident response, and ML-based intrusion detection.",
+  },
+  {
+    degree: "Bachelor of Science in Computer Science",
+    institution: "Government College University",
+    location: "Pakistan",
+    period: "",
+  },
+];
+
 export const achievements = [
-  "Achieved a perfect 100/100 Lighthouse SEO score on a production hospitality platform.",
-  "Reduced Largest Contentful Paint to under 3 seconds on a high-traffic booking platform.",
-  "Decreased component development time by 40%+ through systematic modularization.",
-  "Delivered 3 production-grade travel/hospitality platforms as the primary full-stack engineer.",
-  "Integrated the Guesty PMS API for real-time sync across listings, availability, and reservations.",
+  "Excellence Award 2025 at TenX (Agrilift) for outstanding platform contributions.",
+  "Best Employee Award 2022 at OnyxTec for the e-commerce payment integration.",
+  "Achieved a 4.0 GPA in the Master of Cybersecurity at Toronto Metropolitan University.",
+  "Built an ML-based IDS reaching 99.99% detection accuracy on the CIC-IDS2017 dataset.",
+  "Scaled SocialSquad to 50k+ concurrent users with 99.9% data integrity.",
 ];
 
 export const languages = [
@@ -639,26 +693,32 @@ export const languages = [
   { name: "Urdu", level: "Native" },
 ];
 
+export const certifications = [
+  { name: "Splunk: A SIEM Tool", issuer: "ThinkCloudly", status: "Completed" },
+  { name: "SOC Analyst: A SIEM Tool", issuer: "ThinkCloudly", status: "Completed" },
+  { name: "ISC2 Certification", issuer: "ISC2", status: "In Progress" },
+] as const;
+
 export const faqs = [
   {
-    q: "What kind of projects do you take on?",
-    a: "Full-stack web applications and SaaS products - primarily in React/Next.js and Vue/Nuxt - spanning greenfield builds, frontend modernizations, performance/SEO engagements, and AI feature integration.",
+    q: "What kind of roles are you looking for?",
+    a: "Full-stack engineering and cybersecurity roles — including hybrid roles that combine secure software development with security operations. I'm based in Canada and open to opportunities across Canada and remote.",
   },
   {
-    q: "Are you available for freelance and consulting work?",
-    a: "Yes. I work with founders and teams on full builds, technical consulting, architecture reviews, and performance/SEO optimization, alongside full-time and startup opportunities.",
+    q: "What's your background as a developer?",
+    a: "Five years building secure, scalable B2B and B2C SaaS across React/TypeScript and NestJS/Node.js — including platforms scaled to 50k+ concurrent users — starting in Pakistan and continuing across remote roles for US-based companies.",
   },
   {
-    q: "Which time zones and locations do you work across?",
-    a: "I'm remote-ready across EST, CET, GST, and PKT, and open to relocation in the UAE, KSA, and Qatar.",
+    q: "What cybersecurity experience do you have?",
+    a: "Hands-on SIEM monitoring with Splunk, incident response aligned to NIST SP 800-61, MITRE ATT&CK TTP mapping, vulnerability management with Nessus and Metasploit, plus a Master of Cybersecurity (4.0 GPA) and SOC/incident-response simulations.",
   },
   {
-    q: "What performance results can you deliver?",
-    a: "On production platforms I've achieved 100/100 Lighthouse SEO, sub-3-second LCP, and 99%+ uptime on booking-critical flows through SSR, caching, and resilient API design.",
+    q: "Which frameworks and compliance standards do you work with?",
+    a: "NIST CSF/RMF/SP 800-61, PCI DSS, PIPEDA, HIPAA, PHIPA, ISO 27001, and CIS Controls — applied across SOC design, security architecture, and policy documentation.",
   },
   {
-    q: "Do you build multilingual / international products?",
-    a: "Yes - I've shipped i18n/L10n across 5+ language markets including full right-to-left (RTL) layout support.",
+    q: "Can you both build and secure an application?",
+    a: "Yes — that's the core of what I do. I ship production features with secure SDLC practices (secure requirements, code review, integrity controls) and can also assess, monitor, and respond to threats against the systems they run on.",
   },
 ];
 

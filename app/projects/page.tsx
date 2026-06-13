@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
-    "Production case studies from Arqam Tahir - the challenge, the Next.js and full stack engineering, and the measurable performance outcomes behind each build.",
+    "Full stack web applications and cybersecurity projects by Huzaifa Khalid.",
   keywords: [
     "case studies",
     "Next.js",
@@ -31,16 +31,16 @@ export default function ProjectsPage() {
           <br className="hidden sm:block" /> documented as case studies.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          Three travel and hospitality platforms I engineered end-to-end - each
-          told as a story of the problem, the approach, and the measurable impact.
-          Every fact here comes from real, shipped work.
+          Full-stack and security projects, each told as a story of the problem,
+          the approach, and the measurable impact. Every fact here comes from
+          real work.
         </p>
         <Reveal delay={0.18}>
           <dl className="mt-12 grid max-w-2xl grid-cols-2 gap-6 border-t border-border pt-8 sm:grid-cols-4">
-            <Stat value="3" label="Production platforms" />
-            <Stat value="100" label="Lighthouse SEO" />
-            <Stat value="<3s" label="LCP achieved" />
-            <Stat value="99%+" label="Booking uptime" />
+            <Stat value="50k+" label="Concurrent users" />
+            <Stat value="99.99%" label="IDS accuracy" />
+            <Stat value="18" label="IoCs identified" />
+            <Stat value="99.9%" label="Data integrity" />
           </dl>
         </Reveal>
       </section>

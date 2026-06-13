@@ -29,7 +29,7 @@ export function renderOg({
           justifyContent: "space-between",
           padding: "72px 80px",
           background:
-            "linear-gradient(135deg, #0b0d10 0%, #11151b 55%, #0b0d10 100%)",
+            "linear-gradient(135deg, #0A1628 0%, #0F2040 55%, #0A1628 100%)",
           color: "#f5f7fa",
           fontFamily: "sans-serif",
         }}
@@ -43,7 +43,7 @@ export function renderOg({
             width: 520,
             height: 520,
             borderRadius: 9999,
-            background: "rgba(99,102,241,0.22)",
+            background: "rgba(16, 185, 129,0.28)",
             filter: "blur(120px)",
           }}
         />
@@ -54,7 +54,7 @@ export function renderOg({
               width: 14,
               height: 14,
               borderRadius: 9999,
-              background: "#818cf8",
+              background: "#10B981",
             }}
           />
           <span
@@ -115,8 +115,8 @@ export function renderOg({
             color: "#cdd4de",
           }}
         >
-          <span style={{ fontWeight: 600, color: "#f5f7fa" }}>Arqam Tahir</span>
-          <span>Senior Software Engineer · Full Stack</span>
+          <span style={{ fontWeight: 600, color: "#f5f7fa" }}>Huzaifa Khalid</span>
+          <span>Full Stack Developer · Cybersecurity</span>
         </div>
       </div>
     ),

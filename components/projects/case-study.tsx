@@ -20,11 +20,8 @@ import { ArchitectureDiagram } from "./architecture-diagram";
 
 import { EASE as ease } from "@/lib/motion";
 
-const SCREENSHOT_SLUGS = new Set([
-  "nice2stay",
-  "staywithlumina",
-  "hotel-weekend",
-]);
+// TODO: add slugs here once real screenshots exist at /images/projects/<slug>.png.
+const SCREENSHOT_SLUGS = new Set<string>([]);
 
 const SECTIONS = [
   { id: "summary", label: "Executive summary" },
@@ -132,7 +129,7 @@ export function CaseStudy({
           <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
             <Image
               src={`/images/projects/${project.slug}.png`}
-              alt={`${project.name} - built by Arqam Tahir using ${project.stack
+              alt={`${project.name} - built by Huzaifa Khalid using ${project.stack
                 .slice(0, 3)
                 .join(", ")}`}
               fill

@@ -7,8 +7,8 @@ import { Counter } from "@/components/motion";
 import { EASE as ease } from "@/lib/motion";
 
 const supporting = [
-  { icon: Activity, value: 99, suffix: "%+", label: "Uptime on booking flows" },
-  { icon: Layers, value: 3, suffix: "", label: "Production platforms shipped" },
+  { icon: Activity, value: 99, suffix: ".99%", label: "ML-IDS detection accuracy" },
+  { icon: Layers, value: 18, suffix: "", label: "IoCs identified in SOC simulation" },
 ];
 
 export function Metrics() {
@@ -28,8 +28,8 @@ export function Metrics() {
             </h2>
           </div>
           <p className="max-w-xs text-sm text-muted">
-            Beyond the perfect Lighthouse score and sub-3s loads, the work moved
-            real numbers for teams in international markets.
+            Beyond the awards and the degrees, the work moved real numbers - for
+            users, for teams, and for the systems being defended.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export function Metrics() {
               className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/10 blur-2xl"
             />
             <div className="flex items-center gap-2 text-sm font-medium text-muted">
-              <TrendingUp className="h-4 w-4 text-accent" /> Delivery velocity
+              <TrendingUp className="h-4 w-4 text-accent" /> Efficiency gain
             </div>
             <div className="mt-6 flex items-end gap-1">
               <span className="text-7xl font-semibold leading-none tracking-tight text-foreground">
@@ -56,8 +56,8 @@ export function Metrics() {
               <span className="mb-2 text-4xl font-medium text-muted">%+</span>
             </div>
             <p className="mt-6 text-sm leading-relaxed text-muted">
-              Faster feature delivery by decomposing a monolithic frontend into a
-              modular, reusable component architecture.
+              Boosted user coordination efficiency and query performance through
+              optimized backend services and reusable component libraries.
             </p>
           </motion.div>
 
@@ -74,16 +74,16 @@ export function Metrics() {
               className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/10 blur-2xl"
             />
             <div className="flex items-center gap-2 text-sm font-medium text-muted">
-              <Globe2 className="h-4 w-4 text-accent" /> Global reach
+              <Globe2 className="h-4 w-4 text-accent" /> Scale
             </div>
             <div className="mt-6 flex items-end gap-1">
               <span className="text-7xl font-semibold leading-none tracking-tight text-foreground">
-                <Counter to={5} />
+                <Counter to={50} />
               </span>
-              <span className="mb-2 text-4xl font-medium text-muted">+</span>
+              <span className="mb-2 text-4xl font-medium text-muted">k+</span>
             </div>
             <div className="mt-5 flex flex-wrap gap-1.5">
-              {["EN", "AR", "RTL", "i18n / L10n"].map((t) => (
+              {["MERN", "Real-time", "SaaS", "99.9% integrity"].map((t) => (
                 <span
                   key={t}
                   className="rounded-md border border-border bg-background/60 px-2 py-1 font-mono text-[11px] text-muted"
@@ -93,8 +93,8 @@ export function Metrics() {
               ))}
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted">
-              Language markets served with internationalized routing and full
-              right-to-left layout support.
+              Concurrent users on a real-time MERN event platform, sustained at
+              99.9% data integrity in production.
             </p>
           </motion.div>
 

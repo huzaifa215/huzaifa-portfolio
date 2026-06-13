@@ -33,8 +33,8 @@ export function Timeline() {
             Five years of shipping production software.
           </h2>
           <p className="mt-4 max-w-sm text-base leading-relaxed text-muted">
-            A track record across travel-tech, hospitality, and SaaS - consistently
-            focused on performance, scale, and measurable business outcomes.
+            A track record across SaaS engineering and cybersecurity - consistently
+            focused on shipping secure software and defending real-world systems.
           </p>
 
           <div className="mt-8 hidden items-center gap-4 lg:flex">
@@ -44,7 +44,7 @@ export function Timeline() {
                 style={{ scaleX: reduce ? 1 : progress, transformOrigin: "left" }}
               />
             </div>
-            <span className="text-xs text-subtle">Now → 2021</span>
+            <span className="text-xs text-subtle">Now – 2021</span>
           </div>
         </div>
 

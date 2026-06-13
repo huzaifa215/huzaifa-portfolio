@@ -24,11 +24,9 @@ export async function generateMetadata({
   });
 }
 
-const projectImages: Record<string, string> = {
-  nice2stay: `${siteUrl}/images/projects/nice2stay.png`,
-  staywithlumina: `${siteUrl}/images/projects/staywithlumina.png`,
-  "hotel-weekend": `${siteUrl}/images/projects/hotel-weekend.png`,
-};
+// TODO: add real project screenshots under /public/images/projects/<slug>.png,
+// then map them here (and add the slug to SCREENSHOT_SLUGS in case-study.tsx).
+const projectImages: Record<string, string> = {};
 
 function caseStudyJsonLd(slug: string) {
   const project = projects.find((p) => p.slug === slug)!;
@@ -43,7 +41,7 @@ function caseStudyJsonLd(slug: string) {
     url: `${siteUrl}/projects/${slug}`,
     keywords: project.stack.join(", "),
     about: project.category.join(", "),
-    author: { "@type": "Person", name: "Arqam Tahir", url: siteUrl },
+    author: { "@type": "Person", name: "Huzaifa Khalid", url: siteUrl },
     ...(imageUrl
       ? {
           image: {
@@ -51,7 +49,7 @@ function caseStudyJsonLd(slug: string) {
             url: imageUrl,
             width: 1200,
             height: 800,
-            caption: `${project.name} - developed by Arqam Tahir, Senior Software Engineer`,
+            caption: `${project.name} - developed by Huzaifa Khalid, Full Stack Developer & Cybersecurity Specialist`,
           },
         }
       : {}),

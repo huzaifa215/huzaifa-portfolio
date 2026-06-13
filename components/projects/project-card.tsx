@@ -2,111 +2,130 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { GithubIcon } from "@/components/ui/icons";
 import type { Project } from "@/lib/resume";
+import { profile } from "@/lib/resume";
 
 import { EASE as ease } from "@/lib/motion";
 
-/**
- * A mini case-study card: Problem → Approach → Impact.
- * Deliberately NOT image / title / button.
- */
+function initials(name: string) {
+  return name
+    .replace(/[^a-zA-Z0-9 ]/g, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase())
+    .join("");
+}
+
+function isSecurity(project: Project) {
+  return project.category.includes("Security");
+}
+
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   const reduce = useReducedMotion();
-  const impact = project.results[0];
+  const security = isSecurity(project);
+  const extra = Math.max(0, project.stack.length - 4);
 
   return (
     <motion.div
       layout
       initial={reduce ? false : { opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease, delay: Math.min(index * 0.06, 0.3) }}
+      exit={reduce ? { opacity: 0 } : { opacity: 0, y: -4 }}
+      transition={{ duration: 0.4, ease, delay: Math.min(index * 0.06, 0.3) }}
+      className="card-premium group flex h-full flex-col overflow-hidden"
+      style={{ borderRadius: 14 }}
     >
-      <Link
-        href={`/projects/${project.slug}`}
-        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface p-7 transition-all duration-300 hover:border-border-strong hover:shadow-elevated md:p-8"
+      {/* Top image / placeholder */}
+      <div
+        className="relative h-[200px] overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0F2040, #112240)" }}
       >
-        {/* meta */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 text-xs">
-            <span className="font-mono text-subtle">{project.year}</span>
-            <span className="h-1 w-1 rounded-full bg-border-strong" />
-            <span className="text-muted">{project.role}</span>
-          </div>
-          <ArrowUpRight className="h-4 w-4 text-subtle transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
+        <div className="flex h-full w-full items-center justify-center">
+          <span className="select-none text-6xl font-bold tracking-tight text-slate-600">
+            {initials(project.name)}
+          </span>
         </div>
-
-        <h3 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
-          {project.name}
-        </h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-muted">{project.tagline}</p>
-
-        {/* Problem -> Approach -> Impact */}
-        <div className="mt-6 flex flex-col gap-0 rounded-2xl border border-border bg-background/40 p-5">
-          <CaseRow label="Problem" body={project.challenge} />
-          <Connector />
-          <CaseRow label="Approach" body={project.solution} />
-          <Connector />
-          <CaseRow label="Impact" body={impact} accent />
-        </div>
-
-        {/* tech */}
-        <div className="mt-6 flex flex-wrap gap-1.5">
-          {project.stack.map((t) => (
+        <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+          {project.stack.slice(0, 3).map((t) => (
             <span
               key={t}
-              className="rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-subtle"
+              className="rounded-md border border-white/10 bg-black/30 px-2 py-0.5 font-mono text-[10px] text-slate-300 backdrop-blur-sm"
             >
               {t}
             </span>
           ))}
         </div>
+      </div>
 
-        <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-foreground">
-          Read case study
-          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      {/* Body */}
+      <div className="flex flex-1 flex-col p-5">
+        {/* Category badge */}
+        <div>
+          {security ? (
+            <span
+              className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+              style={{
+                background: "rgba(139, 92, 246, 0.08)",
+                border: "1px solid rgba(139, 92, 246, 0.2)",
+                color: "rgba(167, 139, 250, 0.85)",
+              }}
+            >
+              Cybersecurity
+            </span>
+          ) : (
+            <span className="pill-cyan">Full Stack</span>
+          )}
         </div>
-      </Link>
+
+        <h3 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="transition-colors hover:text-[#34D399]"
+          >
+            {project.name}
+          </Link>
+        </h3>
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-400">
+          {project.tagline}
+        </p>
+
+        {/* Tech stack */}
+        <div className="mt-4 flex flex-wrap items-center gap-1.5">
+          {project.stack.slice(0, 4).map((t) => (
+            <span
+              key={t}
+              className="rounded-md border border-white/10 px-2 py-0.5 font-mono text-[11px] text-slate-400"
+            >
+              {t}
+            </span>
+          ))}
+          {extra > 0 && (
+            <span className="text-[11px] text-slate-500">+{extra} more</span>
+          )}
+        </div>
+
+        {/* Action row */}
+        <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-4">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
+          >
+            <GithubIcon className="h-4 w-4" /> GitHub
+          </a>
+          <Link
+            href={`/projects/${project.slug}`}
+            className="inline-flex items-center gap-1 text-sm font-medium text-[#34D399] transition-colors hover:text-[#6EE7B7]"
+          >
+            Case Study
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </div>
     </motion.div>
-  );
-}
-
-function CaseRow({
-  label,
-  body,
-  accent,
-}: {
-  label: string;
-  body: string;
-  accent?: boolean;
-}) {
-  return (
-    <div className="flex flex-col gap-1">
-      <span
-        className={[
-          "text-[11px] font-medium uppercase tracking-wide",
-          accent ? "text-accent" : "text-subtle",
-        ].join(" ")}
-      >
-        {label}
-      </span>
-      <p
-        className={[
-          "text-sm leading-relaxed",
-          accent ? "font-medium text-foreground" : "text-muted line-clamp-2",
-        ].join(" ")}
-      >
-        {body}
-      </p>
-    </div>
-  );
-}
-
-function Connector() {
-  return (
-    <div className="my-2 flex items-center gap-2 pl-0.5 text-subtle">
-      <ArrowDown className="h-3.5 w-3.5" />
-      <span className="h-px flex-1 bg-border" />
-    </div>
   );
 }

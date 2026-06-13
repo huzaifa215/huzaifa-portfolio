@@ -87,8 +87,8 @@ base.paste(panel, (W - 470 * S, 0), panel)
 # ---- CENTER: text ----
 x = 540 * S
 # eyebrow
-draw.text((x, 60 * S), "ARQAM TAHIR", font=f_eyebrow, fill=ACCENT)
-ew = draw.textlength("ARQAM TAHIR", font=f_eyebrow)
+draw.text((x, 60 * S), "HUZAIFA KHALID", font=f_eyebrow, fill=ACCENT)
+ew = draw.textlength("HUZAIFA KHALID", font=f_eyebrow)
 draw.text((x + ew + 14 * S, 60 * S), "· SENIOR SOFTWARE ENGINEER", font=f_eyebrow, fill=MUTED)
 
 # headline (two lines, accent phrase)
@@ -133,7 +133,7 @@ draw.text((x + 18 * S, y + 12 * S), brands, font=f_brand, fill=FG)
 
 # url — to the right of the brands chip, vertically centered with it
 uy = y + (44 * S - (f_url.getbbox("A")[3] - f_url.getbbox("A")[1])) // 2 - 4 * S
-draw.text((x + int(bw) + 24 * S, uy), "arqamtahir.com", font=f_url, fill=ACCENT)
+draw.text((x + int(bw) + 24 * S, uy), "huzaifakhalid.com", font=f_url, fill=ACCENT)
 
 out = os.path.join(IMG, "linkedin-banner.png")
 base.convert("RGB").save(out, optimize=True)

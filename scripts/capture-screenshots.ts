@@ -6,8 +6,8 @@ const shots = [
   { url: "https://www.nice2stay.com", file: "nice2stay.png", slug: "nice2stay" },
   { url: "https://staywithlumina.com", file: "staywithlumina.png", slug: "staywithlumina" },
   { url: "https://hotel-weekend.com", file: "hotel-weekend.png", slug: "hotel-weekend" },
-  { url: "https://arqamtahir.com", file: "arqam-tahir-portfolio.png", slug: "portfolio" },
-  { url: "https://arqamtahir.com/playground", file: "arqam-tahir-playground.png", slug: "playground" },
+  { url: "https://huzaifakhalid.com", file: "huzaifa-khalid-portfolio.png", slug: "portfolio" },
+  { url: "https://huzaifakhalid.com/playground", file: "huzaifa-khalid-playground.png", slug: "playground" },
 ];
 
 async function capture() {

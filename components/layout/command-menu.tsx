@@ -136,7 +136,7 @@ export function CommandMenu() {
                   className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-foreground data-[selected=true]:bg-surface-muted"
                 >
                   <Mail className="h-4 w-4" />
-                  <span>Email Arqam</span>
+                  <span>Email Huzaifa</span>
                 </Command.Item>
                 <Command.Item
                   value="github"

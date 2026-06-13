@@ -2,51 +2,48 @@ import type { Metadata } from "next";
 import { profile } from "./resume";
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://arqamtahir.com";
+  // TODO: replace with Huzaifa's real portfolio domain when available.
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://huzaifakhalid.com";
 
 const defaultDescription =
-  "Arqam Tahir - Senior Software Engineer building high-performance, SEO-optimized web apps with React, Next.js, TypeScript, Node.js, and a focus on speed.";
+  "Full Stack Developer and Cybersecurity Specialist based in Canada. React, Next.js, Node.js, Network Security. Open to opportunities in GTA, remote Canada, and remote USA.";
 
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} - ${profile.titles[0]}`,
+    default: `${profile.name} — Full Stack & Cybersecurity`,
     template: `%s - ${profile.name}`,
   },
   description: defaultDescription,
   keywords: [
-    "Arqam Tahir",
-    "Senior Software Engineer",
+    "Huzaifa Khalid",
     "Full Stack Developer",
-    "Next.js Developer",
+    "Cybersecurity Specialist",
+    "Cybersecurity Analyst",
+    "Software Engineer Canada",
     "React Developer",
-    "TypeScript",
-    "Vue Developer",
-    "MERN Stack",
-    "SEO Engineering",
-    "Performance Optimization",
+    "Node.js Developer",
+    "NestJS",
+    "SOC Analyst",
+    "Incident Response",
+    "Web Security",
+    "Toronto",
   ],
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   alternates: { canonical: "/" },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-  },
+  // Icons are auto-wired from app/icon.svg and app/apple-icon.tsx (file-based metadata).
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: profile.name,
-    title: `${profile.name} - ${profile.titles[0]}`,
+    title: `${profile.name} — Full Stack & Cybersecurity`,
     description: defaultDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} - ${profile.titles[0]}`,
+    title: `${profile.name} — Full Stack & Cybersecurity`,
     description: defaultDescription,
   },
   robots: {

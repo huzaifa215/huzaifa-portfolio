@@ -22,12 +22,12 @@ export async function GET() {
   entries.push(`  <url>
     <loc>${siteUrl}/</loc>
     <image:image>
-      <image:loc>${siteUrl}/images/projects/arqam-tahir-portfolio.png</image:loc>
+      <image:loc>${siteUrl}/images/projects/huzaifa-khalid-portfolio.png</image:loc>
       <image:title>${escapeXml(
-        "Arqam Tahir - Senior Software Engineer portfolio"
+        "Huzaifa Khalid - Senior Software Engineer portfolio"
       )}</image:title>
       <image:caption>${escapeXml(
-        "Portfolio of Arqam Tahir, a Next.js and React specialist building high-performance web applications."
+        "Portfolio of Huzaifa Khalid, a Next.js and React specialist building high-performance web applications."
       )}</image:caption>
     </image:image>
   </url>`);
@@ -39,7 +39,7 @@ export async function GET() {
     <image:image>
       <image:loc>${siteUrl}/images/projects/${project.slug}.png</image:loc>
       <image:title>${escapeXml(
-        `${project.name} - built by Arqam Tahir`
+        `${project.name} - built by Huzaifa Khalid`
       )}</image:title>
       <image:caption>${escapeXml(
         `${project.name}: ${project.tagline}`

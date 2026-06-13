@@ -1,28 +1,32 @@
 import type { Metadata } from "next";
+import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download, MapPin } from "lucide-react";
 import { Reveal } from "@/components/motion";
 import { profile } from "@/lib/resume";
 import {
   principles,
   strengths,
   workingStyle,
-  journey,
   curiosities,
 } from "@/lib/about";
 import { pageMetadata } from "@/lib/metadata";
+import { AboutAvatar } from "@/components/sections/about-avatar";
+import { Skills } from "@/components/sections/skills";
+import { Journey } from "@/components/sections/journey";
+import { Certifications } from "@/components/sections/certifications";
 
 export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
-    "Arqam Tahir - a full stack engineer building Next.js and React products where performance is the experience. Working style, philosophy, and remote work.",
+    "From building full stack apps in Pakistan to cybersecurity in Canada. Learn about Huzaifa's journey, skills, and what he's working on.",
   keywords: [
-    "full stack engineer",
-    "Next.js",
-    "React",
-    "frontend architecture",
-    "remote",
+    "full stack developer",
+    "cybersecurity specialist",
+    "incident response",
+    "secure SDLC",
+    "Canada",
   ],
   path: "/about",
 });
@@ -30,53 +34,97 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <div className="relative overflow-hidden pb-28 pt-28 md:pt-36">
-      {/* ── Hero ───────────────────────────────────────────── */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-48 left-1/2 h-[34rem] w-[52rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
-      />
-      <section className="container-page relative">
-        <div className="max-w-2xl">
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-subtle">
-            {profile.titles[0]} · {profile.experienceYears} years
-          </p>
-          <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
-            I build web products where{" "}
-            <span className="text-accent">performance is the experience</span>{" "}
-            - not an afterthought.
-          </h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
-            I&apos;m Arqam - a senior engineer specializing in high-performance,
-            SEO-first web applications across travel-tech, hospitality, and SaaS.
-            I care about the boring parts that users feel: speed, reliability,
-            reach, and interfaces that get out of the way.
-          </p>
+      {/* ── Hero (editorial) ───────────────────────────────── */}
+      <section className="relative mx-auto max-w-6xl px-6 pb-24 pt-32">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div>
+            {/* Eyebrow */}
+            <div className="mb-6 flex items-center gap-2">
+              <div className="h-px w-8 bg-[rgba(16, 185, 129,0.5)]" />
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
+                About Me
+              </span>
+            </div>
 
-          {/* Primary actions */}
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg transition-all hover:brightness-110"
-            >
-              View work <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
-            >
-              Get in touch
-            </Link>
+            {/* Heading */}
+            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl">
+              <span className="text-foreground">Full Stack Developer.</span>
+              <br />
+              <span className="text-[#34D399]">Now Securing Systems.</span>
+            </h1>
+
+            {/* Location + status */}
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-xs text-slate-400">
+                <MapPin className="h-3 w-3 shrink-0" strokeWidth={1.5} />
+                Ontario, Canada
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/15 bg-emerald-500/[0.05] px-3 py-1.5 text-xs text-emerald-400">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                Open to Work
+              </span>
+            </div>
+
+            {/* Bio — concise intro (full story lives in the Journey section) */}
+            <p className="mt-8 max-w-[480px] text-[15px] leading-[1.8] text-slate-400">
+              I&apos;m a full-stack developer turned cybersecurity specialist —
+              five years building secure, scalable SaaS, now defending the
+              systems I used to build. From Pakistan to Canada, the throughline
+              is the same: ship it well, then make sure it holds.
+            </p>
+
+            {/* Quick facts */}
+            <div className="mt-10 flex items-center gap-5">
+              {[
+                { value: "3+", label: "Years Full Stack" },
+                { value: "10+", label: "Projects Shipped" },
+                { value: "2", label: "Countries" },
+                { value: "1", label: "Goal: Security" },
+              ].map((f, i) => (
+                <React.Fragment key={f.label}>
+                  {i > 0 && <div className="h-8 w-px self-center bg-white/[0.08]" />}
+                  <div className="flex flex-col">
+                    <span className="text-xl font-bold text-foreground">{f.value}</span>
+                    <span className="text-xs text-slate-500">{f.label}</span>
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <a
+                href={profile.resumeUrl}
+                download
+                className="inline-flex items-center gap-2 rounded-lg bg-[#10B981] px-5 py-2.5 text-sm font-semibold text-[#0A1628] transition-all hover:-translate-y-px hover:bg-[#34D399] hover:shadow-[0_4px_12px_rgba(16, 185, 129,0.2)]"
+              >
+                <Download className="h-4 w-4 shrink-0" strokeWidth={1.5} /> Download CV
+              </a>
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-lg border border-[rgba(16, 185, 129,0.25)] px-5 py-2.5 text-sm text-[rgba(16, 185, 129,0.8)] transition-all hover:border-[rgba(16, 185, 129,0.45)] hover:bg-[rgba(16, 185, 129,0.06)]"
+              >
+                View Projects{" "}
+                <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+              </Link>
+            </div>
           </div>
 
-          <Reveal delay={0.18}>
-            <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3">
-              <Fact label="Currently" value="Senior SWE @ Nice2Stay" />
-              <Fact label="Based in" value={profile.location} />
-              <Fact label="Recent result" value="100/100 Lighthouse SEO" />
-            </dl>
-          </Reveal>
+          <AboutAvatar />
         </div>
       </section>
+
+      {/* ── Skills (dual category) ─────────────────────────── */}
+      <Skills />
+
+      {/* ── Journey timeline ───────────────────────────────── */}
+      <Journey />
+
+      {/* ── Certifications ─────────────────────────────────── */}
+      <Certifications />
 
       {/* ── Narrative ──────────────────────────────────────── */}
       <Section eyebrow="The short version">
@@ -88,22 +136,23 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.08} className="flex flex-col gap-5 text-lg leading-relaxed text-muted">
             <p>
-              I started in a consultancy, shipping frontends across a stream of
-              client projects. That breadth taught me to learn a domain fast and to
-              respect a deadline - but it left me wanting to own outcomes, not just
-              tickets.
+              I started in Pakistan at OnyxTec, building SocialSquad - a MERN
+              event platform that scaled to 50k+ concurrent users - and tuning
+              high-volume backends to 99.9% data integrity. That foundation taught
+              me to own a product end to end, not just close tickets.
             </p>
             <p>
-              So I moved toward product engineering: first building a vacation-rental
-              platform end-to-end, then modernizing a legacy travel product, then
-              leading a full frontend revamp as a senior engineer. The throughline was
-              always the same - make it fast, make it findable, make it feel
-              considered.
+              From there I worked across React/TypeScript and NestJS/Node.js for
+              US-based companies, engineering real-time features, analytics
+              modules, and secure frontend systems - and earning an Excellence
+              Award. The more I shipped, the more I cared about the part most teams
+              skip: securing it.
             </p>
             <p className="text-foreground">
-              Frontend became my center of gravity because it&apos;s where engineering
-              meets the person actually using the thing. Performance, UX, SEO, and
-              systems-thinking stopped being separate concerns and became one craft.
+              Moving to Canada, I earned a Master of Cybersecurity (4.0 GPA) and
+              turned my engineering background toward defense - SOC design,
+              incident response, and ML-based threat detection. Today I do both:
+              build production software and secure the systems it runs on.
             </p>
           </Reveal>
         </div>
@@ -123,9 +172,9 @@ export default function AboutPage() {
                   The person behind the work
                 </p>
                 <blockquote className="mt-6 max-w-xl text-balance text-2xl font-medium leading-snug tracking-tight text-foreground md:text-3xl">
-                  “The best engineering is invisible. Users don&apos;t notice the
-                  architecture - they notice that the product just{" "}
-                  <span className="text-accent">feels right</span>.”
+                  “The best software is built to be defended. You don&apos;t bolt
+                  security on at the end - you design for it, so the product just{" "}
+                  <span className="text-accent">holds</span>.”
                 </blockquote>
                 <figcaption className="mt-6 text-sm font-medium text-muted">
                   {profile.name} · {profile.titles[0]}
@@ -140,8 +189,8 @@ export default function AboutPage() {
                 />
                 <div className="relative h-full w-full md:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.6)_18%,#000_42%)] md:[-webkit-mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.6)_18%,#000_42%)]">
                   <Image
-                    src="/images/arqam-tahir-cutout.png"
-                    alt="Arqam Tahir - Senior Software Engineer, available for remote work"
+                    src="/images/huzaifa-khalid-cutout.png"
+                    alt="Huzaifa Khalid - Full Stack Developer & Cybersecurity Specialist"
                     fill
                     sizes="(max-width: 768px) 90vw, 45vw"
                     className="object-cover object-top grayscale"
@@ -216,46 +265,6 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* ── Career journey ─────────────────────────────────── */}
-      <Section eyebrow="The journey">
-        <div className="grid gap-10 lg:grid-cols-[0.34fr_0.66fr] lg:gap-16">
-          <div className="lg:sticky lg:top-32 lg:self-start">
-            <Reveal>
-              <h2 className="text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
-                Growth measured in scope, not titles.
-              </h2>
-              <p className="mt-5 max-w-xs text-[0.975rem] leading-relaxed text-muted">
-                Each role added a layer - from clean delivery, to full ownership, to
-                modernizing systems, to senior architecture and reach.
-              </p>
-            </Reveal>
-          </div>
-
-          <ol className="flex flex-col">
-            {journey.map((j, i) => (
-              <Reveal key={j.company} as="li" delay={0.02 * i}>
-                <div className="border-t border-border py-8">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <span className="text-xs font-medium uppercase tracking-wide text-accent">
-                      {j.arc}
-                    </span>
-                    <span className="font-mono text-xs text-subtle">{j.period}</span>
-                  </div>
-                  <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-                    {j.company}
-                  </h3>
-                  <p className="mt-0.5 text-sm text-muted">{j.role}</p>
-                  <p className="mt-4 max-w-xl text-[0.975rem] leading-relaxed text-muted">
-                    {j.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-            <li aria-hidden className="border-t border-border" />
-          </ol>
-        </div>
-      </Section>
-
       {/* ── Beyond the resume ──────────────────────────────── */}
       <Section eyebrow="Beyond the resume" title="What keeps me curious.">
         <div className="mt-12 grid gap-x-14 gap-y-10 sm:grid-cols-3">
@@ -305,17 +314,6 @@ export default function AboutPage() {
           </div>
         </Reveal>
       </section>
-    </div>
-  );
-}
-
-function Fact({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <dt className="text-xs font-medium uppercase tracking-wide text-subtle">
-        {label}
-      </dt>
-      <dd className="text-sm font-medium text-foreground">{value}</dd>
     </div>
   );
 }

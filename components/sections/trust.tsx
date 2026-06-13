@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Quote } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Quote } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion";
 import { projects, testimonials } from "@/lib/resume";
 
@@ -75,9 +75,10 @@ export function Trust() {
               </p>
               <Link
                 href="/contact"
-                className="text-sm font-medium text-accent hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
               >
-                Request references →
+                Request references
+                <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={1.5} />
               </Link>
             </div>
           </Reveal>

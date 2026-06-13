@@ -3,9 +3,50 @@
 import * as React from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { EASE } from "@/lib/motion";
 import type { PostMeta } from "@/lib/blog";
+
+/** Per-category badge styling (works in both themes via rgba). */
+export function categoryBadge(category: string): React.CSSProperties {
+  switch (category) {
+    case "Cybersecurity":
+      return {
+        background: "rgba(139,92,246,0.08)",
+        border: "1px solid rgba(139,92,246,0.2)",
+        color: "rgba(167,139,250,0.95)",
+      };
+    case "Development":
+      return {
+        background: "rgba(16, 185, 129,0.08)",
+        border: "1px solid rgba(16, 185, 129,0.2)",
+        color: "rgba(16, 185, 129,0.95)",
+      };
+    case "Career":
+      return {
+        background: "rgba(16,185,129,0.08)",
+        border: "1px solid rgba(16,185,129,0.2)",
+        color: "rgba(16,185,129,0.95)",
+      };
+    default:
+      return {
+        background: "rgba(148,163,184,0.1)",
+        border: "1px solid rgba(148,163,184,0.2)",
+        color: "rgb(148,163,184)",
+      };
+  }
+}
+
+function CategoryBadge({ category }: { category: string }) {
+  return (
+    <span
+      className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+      style={categoryBadge(category)}
+    >
+      {category}
+    </span>
+  );
+}
 
 export function BlogIndex({
   posts,
@@ -23,24 +64,42 @@ export function BlogIndex({
 
   return (
     <div>
-      <div className="flex flex-wrap items-center gap-2 border-b border-border pb-5">
-        {filters.map((c) => (
-          <button
-            key={c}
-            onClick={() => setActive(c)}
-            className={[
-              "rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
-              active === c
-                ? "border-accent bg-accent text-accent-fg"
-                : "border-border text-muted hover:border-border-strong hover:text-foreground",
-            ].join(" ")}
-          >
-            {c}
-          </button>
-        ))}
+      {/* Category filter */}
+      <div className="flex flex-wrap items-center gap-2">
+        {filters.map((c) => {
+          const isActive = active === c;
+          return (
+            <button
+              key={c}
+              onClick={() => setActive(c)}
+              className="rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors"
+              style={
+                isActive && c !== "All"
+                  ? categoryBadge(c)
+                  : isActive
+                    ? {
+                        background: "rgba(16, 185, 129,0.12)",
+                        border: "1px solid rgba(16, 185, 129,0.3)",
+                        color: "rgba(16, 185, 129,0.95)",
+                      }
+                    : {
+                        background: "transparent",
+                        border: "1px solid var(--color-border)",
+                        color: "var(--color-muted)",
+                      }
+              }
+            >
+              {c}
+            </button>
+          );
+        })}
       </div>
 
-      <motion.div layout={!reduce} className="mt-4 divide-y divide-border">
+      {/* Cards grid */}
+      <motion.div
+        layout={!reduce}
+        className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      >
         <AnimatePresence mode="popLayout">
           {filtered.map((post) => (
             <motion.article
@@ -48,38 +107,31 @@ export function BlogIndex({
               layout={!reduce}
               initial={reduce ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -4 }}
               transition={{ duration: 0.4, ease: EASE }}
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group grid gap-3 py-8 md:grid-cols-[10rem_1fr] md:gap-8"
+                className="card-premium group flex h-full flex-col p-5"
               >
-                <div className="flex flex-col gap-1 text-xs text-subtle">
-                  <span className="font-medium uppercase tracking-wide text-accent">
-                    {post.category}
+                <CategoryBadge category={post.category} />
+                <h2 className="mt-3 text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
+                  {post.title}
+                </h2>
+                <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted">
+                  {post.excerpt}
+                </p>
+                <div className="mt-4 flex items-center justify-between border-t border-border pt-4 text-xs text-subtle">
+                  <span>
+                    {post.dateLabel} · {post.readingTime} min read
                   </span>
-                  <span className="font-mono">{post.dateLabel}</span>
-                  <span className="font-mono">{post.readingTime} min read</span>
-                </div>
-                <div>
-                  <h2 className="flex items-start gap-2 text-xl font-semibold tracking-tight text-foreground md:text-2xl">
-                    <span className="text-balance">{post.title}</span>
-                    <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-subtle transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
-                  </h2>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {post.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border border-border px-2 py-0.5 font-mono text-[11px] text-subtle"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                  <span className="inline-flex items-center gap-1 font-medium text-accent">
+                    Read more
+                    <ArrowRight
+                      className="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5"
+                      strokeWidth={1.5}
+                    />
+                  </span>
                 </div>
               </Link>
             </motion.article>

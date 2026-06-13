@@ -11,7 +11,7 @@ import { JsonLd, contactPageJsonLd } from "@/lib/jsonld";
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
-    "Get in touch to hire Arqam Tahir, a senior developer available for Next.js freelance, consulting, and full-time roles. Remote-ready across global time zones.",
+    "Get in touch with Huzaifa Khalid for Full Stack or Cybersecurity opportunities in Canada.",
   keywords: [
     "hire",
     "senior developer",
@@ -41,13 +41,12 @@ export default function ContactPage() {
             </span>
             Available now
           </span>
-          <h1 className="mt-6 text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl">
-            Let&apos;s talk about your project.
+          <h1 className="mt-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+            <span className="text-foreground">Get In </span>
+            <span className="text-[#10B981]">Touch</span>
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-muted">
-            Whether you&apos;re a founder with a product to ship, a team that needs a
-            senior engineer, or a recruiter with the right role - tell me what you&apos;re
-            building and I&apos;ll reply within a couple of business days.
+          <p className="mt-5 text-lg leading-relaxed text-slate-400">
+            Open to Full Stack and Cybersecurity roles in Canada. Let&apos;s talk.
           </p>
         </div>
 
