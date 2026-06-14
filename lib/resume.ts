@@ -30,6 +30,7 @@ export const profile = {
   // TODO: replace with a polished, designed PDF résumé export when available.
   resumeUrl: "/Huzaifa_Khalid_CV.pdf",
   links: {
+    github:"https://github.com/huzaifa215",
     linkedin: "https://www.linkedin.com/in/dev-huzaifakhalid/",
     email: "mailto:hmhuzaifakhalid@gmail.com",
   },
