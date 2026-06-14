@@ -22,47 +22,56 @@ type JourneyEntry = {
 
 const JOURNEY: JourneyEntry[] = [
   {
-    year: "2019 – 2023",
-    location: "Pakistan",
+    year: "2021 – 2023",
+    location: "Full Stack",
     title: "Started Full Stack Development",
     description:
-      "Began with HTML/CSS/JS, progressed to the MERN stack. Built and shipped multiple client projects in Pakistan.",
+      "Began with HTML, CSS, and JavaScript, then progressed to the MERN stack. Built and shipped multiple production client projects at OnyxTec.",
     color: "cyan",
     icon: Monitor,
   },
   {
-    year: "2023",
-    location: "Pakistan",
-    title: "Professional Full Stack Work",
+    year: "2023 – 2024",
+    location: "Engineering",
+    title: "Professional Software Engineering",
     description:
-      "Worked professionally building full stack web apps. Gained deep experience in React, Node.js, databases, and deployment.",
+      "Built full stack web apps in production at Devsinc. Gained deep experience across React, React Native, Node.js, databases, and deployment, scaling platforms to 50k+ concurrent users.",
     color: "cyan",
     icon: Rocket,
   },
   {
     year: "2024",
-    location: "Migration",
+    location: "Canada",
     title: "Moved to Canada",
     description:
-      "Made the leap — migrated to Canada for better opportunities. Started fresh in a new country with a clear goal.",
+      "Relocated to Canada and began building a career here, bringing five years of full stack engineering experience into a new market.",
     color: "white",
     icon: Plane,
   },
   {
-    year: "2024 – Present",
-    location: "Canada",
-    title: "Pivoting into Cybersecurity",
+    year: "2024 – 2026",
+    location: "Enterprise",
+    title: "Enterprise Engineering at TenX",
     description:
-      "Currently pursuing cybersecurity specialization. Studying for certifications, building security projects, and bridging my full stack background with security.",
+      "Delivered Angular and Node modules for enterprise clients, led a frontend team, and triaged production incidents through log analysis. This support work became the bridge into security.",
+    color: "cyan",
+    icon: Shield,
+  },
+  {
+    year: "2025 – 2026",
+    location: "Cybersecurity",
+    title: "Pivoted into Cybersecurity",
+    description:
+      "Completed a Master of Cybersecurity with a 4.0 GPA and built hands-on SOC, incident response, and threat detection projects, bridging full stack engineering with security.",
     color: "cyan",
     icon: Shield,
   },
   {
     year: "Now",
-    location: "Canada",
+    location: "Available",
     title: "Open to Opportunities",
     description:
-      "Actively looking for roles in Canada — Full Stack, Cybersecurity, or both. Available for onsite (GTA/Ontario), remote Canada, or remote USA.",
+      "Actively looking for roles in full stack, cybersecurity, or both. Available onsite (GTA/Ontario), remote Canada, or remote USA.",
     color: "green",
     icon: Target,
   },
@@ -124,9 +133,9 @@ export function Journey() {
     <section id="journey" className="border-t border-border py-24 md:py-28">
       <div className="container-page">
         <SectionHeading
-          label="The Journey"
-          first="From Pakistan"
-          second="to Canada"
+         label="The Journey"
+          first="From Building"
+          second="to Defending"
           subtext="Full stack roots, now a cybersecurity focus."
           className="!mb-0"
         />
@@ -164,7 +173,7 @@ export function JourneyTeaser() {
               The <span className="text-[#10B981]">Journey</span>
             </h2>
             <p className="mt-3 text-slate-400">
-              Full stack roots in Pakistan, now securing systems in Canada.
+              Full stack roots growing into security — building systems, then defending them.
             </p>
           </div>
           <Link

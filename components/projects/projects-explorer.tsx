@@ -177,14 +177,14 @@ function FeaturedSpotlight({ project, reduce }: { project: Project; reduce: bool
           >
             View Case Study <ArrowRight className="h-4 w-4" />
           </Link>
-          <a
+          {/* <a
             href={profile.links.github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-10 items-center gap-1.5 rounded-full px-4 text-sm font-medium text-slate-300 transition-colors hover:text-white"
           >
             <GithubIcon className="h-4 w-4" /> GitHub
-          </a>
+          </a> */}
         </div>
       </div>
 

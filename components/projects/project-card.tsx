@@ -109,14 +109,14 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 
         {/* Action row */}
         <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-4">
-          <a
+          {/* <a
             href={profile.links.github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-200"
           >
             <GithubIcon className="h-4 w-4" /> GitHub
-          </a>
+          </a> */}
           <Link
             href={`/projects/${project.slug}`}
             className="inline-flex items-center gap-1 text-sm font-medium text-[#34D399] transition-colors hover:text-[#6EE7B7]"

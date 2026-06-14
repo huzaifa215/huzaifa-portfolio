@@ -12,6 +12,7 @@ import {
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   CircleCheck,
   Lightbulb,
 } from "lucide-react";
@@ -21,7 +22,11 @@ import { ArchitectureDiagram } from "./architecture-diagram";
 import { EASE as ease } from "@/lib/motion";
 
 // TODO: add slugs here once real screenshots exist at /images/projects/<slug>.png.
-const SCREENSHOT_SLUGS = new Set<string>([]);
+const SCREENSHOT_SLUGS = new Set<string>([
+  "feedbear",
+  "outreside",
+  "farmlink"
+]);
 
 const SECTIONS = [
   { id: "summary", label: "Executive summary" },
@@ -138,6 +143,23 @@ export function CaseStudy({
               className="object-cover object-top"
             />
           </div>
+          {project.liveUrl && (
+            <div className="mt-4 flex justify-center">
+              <Link
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-[#10B981] transition-colors hover:text-[#34D399]"
+              >
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10B981] opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#10B981]" />
+                </span>
+                View live site
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
         </div>
       )}
 

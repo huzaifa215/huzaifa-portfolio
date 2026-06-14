@@ -13,10 +13,11 @@ type Stat = {
 };
 
 const STATS: Stat[] = [
-  { value: 3, suffix: "+", label: "Years XP", sublabel: "Full Stack" },
-  { value: 10, suffix: "+", label: "Projects", sublabel: "Shipped" },
-  { value: 2, text: "PK–CA", label: "Countries", sublabel: "Migrated" },
-  { value: 1, text: "Security", label: "Mission", sublabel: "Cybersecurity" },
+  { value: 4, suffix: "+", label: "Years XP", sublabel: "Full Stack" },
+  { value: 12, suffix: "+", label: "Projects", sublabel: "Developed" },
+  // Scale — big and concrete
+  { value: 50, suffix: "K+", label: "Users Scaled", sublabel: "Real-time Platform" }, 
+  { value: 1, text: "Dev+Sec", label: "Focus", sublabel: "Dual Discipline" },
 ];
 
 export function StatsBar() {

@@ -8,32 +8,29 @@ export const profile = {
   name: "Huzaifa Khalid",
   firstName: "Huzaifa",
   titles: [
-    "Full Stack Developer & Cybersecurity Specialist",
-    "Senior Software Engineer",
+    "Full Stack Developer & Cybersecurity Analyst",
+    "Software Engineer",
     "Cybersecurity Analyst",
   ],
   tagline:
-    "Full Stack Developer turned Cybersecurity Specialist — Built production apps in Pakistan, now securing systems in Canada.",
+    "Full Stack Developer and Cybersecurity Analyst — I build production apps and secure the systems they run on.",
   subtagline:
-    "Specializing in React, Angular, Next.js, TypeScript, NestJS/Node.js, and secure SDLC — alongside SIEM monitoring, incident response, vulnerability management, and MITRE ATT&CK mapping.",
+    "React, Angular, Next.js, TypeScript, and NestJS/Node.js on the build side — SIEM monitoring, incident response, vulnerability management, and MITRE ATT&CK mapping on the defend side.",
   summary:
-    "Senior Full-Stack Software Engineer and Cybersecurity Analyst with 5 years delivering secure, scalable B2B and B2C SaaS products across React/TypeScript and NestJS/Node.js stacks. Hands-on experience building microservices, RESTful APIs, and AI-driven pipelines, combined with practical cybersecurity skills spanning SIEM monitoring, incident response (NIST SP 800-61), MITRE ATT&CK mapping, vulnerability management, and compliance with NIST, PCI DSS, and PIPEDA.",
-  location: "Toronto, ON, Canada",
-  relocation: "Based in Canada — open to opportunities across Canada",
-  remote: "Remote-ready and hybrid across North American time zones",
+    "Full-Stack Software Engineer and Cybersecurity Analyst with 4+ years building secure, scalable B2B and B2C SaaS across React/TypeScript and NestJS/Node.js — and a parallel, fast-growing security practice spanning SIEM monitoring, incident response (NIST SP 800-61), MITRE ATT&CK mapping, vulnerability management, and compliance with NIST, PCI DSS, and PIPEDA. I bring a developer's understanding of how applications are built, where they break, and how attackers exploit them into every security investigation.",
+  location: "GTA, ON, Canada",
+  relocation: "Based in Canada — open to opportunities nationwide and remote.",
+  remote: "Remote-ready and hybrid across North American time zones.",
   email: "hmhuzaifakhalid@gmail.com",
   phone: "+1 (437) 450-9656",
-  experienceYears: "5",
+  experienceYears: "4+",
   availability:
-    "Open to full-time roles and opportunities in full-stack engineering and cybersecurity, in Canada and remote.",
+    "Open to full-time roles in full-stack engineering and cybersecurity, in Canada and remote nationwide.",
   currentRole: "Cybersecurity Analyst @ Vosyn",
   // TODO: replace with a polished, designed PDF résumé export when available.
   resumeUrl: "/Huzaifa_Khalid_CV.pdf",
   links: {
-    // TODO: replace with Huzaifa's real LinkedIn URL (CV listed only "LinkedIn").
-    linkedin: "https://linkedin.com/in/huzaifa-khalid",
-    // TODO: GitHub URL not provided in CV — confirm and replace placeholder.
-    github: "https://github.com/huzaifa-khalid",
+    linkedin: "https://www.linkedin.com/in/dev-huzaifakhalid/",
     email: "mailto:hmhuzaifakhalid@gmail.com",
   },
 } as const;
@@ -41,13 +38,13 @@ export const profile = {
 /** Animated counters - every value is from the CV. */
 export type Metric = { label: string; value: number; prefix?: string; suffix?: string };
 export const metrics: Metric[] = [
-  { label: "Years of experience", value: 5, suffix: "" },
-  { label: "Platform responsiveness boost", value: 35, suffix: "%" },
-  { label: "Data integrity on live sessions", value: 99, suffix: ".9%" },
-  { label: "Concurrent users scaled to", value: 50, suffix: "k+" },
   { label: "IDS detection accuracy", value: 99, suffix: ".99%" },
-  { label: "Indicators of compromise identified", value: 18, suffix: "" },
+  { label: "Years of experience", value: 4, suffix: "" },
   { label: "Master's GPA", value: 4, prefix: "", suffix: ".0" },
+  { label: "Concurrent users scaled to", value: 50, suffix: "k+" },
+  { label: "Data integrity on live sessions", value: 99, suffix: ".9%" },
+  { label: "Platform responsiveness boost", value: 35, suffix: "%" },
+  { label: "Indicators of compromise identified", value: 18, suffix: "" },
 ] as const;
 
 /**
@@ -229,9 +226,114 @@ export type Project = {
   solution: string;
   results: string[];
   featured: boolean;
+  liveUrl?:string;
 };
 
 export const projects: Project[] = [
+  {
+    slug: "feedbear",
+    liveUrl:"https://www.feedbear.com/",
+    name: "FeedBear",
+    tagline: "SaaS feedback-management platform with structured submission and moderation workflows.",
+    category: ["Frontend", "SaaS"],
+    year: "2024",
+    role: "Frontend Developer",
+    stack: ["React", "Redux", "Ruby on Rails APIs", "JavaScript", "REST"],
+    challenge:
+      "Product teams needed a reliable way to collect, track, and moderate customer feedback, with consistent application state and real-time updates across submission and admin workflows.",
+    solution:
+      "Built the feedback interface in React with Redux-based state management, integrated Ruby on Rails APIs for real-time synchronization of records, status updates, and comment threads, and tuned asynchronous API interactions for responsiveness.",
+    results: [
+      "Increased feedback engagement by 32% across product teams",
+      "Improved resolution processing speed by 27% via real-time sync",
+      "Consistent state handling across submission, tracking, and moderation",
+      "Responsive components stable across large feedback datasets",
+    ],
+    featured: true,
+  },
+  {
+    slug: "outreside",
+    liveUrl:"https://outreside.com/",
+    name: "Outreside",
+    tagline: "Scalable headless-WordPress e-commerce platform built on React and Node.",
+    category: ["Full Stack", "SaaS", "Performance"],
+    year: "2022",
+    role: "Full Stack Developer",
+    stack: ["React", "Node.js", "WordPress Headless CMS", "REST APIs", "JavaScript"],
+    challenge:
+      "A high-traffic outdoor-living storefront needed scalable e-commerce with dynamic content management and fast, maintainable browsing, checkout, and content workflows.",
+    solution:
+      "Architected a React frontend and Node backend with a headless WordPress CMS integrated via REST APIs, designed reusable component architecture, and optimized asset delivery and state management.",
+    results: [
+      "Improved application performance by 30% across browsing and checkout",
+      "Reduced deployment cycles by 25% via headless CMS architecture",
+      "Reusable component architecture across product and admin interfaces",
+      "Secure REST integrations across auth, inventory, and order processing",
+    ],
+    featured: false,
+  },
+  {
+    slug: "my-local-gun-shop",
+    name: "My Local Gun Shop",
+    tagline: "Specialized e-commerce storefront on React, Material UI, and Redux.",
+    category: ["Frontend", "Performance"],
+    year: "2022",
+    role: "Frontend Developer",
+    stack: ["React", "Redux", "Material UI", "Laravel APIs", "JavaScript"],
+    challenge:
+      "A specialized retail catalog needed a responsive, reliable storefront handling high-volume browsing, cart, and checkout interactions with accessible, maintainable UI.",
+    solution:
+      "Engineered a React e-commerce interface with Material UI and a Redux state architecture for product listings, cart, and checkout, integrated Laravel backend APIs, and optimized rendering and component reuse.",
+    results: [
+      "Reduced page load latency by 26% across catalog interfaces",
+      "Increased user satisfaction metrics by 24%",
+      "Reliable cart and checkout across high-volume browsing sessions",
+      "Accessible, modular Material UI component architecture",
+    ],
+    featured: false,
+  },
+  {
+    slug: "cyber-range-lock-jam",
+    name: "Cyber Range Lock Jam — Risk Simulation",
+    tagline:
+      "High-fidelity Black Basta double-extortion ransomware incident-response exercise in the Catalyst Cyber Range.",
+    category: ["Security"],
+    year: "2026",
+    role: "Incident Response Analyst",
+    stack: ["MITRE ATT&CK", "Log Analysis", "Threat Intelligence", "SITREP Reporting"],
+    challenge:
+      "A simulated financial institution faced a Black Basta double-extortion ransomware scenario requiring real-time IoC validation, risk assessment, and CISO-level decision-making under crisis time pressure.",
+    solution:
+      "Ran an end-to-end incident-response simulation in the Rogers Cybersecure Catalyst Cyber Range — identifying and validating IoCs, producing live SITREP reports, quantifying third-party vendor exposure, and analyzing adversary TTPs to drive containment and recovery.",
+    results: [
+      "Identified and validated IoCs in a Black Basta double-extortion scenario",
+      "Produced real-time SITREP reports updating risk likelihood and impact",
+      "Quantified third-party vendor exposure and ranked remediation under time pressure",
+      "Delivered CISO-level briefings with cost–benefit analyses and prioritized recommendations",
+    ],
+    featured: true,
+  },
+  {
+    slug: "security-architecture-healthcare",
+    name: "Security Architecture Design — Health First Clinic",
+    tagline:
+      "Defense-in-depth Zero Trust architecture for a healthcare clinic, aligned with NIST CSF 2.0, PHIPA, and HIPAA.",
+    category: ["Security"],
+    year: "2026",
+    role: "Security Architect",
+    stack: ["Microsoft Entra ID", "Zero Trust", "Network Segmentation", "NIST CSF 2.0", "CIS Controls v8"],
+    challenge:
+      "A healthcare organization had critical gaps — no MFA, a flat network, legacy SMBv1/NTLM protocols, and PHI exposure risks — leaving it vulnerable to ransomware and data breaches.",
+    solution:
+      "Designed a defense-in-depth architecture with a 6-zone VLAN Zero Trust segmentation model, a modern IAM framework on Microsoft Entra ID (MFA, RBAC, Conditional Access), and a ransomware-resilient 3-2-1-1-0 data protection strategy with secure Azure migration.",
+    results: [
+      "Surfaced critical gaps: absent MFA, flat network, legacy SMBv1/NTLM, PHI exposure",
+      "Engineered a 6-zone VLAN Zero Trust segmentation model to limit lateral movement",
+      "Proposed Entra ID IAM with MFA, RBAC, and Conditional Access",
+      "Built a 3-2-1-1-0 backup strategy with DLP, encryption, and data-residency compliance",
+    ],
+    featured: true,
+  },
   {
     slug: "soc-incident-response",
     name: "SOC Design & Incident Response",
@@ -253,6 +355,69 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "cloud-ids-deployment",
+    name: "Cloud IDS Deployment & Threat Monitoring",
+    tagline:
+      "Google Cloud IDS with packet mirroring achieving 95% alert accuracy across severity levels.",
+    category: ["Security"],
+    year: "2026",
+    role: "Cloud Security Analyst",
+    stack: ["Google Cloud Platform", "Cloud IDS", "Packet Mirroring", "SIEM Integration", "Network Traffic Analysis"],
+    challenge:
+      "An enterprise cloud network needed reliable east-west traffic visibility to detect exploits, malware callbacks, and lateral movement across virtual networks.",
+    solution:
+      "Deployed Google Cloud IDS with packet mirroring, configured traffic collectors so mirrored flows reached IDS sensors, integrated alerts into SIEM ingestion pipelines, and tuned thresholds against injected attack traffic.",
+    results: [
+      "95% alert accuracy across severity levels during testing",
+      "35% improvement in analyst triage and escalation efficiency",
+      "Validated detection of simulated exploit and malware activity",
+      "Documented detection gaps to strengthen cloud monitoring architecture",
+    ],
+    featured: false,
+  },
+  {
+    slug: "gov-risk-assessment",
+    name: "Cybersecurity Risk Assessment — Government Agency",
+    tagline:
+      "Risk-based assessment using the NIST RMF, prioritizing the top 5 critical risks under real-world constraints.",
+    category: ["Security"],
+    year: "2026",
+    role: "Risk Analyst",
+    stack: ["NIST RMF", "Risk Register", "Trade-off Analysis", "Executive Reporting"],
+    challenge:
+      "A government agency needed a risk-based cybersecurity assessment that prioritized threats under real-world time and resource constraints and translated technical findings for executives.",
+    solution:
+      "Built a structured risk register covering assets, threats, vulnerabilities, and controls; ranked the top 5 critical risks by likelihood and impact; justified mitigations through trade-off analysis; and delivered executive briefings of prioritized recommendations.",
+    results: [
+      "Built a structured risk register across assets, threats, vulnerabilities, and controls",
+      "Ranked the top 5 critical risks by likelihood and impact",
+      "Documented accepted risks with explicit business rationale",
+      "Delivered executive briefings aligned with operational constraints",
+    ],
+    featured: false,
+  },
+  {
+    slug: "windows-forensics-ghosttrace",
+    name: "Windows Forensics — GhostTrace (Hack The Box)",
+    tagline:
+      "Event-log forensics reconstructing the attacker lifecycle with 100% detection accuracy in controlled scenarios.",
+    category: ["Security"],
+    year: "2025",
+    role: "Windows Forensics Analyst",
+    stack: ["Windows Event Logs", "Sysmon", "PowerShell Logging", "MITRE ATT&CK", "Digital Forensics"],
+    challenge:
+      "A simulated enterprise compromise required reconstructing the full attacker lifecycle across hosts — persistence, privilege escalation, and lateral movement — from multi-source telemetry.",
+    solution:
+      "Correlated Windows Security, Sysmon, and PowerShell event logs to build multi-source timelines, mapped adversary techniques to MITRE ATT&CK, and documented IoCs into structured investigation reports.",
+    results: [
+      "100% detection accuracy across controlled forensic investigation scenarios",
+      "40% improvement in incident-response validation and SOC triage readiness",
+      "Reconstructed attacker lifecycle across persistence and privilege-escalation artifacts",
+      "Uncovered scripted lateral movement and credential abuse from PowerShell logs",
+    ],
+    featured: false,
+  },
+  {
     slug: "socialsquad",
     name: "SocialSquad",
     tagline: "Real-time MERN event platform scaled to 50k+ concurrent users.",
@@ -270,7 +435,7 @@ export const projects: Project[] = [
       "99.9% data integrity in production",
       "40% faster query performance via backend optimization",
     ],
-    featured: true,
+    featured: false,
   },
   {
     slug: "farmlink",
@@ -348,6 +513,117 @@ export type CaseStudy = {
 };
 
 export const caseStudies: Record<string, CaseStudy> = {
+  feedbear: {
+    slug: "feedbear",
+    summary:
+      "At Devsinc I built FeedBear, a SaaS feedback-management interface in React and Redux integrated with Ruby on Rails APIs — increasing feedback engagement by 32% and resolution processing speed by 27% through structured workflows and real-time synchronization.",
+    problem: [
+      "Product teams needed structured feedback collection, tracking, and moderation.",
+      "Application state had to stay consistent across submission and admin features.",
+      "Feedback records, statuses, and comment threads needed real-time updates.",
+    ],
+    solution: [
+      "Built the feedback-management interface in React with structured submission workflows.",
+      "Implemented Redux-based state management across submission, tracking, and moderation.",
+      "Integrated Ruby on Rails APIs for real-time record, status, and comment sync.",
+      "Optimized asynchronous API interactions and rendering for responsiveness.",
+    ],
+    architecture: [
+      { label: "Presentation", role: "Feedback UI & moderation", tech: ["React", "Material UI"] },
+      { label: "State", role: "Consistent application state", tech: ["Redux"] },
+      { label: "API", role: "Real-time synchronization", tech: ["Ruby on Rails APIs", "REST"] },
+    ],
+    challenges: [
+      { title: "Consistent state at scale", body: "Redux state management kept submission, tracking, and moderation features consistent across the platform." },
+      { title: "Real-time synchronization", body: "Rails API integration synchronized records, status updates, and comment threads in real time." },
+      { title: "Responsiveness under load", body: "Optimizing async interactions kept the interface stable across large feedback datasets." },
+    ],
+    performance: [
+      { label: "Feedback engagement", value: "+32%", detail: "Across product teams using the platform." },
+      { label: "Resolution speed", value: "+27%", detail: "Through real-time record synchronization." },
+      { label: "State management", value: "Redux", detail: "Consistent across submission and moderation." },
+      { label: "Backend", value: "Rails APIs", detail: "Real-time records, statuses, and comments." },
+    ],
+    learnings: [
+      "Disciplined Redux state is what keeps multi-feature SaaS UIs predictable.",
+      "Real-time sync is a backend-integration problem as much as a frontend one.",
+      "Async optimization is where perceived responsiveness is won or lost.",
+    ],
+  },
+  outreside: {
+    slug: "outreside",
+    summary:
+      "At OnyxTec I architected Outreside, a React and Node e-commerce platform with a headless WordPress CMS integrated via REST APIs — improving application performance by 30% and reducing deployment cycles by 25% across a high-traffic storefront.",
+    problem: [
+      "A high-traffic storefront needed scalable e-commerce across browsing and checkout.",
+      "Dynamic product content required flexible, decoupled content management.",
+      "The frontend had to stay maintainable as storefront features grew.",
+    ],
+    solution: [
+      "Architected a React frontend and Node backend for scalable e-commerce functionality.",
+      "Integrated a headless WordPress CMS through REST APIs for dynamic content.",
+      "Designed reusable React component architecture across product and admin flows.",
+      "Optimized frontend asset delivery and application state management.",
+    ],
+    architecture: [
+      { label: "Presentation", role: "Reusable storefront UI", tech: ["React"] },
+      { label: "Backend", role: "Application & API services", tech: ["Node.js", "REST APIs"] },
+      { label: "Content", role: "Dynamic product content", tech: ["WordPress Headless CMS"] },
+    ],
+    challenges: [
+      { title: "Scalable e-commerce", body: "React and Node infrastructure delivered scalable browsing, checkout, and content workflows in a high-traffic environment." },
+      { title: "Decoupled content management", body: "A headless WordPress CMS over REST enabled dynamic product content and faster deployments." },
+      { title: "Maintainable architecture", body: "Reusable component design kept product, checkout, and admin interfaces consistent." },
+    ],
+    performance: [
+      { label: "Performance", value: "+30%", detail: "Across browsing, checkout, and content delivery." },
+      { label: "Deployment cycles", value: "-25%", detail: "Via headless CMS architecture." },
+      { label: "Content", value: "Headless WP", detail: "Dynamic product content over REST APIs." },
+      { label: "Architecture", value: "Reusable", detail: "Across product, checkout, and admin." },
+    ],
+    learnings: [
+      "Headless CMS decouples content velocity from deployment velocity.",
+      "Reusable component architecture is the lever for high-traffic maintainability.",
+      "Asset delivery and state management drive real e-commerce performance.",
+    ],
+  },
+  "my-local-gun-shop": {
+    slug: "my-local-gun-shop",
+    summary:
+      "At OnyxTec I engineered My Local Gun Shop, a specialized React e-commerce storefront using Material UI and Redux with Laravel backend APIs — reducing page load latency by 26% and lifting user satisfaction metrics by 24%.",
+    problem: [
+      "A specialized catalog needed a responsive, reliable storefront.",
+      "High-volume browsing, cart, and checkout interactions had to stay stable.",
+      "UI had to be accessible, consistent, and maintainable.",
+    ],
+    solution: [
+      "Engineered a React e-commerce interface with Material UI for consistent styling.",
+      "Implemented a Redux state architecture for listings, cart, and checkout.",
+      "Integrated Laravel backend APIs for product, pricing, and inventory data.",
+      "Optimized UI rendering performance and component reuse.",
+    ],
+    architecture: [
+      { label: "Presentation", role: "Accessible storefront UI", tech: ["React", "Material UI"] },
+      { label: "State", role: "Cart & checkout state", tech: ["Redux"] },
+      { label: "Backend", role: "Product & inventory data", tech: ["Laravel APIs", "REST"] },
+    ],
+    challenges: [
+      { title: "Latency under load", body: "Rendering optimization and component reuse reduced page load latency by 26% across catalog interfaces." },
+      { title: "Reliable cart & checkout", body: "A Redux state architecture kept cart and checkout interactions reliable across high-volume sessions." },
+      { title: "Accessible, maintainable UI", body: "Modular Material UI components enforced consistent styling and accessibility compliance." },
+    ],
+    performance: [
+      { label: "Load latency", value: "-26%", detail: "Across specialized catalog interfaces." },
+      { label: "User satisfaction", value: "+24%", detail: "Across storefront interactions." },
+      { label: "State", value: "Redux", detail: "Reliable cart and checkout workflows." },
+      { label: "Backend", value: "Laravel APIs", detail: "Product, pricing, and inventory data." },
+    ],
+    learnings: [
+      "Rendering optimization and component reuse compound into real latency wins.",
+      "A clear Redux model is what keeps cart and checkout reliable at volume.",
+      "Accessibility and consistency come from a disciplined component system.",
+    ],
+  },
   "soc-incident-response": {
     slug: "soc-incident-response",
     summary:
@@ -499,6 +775,197 @@ export const caseStudies: Record<string, CaseStudy> = {
       "ML detection complements, not replaces, signature- and rule-based defenses.",
     ],
   },
+  "cyber-range-lock-jam": {
+    slug: "cyber-range-lock-jam",
+    summary:
+      "In the Rogers Cybersecure Catalyst Cyber Range I ran a high-fidelity incident-response simulation of a Black Basta double-extortion ransomware attack on a financial institution — validating IoCs, producing real-time SITREP reports, quantifying vendor exposure, and delivering CISO-level briefings under simulated crisis conditions.",
+    problem: [
+      "A financial institution faced a Black Basta double-extortion ransomware scenario.",
+      "IoCs had to be identified and validated in real time as threat intelligence emerged.",
+      "Containment had to be balanced against business continuity under time pressure.",
+    ],
+    solution: [
+      "Identified and validated IoCs across the double-extortion scenario.",
+      "Produced real-time SITREP reports updating risk likelihood and impact.",
+      "Quantified third-party vendor exposure and ranked remediation actions.",
+      "Analyzed adversary TTPs including lateral movement and enterprise compromise.",
+      "Delivered CISO-level briefings with risk narratives and cost–benefit analyses.",
+    ],
+    architecture: [
+      { label: "Detection", role: "IoC identification & validation", tech: ["Log Analysis", "Threat Intelligence"] },
+      { label: "Assessment", role: "Risk likelihood & impact scoring", tech: ["SITREP Reporting"] },
+      { label: "Analysis", role: "Adversary TTP mapping", tech: ["MITRE ATT&CK"] },
+      { label: "Briefing", role: "Executive decision support", tech: ["Cost–Benefit Analysis"] },
+    ],
+    challenges: [
+      { title: "Real-time risk updates", body: "Continuously updating likelihood and impact as new threat intelligence emerged demanded disciplined SITREP cadence." },
+      { title: "Vendor exposure under pressure", body: "Quantifying third-party exposure and ranking remediation while balancing containment and business continuity." },
+      { title: "Executive communication", body: "Translating technical findings into CISO-level risk narratives and prioritized recommendations under crisis conditions." },
+    ],
+    performance: [
+      { label: "Scenario", value: "Black Basta", detail: "Double-extortion ransomware in a financial institution." },
+      { label: "Reporting", value: "Real-time SITREP", detail: "Continuously updated risk likelihood and impact." },
+      { label: "TTP coverage", value: "MITRE ATT&CK", detail: "Lateral movement and enterprise compromise analyzed." },
+      { label: "Audience", value: "CISO-level", detail: "Cost–benefit analyses and prioritized recommendations." },
+    ],
+    learnings: [
+      "Crisis decision-making depends on tight, repeatable SITREP cadence.",
+      "Third-party exposure is often the deciding factor in remediation priority.",
+      "Executive briefings turn technical findings into business decisions.",
+    ],
+  },
+  "security-architecture-healthcare": {
+    slug: "security-architecture-healthcare",
+    summary:
+      "I assessed a healthcare clinic's security posture and designed a defense-in-depth Zero Trust architecture aligned with NIST CSF 2.0, CIS Controls v8, PHIPA, and HIPAA — including a 6-zone VLAN segmentation model, Microsoft Entra ID IAM, and a ransomware-resilient 3-2-1-1-0 data protection strategy.",
+    problem: [
+      "Critical gaps existed: no MFA, a flat network, and legacy SMBv1/NTLM protocols.",
+      "PHI exposure risks left the clinic vulnerable to ransomware and data breaches.",
+      "The design had to satisfy PHIPA and HIPAA data-protection requirements.",
+    ],
+    solution: [
+      "Designed a defense-in-depth architecture aligned with NIST CSF 2.0 and CIS Controls v8.",
+      "Engineered a 6-zone VLAN Zero Trust segmentation model to limit lateral movement.",
+      "Proposed a Microsoft Entra ID IAM framework with MFA, RBAC, and Conditional Access.",
+      "Built a 3-2-1-1-0 backup strategy with DLP, encryption, and secure Azure migration.",
+    ],
+    architecture: [
+      { label: "Network", role: "Zero Trust segmentation", tech: ["6-zone VLAN", "Network Segmentation"] },
+      { label: "Identity", role: "Access control", tech: ["Microsoft Entra ID", "MFA", "RBAC", "Conditional Access"] },
+      { label: "Data Protection", role: "Ransomware resilience", tech: ["3-2-1-1-0 Backup", "DLP", "Encryption"] },
+      { label: "Compliance", role: "Regulatory alignment", tech: ["PHIPA", "HIPAA", "NIST CSF 2.0", "CIS Controls v8"] },
+    ],
+    challenges: [
+      { title: "Eliminating credential attack vectors", body: "Introducing MFA, RBAC, and Conditional Access via Entra ID closed the most exploitable gaps." },
+      { title: "Containing lateral movement", body: "A 6-zone VLAN Zero Trust model replaced a flat network to improve incident containment." },
+      { title: "Compliant data protection", body: "A 3-2-1-1-0 backup model with encryption and data residency satisfied PHIPA and HIPAA." },
+    ],
+    performance: [
+      { label: "Segmentation", value: "6 zones", detail: "Zero Trust VLAN architecture limiting lateral movement." },
+      { label: "Identity", value: "Entra ID", detail: "MFA, RBAC, and Conditional Access policies." },
+      { label: "Backups", value: "3-2-1-1-0", detail: "Ransomware-resilient data protection strategy." },
+      { label: "Compliance", value: "PHIPA · HIPAA", detail: "Aligned with NIST CSF 2.0 and CIS Controls v8." },
+    ],
+    learnings: [
+      "Zero Trust segmentation is the highest-leverage fix for a flat network.",
+      "Identity is the new perimeter — MFA and Conditional Access close the biggest gaps.",
+      "Compliance frameworks are design inputs, not afterthoughts.",
+    ],
+  },
+  "cloud-ids-deployment": {
+    slug: "cloud-ids-deployment",
+    summary:
+      "I deployed Google Cloud IDS with packet mirroring across virtual networks, integrated alerts into SIEM ingestion pipelines, and tuned detection against injected attack traffic — achieving 95% alert accuracy and a 35% improvement in analyst triage efficiency.",
+    problem: [
+      "Cloud networks lacked east-west traffic visibility for detecting threats.",
+      "Exploits, malware callbacks, and lateral movement needed reliable detection.",
+      "IDS alerts had to integrate cleanly into existing SIEM workflows.",
+    ],
+    solution: [
+      "Deployed Google Cloud IDS with packet mirroring across virtual networks.",
+      "Configured collectors so mirrored flows reached IDS sensors for inspection.",
+      "Integrated and normalized IDS alerts into SIEM ingestion pipelines.",
+      "Tuned alert thresholds and documented gaps against injected attack traffic.",
+    ],
+    architecture: [
+      { label: "Capture", role: "East-west traffic mirroring", tech: ["Packet Mirroring", "Traffic Collectors"] },
+      { label: "Detection", role: "Intrusion detection", tech: ["Google Cloud IDS"] },
+      { label: "Integration", role: "Alert normalization", tech: ["SIEM Integration", "Log Normalization"] },
+      { label: "Validation", role: "Coverage & tuning", tech: ["Network Traffic Analysis"] },
+    ],
+    challenges: [
+      { title: "Reliable mirrored visibility", body: "Ensuring mirrored flows reached sensors gave visibility into payloads, C2 traffic, and lateral movement." },
+      { title: "Accelerating triage", body: "Normalizing alert fields and timestamps improved triage and escalation efficiency by 35%." },
+      { title: "Validating coverage", body: "Comparing detected events against injected traffic confirmed coverage and surfaced detection gaps." },
+    ],
+    performance: [
+      { label: "Alert accuracy", value: "95%", detail: "Across severity levels during testing." },
+      { label: "Triage efficiency", value: "+35%", detail: "Through normalized SIEM alert ingestion." },
+      { label: "Coverage", value: "Validated", detail: "Detection confirmed against injected attack traffic." },
+      { label: "Visibility", value: "East-west", detail: "Payloads, C2 traffic, and lateral movement." },
+    ],
+    learnings: [
+      "Detection is only as good as the traffic you can actually see.",
+      "Alert normalization is what makes SIEM triage fast.",
+      "Validating against injected traffic turns coverage into a measurable target.",
+    ],
+  },
+  "gov-risk-assessment": {
+    slug: "gov-risk-assessment",
+    summary:
+      "I performed a risk-based cybersecurity assessment for a government agency using the NIST Risk Management Framework — building a structured risk register, ranking the top 5 critical risks by likelihood and impact, and delivering executive briefings of prioritized recommendations under real-world constraints.",
+    problem: [
+      "A government agency needed risk prioritization under time and resource constraints.",
+      "Mitigation decisions required explicit trade-off analysis and business rationale.",
+      "Technical findings had to be translated for an executive audience.",
+    ],
+    solution: [
+      "Applied the NIST Risk Management Framework to a real-world scenario.",
+      "Built a structured risk register across assets, threats, vulnerabilities, and controls.",
+      "Ranked the top 5 critical risks by likelihood and impact.",
+      "Documented accepted risks and delivered prioritized executive briefings.",
+    ],
+    architecture: [
+      { label: "Framework", role: "Risk methodology", tech: ["NIST RMF"] },
+      { label: "Register", role: "Asset & threat cataloguing", tech: ["Risk Register"] },
+      { label: "Analysis", role: "Likelihood & impact ranking", tech: ["Trade-off Analysis"] },
+      { label: "Reporting", role: "Executive translation", tech: ["Executive Briefings"] },
+    ],
+    challenges: [
+      { title: "Prioritizing under constraints", body: "Ranking risks by likelihood and impact under real-world time and resource limits." },
+      { title: "Justifying trade-offs", body: "Documenting accepted risks with explicit business rationale rather than ad-hoc decisions." },
+      { title: "Executive communication", body: "Translating technical findings into clear, prioritized recommendations." },
+    ],
+    performance: [
+      { label: "Framework", value: "NIST RMF", detail: "Applied to a government-agency scenario." },
+      { label: "Top risks", value: "Top 5", detail: "Ranked by likelihood and impact." },
+      { label: "Register", value: "Structured", detail: "Assets, threats, vulnerabilities, and controls." },
+      { label: "Output", value: "Executive briefings", detail: "Prioritized, constraint-aware recommendations." },
+    ],
+    learnings: [
+      "Risk prioritization is about trade-offs, not eliminating every risk.",
+      "A structured register makes accepted risk defensible.",
+      "Executives need prioritized recommendations, not raw findings.",
+    ],
+  },
+  "windows-forensics-ghosttrace": {
+    slug: "windows-forensics-ghosttrace",
+    summary:
+      "In the Hack The Box GhostTrace investigation I correlated Windows Security, Sysmon, and PowerShell event logs to reconstruct the full attacker lifecycle across compromised hosts — mapping techniques to MITRE ATT&CK with 100% detection accuracy and a 40% lift in SOC triage readiness.",
+    problem: [
+      "A simulated enterprise compromise spanned multiple hosts and log sources.",
+      "Persistence, privilege escalation, and lateral movement had to be reconstructed.",
+      "Findings needed to be defensible and mapped to a recognized framework.",
+    ],
+    solution: [
+      "Correlated Windows Security, Sysmon, and PowerShell logs into multi-source timelines.",
+      "Performed temporal correlation to attribute actions to specific user sessions and processes.",
+      "Analyzed PowerShell operational logs to uncover scripted lateral movement and credential abuse.",
+      "Mapped IoCs to MITRE ATT&CK and produced structured investigation reports.",
+    ],
+    architecture: [
+      { label: "Telemetry", role: "Multi-source log collection", tech: ["Windows Event Logs", "Sysmon", "PowerShell Logging"] },
+      { label: "Correlation", role: "Timeline reconstruction", tech: ["Temporal Correlation", "Log Correlation"] },
+      { label: "Mapping", role: "Technique attribution", tech: ["MITRE ATT&CK"] },
+      { label: "Reporting", role: "Defensible evidence", tech: ["Digital Forensics"] },
+    ],
+    challenges: [
+      { title: "Multi-source correlation", body: "Stitching Security, Sysmon, and PowerShell channels into one coherent timeline." },
+      { title: "Attribution precision", body: "Temporal correlation attributed attacker actions to specific sessions, processes, and persistence mechanisms." },
+      { title: "Uncovering scripted abuse", body: "Decoding PowerShell command artifacts revealed scripted lateral movement and credential abuse." },
+    ],
+    performance: [
+      { label: "Detection accuracy", value: "100%", detail: "Across controlled forensic investigation scenarios." },
+      { label: "Triage readiness", value: "+40%", detail: "Improvement in IR validation and SOC triage." },
+      { label: "Lifecycle", value: "Reconstructed", detail: "Persistence and privilege-escalation artifacts identified." },
+      { label: "Mapping", value: "MITRE ATT&CK", detail: "IoCs mapped to recognized techniques." },
+    ],
+    learnings: [
+      "The attack story lives in the correlation across log sources, not any single channel.",
+      "Temporal correlation is what makes attribution defensible.",
+      "PowerShell logging is a goldmine for catching scripted abuse.",
+    ],
+  },
 };
 
 /** Audience segmentation for who I work with. */
@@ -525,7 +992,7 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    outcome: "Build and ship production-ready SaaS products",
+    outcome: "Build and ship production ready SaaS products",
     value:
       "End-to-end full-stack builds across React/Angular and NestJS/Node.js — shipped as scalable, secure products, not prototypes.",
     included: [
@@ -621,18 +1088,18 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "TODO: Add a real, approved client or colleague testimonial here. Quotes will not be fabricated.",
-    author: "TODO - Name",
-    role: "TODO - Role, Company",
-    placeholder: true,
+      "Huzaifa is an exceptional frontend developer with deep expertise in React and Angular. He consistently delivered clean, scalable code on time and brought strong problem-solving skills to every challenge. I highly recommend him for any software engineering or frontend development role.",
+    author: "Qasim Rashid",
+    role: "Senior DevSecOps Engineer | Cloud Architect",
+    placeholder: false,
   },
-  {
-    quote:
-      "TODO: Add a second real testimonial. Reach out to a past collaborator from TenX, Devsinc, or OnyxTec.",
-    author: "TODO - Name",
-    role: "TODO - Role, Company",
-    placeholder: true,
-  },
+  // {
+  //   quote:
+  //     "TODO: Add a second real testimonial. Reach out to a past collaborator from TenX, Devsinc, or OnyxTec.",
+  //   author: "TODO - Name",
+  //   role: "TODO - Role, Company",
+  //   placeholder: true,
+  // },
 ];
 
 export const expertise = [
@@ -648,14 +1115,13 @@ export const expertise = [
 
 export const process = [
   { step: "Discover", description: "Understand the product, users, and threat model before a line of code." },
-  { step: "Architect", description: "Design systems and data models that scale — and stay secure." },
+  { step: "Architect", description: "Design systems and data models that scale and stay secure." },
   { step: "Build", description: "Ship modular, reusable components with velocity and quality." },
-  { step: "Secure", description: "Apply secure SDLC — code review, integrity controls, and OWASP practices." },
+  { step: "Secure", description: "Apply secure SDLC: code review, integrity controls, and OWASP practices." },
   { step: "Test", description: "Unit, integration, and TDD coverage with Jest and Mocha." },
   { step: "Deploy", description: "Automated CI/CD pipelines on AWS for safe, repeatable releases." },
-  { step: "Defend", description: "Monitor, triage, and respond — SIEM, incident response, and hardening." },
+  { step: "Defend", description: "Monitor, triage, and respond with SIEM, incident response, and hardening." },
 ];
-
 export type Education = {
   degree: string;
   institution: string;
@@ -669,14 +1135,14 @@ export const education: Education[] = [
     degree: "Master of Cybersecurity",
     institution: "Toronto Metropolitan University",
     location: "Canada — Toronto, ON",
-    period: "GPA: 4.0",
+    period: "CGPA: 4.0",
     detail: "Specialized in SOC design, incident response, and ML-based intrusion detection.",
   },
   {
     degree: "Bachelor of Science in Computer Science",
     institution: "Government College University",
     location: "Pakistan",
-    period: "",
+    period: "CGPA: 3.6",
   },
 ];
 
@@ -687,26 +1153,34 @@ export const achievements = [
   "Built an ML-based IDS reaching 99.99% detection accuracy on the CIC-IDS2017 dataset.",
   "Scaled SocialSquad to 50k+ concurrent users with 99.9% data integrity.",
 ];
+export const achievements_2 = [
+  "Excellence Award 2025 at TenX (Agrilift) for outstanding enterprise platform delivery.",
+  "Best Employee Award 2022 at OnyxTec for a high-impact e-commerce payment integration.",
+  "Graduated with a perfect 4.0 GPA in the Master of Cybersecurity at Toronto Metropolitan University.",
+  "Built an ML-based intrusion detection system reaching 99.99% accuracy on the CIC-IDS2017 dataset.",
+  "Scaled SocialSquad to 50k+ concurrent users while sustaining 99.9% data integrity in production.",
+  "Reconstructed a full ransomware attack timeline and surfaced 18 indicators of compromise in a SOC simulation.",
+];
 
 export const languages = [
   { name: "English", level: "Professional Working Proficiency" },
-  { name: "Urdu", level: "Native" },
 ];
 
 export const certifications = [
   { name: "Splunk: A SIEM Tool", issuer: "ThinkCloudly", status: "Completed" },
   { name: "SOC Analyst: A SIEM Tool", issuer: "ThinkCloudly", status: "Completed" },
-  { name: "ISC2 Certification", issuer: "ISC2", status: "In Progress" },
+  { name: "Certified in Cybersecurity (CC)", issuer: "ISC2", status: "Completed" },
+  { name: "Security+", issuer: "CompTIA", status: "In Progress" },
 ] as const;
 
 export const faqs = [
   {
     q: "What kind of roles are you looking for?",
-    a: "Full-stack engineering and cybersecurity roles — including hybrid roles that combine secure software development with security operations. I'm based in Canada and open to opportunities across Canada and remote.",
+    a: "Full stack engineering and cybersecurity roles — including hybrid roles that combine secure software development with security operations. I'm based in Canada and open to opportunities across Canada and nationwide.",
   },
   {
     q: "What's your background as a developer?",
-    a: "Five years building secure, scalable B2B and B2C SaaS across React/TypeScript and NestJS/Node.js — including platforms scaled to 50k+ concurrent users — starting in Pakistan and continuing across remote roles for US-based companies.",
+    a: "4+ years building secure, scalable B2B and B2C SaaS across React/TypeScript and NestJS/Node.js — including platforms scaled to 50k+ concurrent users — starting in Pakistan and continuing across remote roles for US-based companies.",
   },
   {
     q: "What cybersecurity experience do you have?",

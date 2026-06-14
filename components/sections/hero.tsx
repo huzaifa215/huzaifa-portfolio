@@ -15,13 +15,17 @@ const TITLES = [
 
 const TECH_STACK = [
   "React",
+  "Angular",
   "Next.js",
   "Node.js",
   "TypeScript",
   "Python",
-  "Linux",
-  "Kali Linux",
+  "Splunk",
   "Wireshark",
+  "Nessus",
+  "Metasploit",
+  "MITRE ATT&CK",
+  "Kali Linux",
   "MongoDB",
   "PostgreSQL",
 ];
@@ -243,8 +247,7 @@ export function Hero() {
             variants={item}
             className="mb-8 max-w-md text-base leading-relaxed text-muted"
           >
-            From building production apps in Pakistan to securing systems in
-            Canada.
+          I build production apps and secure the systems they run on.
           </motion.p>
 
           <motion.div

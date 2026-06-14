@@ -20,14 +20,13 @@ import { Certifications } from "@/components/sections/certifications";
 export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
-    "From building full stack apps in Pakistan to cybersecurity in Canada. Learn about Huzaifa's journey, skills, and what he's working on.",
-  keywords: [
-    "full stack developer",
-    "cybersecurity specialist",
-    "incident response",
-    "secure SDLC",
-    "Canada",
-  ],
+    "From building full-stack apps to defending the systems they run on. Learn about Huzaifa's journey, skills, and what he's working on.", keywords: [
+      "full stack developer",
+      "cybersecurity specialist",
+      "incident response",
+      "secure SDLC",
+      "Canada",
+    ],
   path: "/about",
 });
 
@@ -70,19 +69,18 @@ export default function AboutPage() {
 
             {/* Bio — concise intro (full story lives in the Journey section) */}
             <p className="mt-8 max-w-[480px] text-[15px] leading-[1.8] text-slate-400">
-              I&apos;m a full-stack developer turned cybersecurity specialist —
-              five years building secure, scalable SaaS, now defending the
-              systems I used to build. From Pakistan to Canada, the throughline
-              is the same: ship it well, then make sure it holds.
+              I&apos;m a full-stack developer and cybersecurity analyst: 4+ years
+              building secure, scalable SaaS, and now defending the systems I
+              used to build. The throughline is simple ship it well, then
+              make sure it holds.
             </p>
 
             {/* Quick facts */}
             <div className="mt-10 flex items-center gap-5">
               {[
-                { value: "3+", label: "Years Full Stack" },
-                { value: "10+", label: "Projects Shipped" },
-                { value: "2", label: "Countries" },
-                { value: "1", label: "Goal: Security" },
+                { value: "4+", label: "Years Full Stack" },
+                { value: "12+", label: "Projects Shipped" },
+                { value: "1", label: "Goal: Build + Security" },
               ].map((f, i) => (
                 <React.Fragment key={f.label}>
                   {i > 0 && <div className="h-8 w-px self-center bg-white/[0.08]" />}
@@ -136,23 +134,23 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.08} className="flex flex-col gap-5 text-lg leading-relaxed text-muted">
             <p>
-              I started in Pakistan at OnyxTec, building SocialSquad - a MERN
-              event platform that scaled to 50k+ concurrent users - and tuning
-              high-volume backends to 99.9% data integrity. That foundation taught
-              me to own a product end to end, not just close tickets.
+              I started at OnyxTec, building SocialSquad, a MERN event platform
+              that scaled to 50k+ concurrent users, and tuning high-volume
+              backends to 90% data integrity. That foundation taught me to own
+              a product end to end, not just close tickets.
             </p>
             <p>
-              From there I worked across React/TypeScript and NestJS/Node.js for
+              From there I worked across React/TypeScript, Angular and NestJS/Node.js for
               US-based companies, engineering real-time features, analytics
-              modules, and secure frontend systems - and earning an Excellence
-              Award. The more I shipped, the more I cared about the part most teams
-              skip: securing it.
+              modules, and secure frontend systems, and earning an Excellence
+              Award along the way. The more I shipped, the more I cared about the
+              part most teams skip: securing it.
             </p>
             <p className="text-foreground">
-              Moving to Canada, I earned a Master of Cybersecurity (4.0 GPA) and
-              turned my engineering background toward defense - SOC design,
-              incident response, and ML-based threat detection. Today I do both:
-              build production software and secure the systems it runs on.
+              I then earned a Master of Cybersecurity (4.0 GPA) and turned my
+              engineering background toward defense: SOC design, incident
+              response, and ML-based threat detection. Today I do both. I build
+              production software and secure the systems it runs on.
             </p>
           </Reveal>
         </div>

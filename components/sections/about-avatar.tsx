@@ -31,10 +31,10 @@ export function AboutAvatar() {
       <div
         className="aspect-[3/4] w-full overflow-hidden rounded-[20px]"
         style={{
-          border: "1px solid rgba(255,255,255,0.07)",
+          border: "1px solid rgba(16, 185, 129,0.15)",
           boxShadow:
             "0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
-          background: "linear-gradient(135deg, #0F2040, #1A3A5C)",
+          background: "linear-gradient(135deg, #34D399, #rgba(16, 185, 129,0.15))",
         }}
       >
         {imgOk ? (
@@ -66,7 +66,7 @@ export function AboutAvatar() {
           boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
         }}
       >
-        <p className="text-2xl font-bold text-[#34D399]">3+</p>
+        <p className="text-2xl font-bold text-[#34D399]">4+</p>
         <p className="text-xs text-slate-500">Years XP</p>
       </div>
 
@@ -89,7 +89,7 @@ export function AboutAvatar() {
           <div>
             <p className="text-xs font-semibold text-white">Available Now</p>
             <p className="text-xs text-slate-500">
-              Ontario · Remote CA · Remote US
+              Ontario · Remote, Hybrid, Onsite CA · Remote 🌐 
             </p>
           </div>
         </div>

@@ -10,6 +10,7 @@ import { Trust } from "@/components/sections/trust";
 import { Faq } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
 import { JsonLd, faqJsonLd } from "@/lib/jsonld";
+import { Achievements } from "@/components/sections/achievements";
 
 export default function Home() {
   return (
@@ -30,6 +31,8 @@ export default function Home() {
       <Process />
       {/* 7 — Certifications highlight */}
       <CertificationsHighlight />
+
+      <Achievements/>
       {/* (kept) Platforms & testimonials */}
       <Trust />
       {/* (kept) FAQ */}
