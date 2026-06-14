@@ -81,11 +81,11 @@ export default function ContactPage() {
                   label="LinkedIn"
                   icon={<LinkedinIcon className="h-4 w-4" />}
                 />
-                <SocialLink
+                {/* <SocialLink
                   href={profile.links.github}
                   label="GitHub"
                   icon={<GithubIcon className="h-4 w-4" />}
-                />
+                /> */}
                 <a
                   href={profile.resumeUrl}
                   download
