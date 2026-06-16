@@ -114,7 +114,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Globe className="h-3.5 w-3.5 shrink-0 text-accent/60" strokeWidth={1.5} />
-                huzaifakhalid.com
+                huzaifakhalid.dev
               </li>
             </ul>
             <span className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-emerald-500/15 bg-emerald-500/[0.05] px-3 py-1.5 text-xs text-emerald-500">

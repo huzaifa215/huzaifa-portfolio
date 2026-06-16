@@ -3,7 +3,7 @@ import { profile } from "./resume";
 
 export const siteUrl =
   // TODO: replace with Huzaifa's real portfolio domain when available.
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://huzaifakhalid.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://huzaifakhalid.dev";
 
 const defaultDescription =
   "Full Stack Developer and Cybersecurity Specialist based in Canada. React, Next.js, Node.js, Network Security. Open to opportunities in GTA, remote Canada, and remote USA.";

@@ -133,7 +133,7 @@ draw.text((x + 18 * S, y + 12 * S), brands, font=f_brand, fill=FG)
 
 # url — to the right of the brands chip, vertically centered with it
 uy = y + (44 * S - (f_url.getbbox("A")[3] - f_url.getbbox("A")[1])) // 2 - 4 * S
-draw.text((x + int(bw) + 24 * S, uy), "huzaifakhalid.com", font=f_url, fill=ACCENT)
+draw.text((x + int(bw) + 24 * S, uy), "huzaifakhalid.dev", font=f_url, fill=ACCENT)
 
 out = os.path.join(IMG, "linkedin-banner.png")
 base.convert("RGB").save(out, optimize=True)
